@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MDE_Rest">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="MDE_Service.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MDE_Service/MDE_Service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MDE_Entity.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MDE_Entity/MDE_Entity">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/MDE_Rest/build/classes"/>
+        <property name="context-root" value="MDE_Rest"/>
+    </wb-module>
+</project-modules>

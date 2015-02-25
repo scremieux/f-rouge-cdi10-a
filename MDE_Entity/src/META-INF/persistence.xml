@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="MDE_Entity" transaction-type="JTA">
+		<jta-data-source>java:/datasource/maisonEmploi</jta-data-source>
+		<class>fr.imie.mde.model.Connexion</class>
+		<class>fr.imie.mde.model.Csp</class>
+		<class>fr.imie.mde.model.Motif</class>
+		<class>fr.imie.mde.model.NiveauFormation</class>
+		<class>fr.imie.mde.model.Poste</class>
+		<class>fr.imie.mde.model.Quartier</class>
+		<class>fr.imie.mde.model.Requete</class>
+		<class>fr.imie.mde.model.Salle</class>
+		<class>fr.imie.mde.model.Site</class>
+		<class>fr.imie.mde.model.Structure</class>
+		<class>fr.imie.mde.model.Usager</class>
+		<class>fr.imie.mde.model.Utilisateur</class>
+	</persistence-unit>
+</persistence>

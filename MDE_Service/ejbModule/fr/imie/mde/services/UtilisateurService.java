@@ -57,6 +57,7 @@ public class UtilisateurService implements IUtilisateurService {
     	List<Poste> postes = query.getResultList();
     	for (Poste poste : postes) {
 			poste.getSalle().setPostes(null);
+			poste.getSalle().getSite().setSalles(null);
 		}
 		return postes;
 	}
@@ -80,5 +81,17 @@ public class UtilisateurService implements IUtilisateurService {
 			salle.getSite().setSalles(null);
     	}
 		return salles;
+	}
+
+	@Override
+	public List<Poste> listerPostesParSalle(Salle salle) {
+		// TODO Auto-generated method stub
+		Salle salleSelected = entityManager.find(Salle.class, salle.getSalleId());
+    	List<Poste> postes = salleSelected.getPostes();
+    	for (Poste poste : postes) {
+    		poste.getSalle().getSite().setSalles(null);
+    		poste.getSalle().setPostes(null);
+    	}
+		return postes;
 	}
 }

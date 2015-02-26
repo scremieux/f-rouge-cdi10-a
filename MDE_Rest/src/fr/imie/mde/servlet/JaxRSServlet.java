@@ -42,15 +42,15 @@ public class JaxRSServlet {
 		return Response.ok(salles).build();
 	}
 	
-	/*@GET()
-	@Path("salle/{id}")
+	@GET()
+	@Path("/salles/{id}")
 	public Response listerSallesSitesRest(@PathParam("id") Integer id){
 		List<Salle> salles = new ArrayList<Salle>();
 		Site site = new Site();
 		site.setSiteId(id);
 		salles = utilService.listerSallesParSite(site);
 		return Response.ok(salles).build();
-	}*/
+	}
 	
 	@GET()
 	@Path("/postes")
@@ -59,6 +59,17 @@ public class JaxRSServlet {
 		postes = utilService.listerPostes();
 		return Response.ok(postes).build();
 	}
+	
+	@GET()
+	@Path("/postes/{id}")
+	public Response listerPostesSalleRest(@PathParam("id") Integer id){
+		List<Poste> postes = new ArrayList<Poste>();
+		Salle salle = new Salle();
+		salle.setSalleId(id);
+		postes = utilService.listerPostesParSalle(salle);
+		return Response.ok(postes).build();
+	}
+	
 	
 	@GET()
 	@Path("/structures")

@@ -22,4 +22,6 @@ public interface IUtilisateurService {
 
 	List<Salle> listerSallesParSite(Site site);
 
+	List<Poste> listerPostesParSalle(Salle salle);
+
 }

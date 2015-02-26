@@ -4,24 +4,16 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import fr.imie.mde.model.Poste;
-import fr.imie.mde.model.Salle;
-import fr.imie.mde.model.Site;
-import fr.imie.mde.model.Structure;
+import fr.imie.mde.model.Requete;
 
 @Local
 public interface IUtilisateurService {
 
-	List<Site> listerSites();
 
-	List<Salle> listerSalles();
 
-	List<Poste> listerPostes();
+	List<Requete> listerRequetes();
 
-	List<Structure> listerStructures();
+	Requete creerRequete(Requete requete);
 
-	List<Salle> listerSallesParSite(Site site);
-
-	List<Poste> listerPostesParSalle(Salle salle);
 
 }

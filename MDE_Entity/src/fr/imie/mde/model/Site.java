@@ -1,7 +1,10 @@
 package fr.imie.mde.model;
 
 import java.io.Serializable;
+
+import javax.inject.Named;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -9,6 +12,7 @@ import java.util.List;
  * The persistent class for the site database table.
  * 
  */
+
 @Entity
 @NamedQuery(name="Site.findAll", query="SELECT s FROM Site s")
 public class Site implements Serializable {

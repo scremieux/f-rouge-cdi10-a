@@ -1,4 +1,4 @@
-package fr.imie.mde.servlet;
+package fr.imie.mde.rest;
 
 import java.util.ArrayList;
 import java.util.List;

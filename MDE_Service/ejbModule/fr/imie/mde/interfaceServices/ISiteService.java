@@ -17,8 +17,6 @@ public interface ISiteService {
 
 	List<Poste> listerPostes();
 
-	List<Structure> listerStructures();
-
 	List<Salle> listerSallesParSite(Site site);
 
 	List<Poste> listerPostesParSalle(Salle salle);

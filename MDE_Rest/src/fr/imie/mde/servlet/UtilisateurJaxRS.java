@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import fr.imie.mde.interfaceServices.IUtilisateurService;
 import fr.imie.mde.model.Requete;
+import fr.imie.mde.model.Structure;
 
 
 @Stateless
@@ -25,9 +26,16 @@ import fr.imie.mde.model.Requete;
 public class UtilisateurJaxRS {
 	@EJB IUtilisateurService utilisateurService;
 	
+	@GET()
+	@Path("/structure")
+	public Response listerStructuresRest(){
+		List<Structure> structures = new ArrayList<Structure>();
+		structures = utilisateurService.listerStructures();
+		return Response.ok(structures).build();
+	}
 	
 	@GET()
-	@Path("/requetes")
+	@Path("/requete")
 	public Response listerRequetesRest(){
 		List<Requete> requetes = new ArrayList<Requete>();
 		requetes = utilisateurService.listerRequetes();

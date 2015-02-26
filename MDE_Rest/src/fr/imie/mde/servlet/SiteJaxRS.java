@@ -20,7 +20,7 @@ import fr.imie.mde.model.Site;
 import fr.imie.mde.model.Structure;
 
 @Stateless
-@Path("/utilisateur")
+@Path("/site")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
 public class SiteJaxRS {
@@ -28,7 +28,6 @@ public class SiteJaxRS {
 	
 	
 	@GET()
-	@Path("/sites")
 	public Response listerSitesRest(){
 		List<Site> sites = new ArrayList<Site>();
 		sites = siteService.listerSites();
@@ -36,7 +35,7 @@ public class SiteJaxRS {
 	}	
 	
 	@GET()
-	@Path("/salles")
+	@Path("/salle")
 	public Response listerSallesRest(){
 		List<Salle> salles = new ArrayList<Salle>();
 		salles = siteService.listerSalles();
@@ -44,7 +43,7 @@ public class SiteJaxRS {
 	}
 	
 	@GET()
-	@Path("/salles/{id}/site")
+	@Path("/salle/{id}")
 	public Response listerSallesSitesRest(@PathParam("id") Integer id){
 		List<Salle> salles = new ArrayList<Salle>();
 		Site site = new Site();
@@ -54,7 +53,7 @@ public class SiteJaxRS {
 	}
 	
 	@GET()
-	@Path("/postes")
+	@Path("/salle/poste")
 	public Response listerPostesRest(){
 		List<Poste> postes = new ArrayList<Poste>();
 		postes = siteService.listerPostes();
@@ -62,7 +61,7 @@ public class SiteJaxRS {
 	}
 	
 	@GET()
-	@Path("/postes/{id}")
+	@Path("/salle/poste/{id}")
 	public Response listerPostesSalleRest(@PathParam("id") Integer id){
 		List<Poste> postes = new ArrayList<Poste>();
 
@@ -73,12 +72,6 @@ public class SiteJaxRS {
 	}
 	
 	
-	@GET()
-	@Path("/structures")
-	public Response listerStructuresRest(){
-		List<Structure> structures = new ArrayList<Structure>();
-		structures = siteService.listerStructures();
-		return Response.ok(structures).build();
-	}
+	
 	
 }

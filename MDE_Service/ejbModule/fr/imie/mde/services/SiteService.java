@@ -61,13 +61,7 @@ public class SiteService implements ISiteService {
 		return postes;
 	}
 
-	@Override
-	public List<Structure> listerStructures() {
-		// TODO Auto-generated method stub
-		Query query = entityManager.createNamedQuery("Structure.findAll"); 
-    	List<Structure> structures = query.getResultList();
-		return structures;
-	}
+
 
 	@Override
 	public List<Salle> listerSallesParSite(Site site) {

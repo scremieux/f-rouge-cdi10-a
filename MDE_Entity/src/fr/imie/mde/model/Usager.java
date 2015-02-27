@@ -1,9 +1,18 @@
 package fr.imie.mde.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -49,10 +58,6 @@ public class Usager implements Serializable {
 
 	@Column(name="usager_prenom")
 	private String usagerPrenom;
-
-	//bi-directional many-to-one association to Connexion
-	@OneToMany(mappedBy="usager")
-	private List<Connexion> connexions;
 
 	//uni-directional many-to-one association to Csp
 	@ManyToOne
@@ -152,27 +157,27 @@ public class Usager implements Serializable {
 		this.usagerPrenom = usagerPrenom;
 	}
 
-	public List<Connexion> getConnexions() {
-		return this.connexions;
-	}
-
-	public void setConnexions(List<Connexion> connexions) {
-		this.connexions = connexions;
-	}
-
-	public Connexion addConnexion(Connexion connexion) {
-		getConnexions().add(connexion);
-		connexion.setUsager(this);
-
-		return connexion;
-	}
-
-	public Connexion removeConnexion(Connexion connexion) {
-		getConnexions().remove(connexion);
-		connexion.setUsager(null);
-
-		return connexion;
-	}
+//	public List<Connexion> getConnexions() {
+//		return this.connexions;
+//	}
+//
+//	public void setConnexions(List<Connexion> connexions) {
+//		this.connexions = connexions;
+//	}
+//
+//	public Connexion addConnexion(Connexion connexion) {
+//		getConnexions().add(connexion);
+//		connexion.setUsager(this);
+//
+//		return connexion;
+//	}
+//
+//	public Connexion removeConnexion(Connexion connexion) {
+//		getConnexions().remove(connexion);
+//		connexion.setUsager(null);
+//
+//		return connexion;
+//	}
 
 	public Csp getCsp() {
 		return this.csp;

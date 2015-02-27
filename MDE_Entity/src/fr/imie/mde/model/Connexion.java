@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 
@@ -19,7 +20,10 @@ import javax.persistence.NamedQuery;
  * 
  */
 @Entity
-@NamedQuery(name="Connexion.findAll", query="SELECT c FROM Connexion c")
+@NamedQueries({
+	@NamedQuery(name="Connexion.findAll", query="SELECT c FROM Connexion c"),
+	@NamedQuery(name="Connexion.rechercherParUsager", query = "SELECT c FROM Connexion c WHERE usager=:usager")
+}) 
 public class Connexion implements Serializable {
 	private static final long serialVersionUID = 1L;
 

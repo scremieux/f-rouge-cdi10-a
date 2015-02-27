@@ -22,6 +22,23 @@ import fr.imie.mde.model.NiveauFormation;
 import fr.imie.mde.model.Quartier;
 import fr.imie.mde.model.Usager;
 
+/**
+ * Services REST dédiés à la gestion des usagers.
+ * <br>
+ * Routes :
+ * <ul>
+ *   <li>/Api/usager : GET, POST</li>
+ *   <li>/Api/usager/{id} : GET, DELETE, PUT</li>
+ *   <li>/Api/usager/csp : GET, POST</li>
+ *   <li>/Api/usager/csp/{id} : GET, DELETE, PUT</li>
+ *   <li>/Api/usager/quartier : GET, POST</li>
+ *   <li>/Api/usager/quartier/{id} : GET, DELETE, PUT</li>
+ *   <li>/Api/usager/nf : GET, POST</li>
+ *   <li>/Api/usager/nf/{id} : GET, DELETE, PUT</li>
+ * </ul>
+ * @author P42
+ * @version 1.0
+ */
 @Stateless
 @Path("/usager")
 @Produces({MediaType.APPLICATION_JSON})
@@ -29,6 +46,12 @@ import fr.imie.mde.model.Usager;
 public class UsagerJaxRS {
 	@EJB IUsagerService usagerService;
 
+	/**
+	 * Retourne la liste exhaustive des usagers.
+	 * <br>Route : /Api/usager
+	 * <br>Methode : GET
+	 * @return liste d'objets Usager au format JSON.
+	 */
 	@GET()
 	public Response listerUsagersRest(){
 		List<Usager> usagers = new ArrayList<Usager>();
@@ -36,6 +59,12 @@ public class UsagerJaxRS {
 		return Response.ok(usagers).build();
 	}
 	
+	/**
+	 * Retourne la liste exhaustive des catégories socio professionnelles.
+	 * <br>Route : /Api/usager/csp
+	 * <br>Methode : GET
+	 * @return liste d'objets Csp au format JSON.
+	 */
 	@GET()
 	@Path("/csp")
 	public Response listerCspRest(){
@@ -44,6 +73,12 @@ public class UsagerJaxRS {
 		return Response.ok(cspList).build();
 	}
 
+	/**
+	 * Retourne la liste exhaustive des quartiers.
+	 * <br>Route : /Api/quartier
+	 * <br>Methode : GET
+	 * @return liste d'objets Quartier au format JSON.
+	 */
 	@GET()
 	@Path("/quartier")
 	public Response listerQuartiersRest(){
@@ -52,7 +87,12 @@ public class UsagerJaxRS {
 		return Response.ok(quartiers).build();
 	}
 
-
+	/**
+	 * Retourne la liste exhaustive des niveaux de formation.
+	 * <br>Route : /Api/nf
+	 * <br>Methode : GET
+	 * @return liste d'objets NiveauFormation au format JSON.
+	 */
 	@GET()
 	@Path("/nf")
 	public Response listerNiveauxFormationRest(){
@@ -61,9 +101,16 @@ public class UsagerJaxRS {
 		return Response.ok(nfList).build();
 	}
 	
+	/**
+	 * Retourne les informations de l'usager correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/{id}
+	 * <br>Methode : GET
+	 * @param idString   Clé primaire de l'usager recherché.
+	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@GET()
 	@Path("/{id}")
-	public Response rechercherUsagerParId(@PathParam("id") String idString) {
+	public Response rechercherUsagerParIdRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -84,9 +131,16 @@ public class UsagerJaxRS {
 		return Response.ok(usager).build();
 	}
 	
+	/**
+	 * Retourne les informations de la CSP correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/csp/{id}
+	 * <br>Methode : GET
+	 * @param idString   Clé primaire de la csp recherchée.
+	 * @return objet Csp au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@GET()
 	@Path("/csp/{id}")
-	public Response rechercherCspParId(@PathParam("id") String idString) {
+	public Response rechercherCspParIdRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -107,9 +161,16 @@ public class UsagerJaxRS {
 		return Response.ok(csp).build();
 	}
 	
+	/**
+	 * Retourne les informations du quartier correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/quartier/{id}
+	 * <br>Methode : GET
+ 	 * @param idString   Clé primaire du quartier recherché.
+ 	 * @return objet Quartier au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@GET()
 	@Path("/quartier/{id}")
-	public Response rechercherQuartierParId(@PathParam("id") String idString) {
+	public Response rechercherQuartierParIdRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -130,9 +191,16 @@ public class UsagerJaxRS {
 		return Response.ok(quartier).build();
 	}
 	
+	/**
+	 * Retourne les informations du niveau de formation correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/nf/{id}
+	 * <br>Methode : GET
+	 * @param idString   Clé primaire du niveau de formation recherché.
+	 * @return objet NiveauFormation au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@GET()
 	@Path("/nf/{id}")
-	public Response rechercherNiveauFormationParId(@PathParam("id") String idString) {
+	public Response rechercherNiveauFormationParIdRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -153,9 +221,16 @@ public class UsagerJaxRS {
 		return Response.ok(niveauFormation).build();
 	}
 	
+	/**
+	 * Supprime les données de l'usager correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/{id}
+	 * <br>Methode : DELETE
+	 * @param idString   Clé primaire de l'usager à supprimer.
+ 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+ 	 */
 	@DELETE()
 	@Path("/{id}")
-	public Response supprimerUsager(@PathParam("id") String idString) {
+	public Response supprimerUsagerRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -176,9 +251,16 @@ public class UsagerJaxRS {
 		return Response.ok(usager).build();
 	}
 
+	/**
+	 * Supprime les données de la CSP correspondante à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/csp/{id}
+	 * <br>Methode : DELETE
+	 * @param idString   Clé primaire de la CSP à supprimer.
+ 	 * @return objet Csp au format JSON, noContent si pas de correspondance trouvée.
+ 	 */
 	@DELETE()
 	@Path("/csp/{id}")
-	public Response supprimerCsp(@PathParam("id") String idString) {
+	public Response supprimerCspRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -199,9 +281,16 @@ public class UsagerJaxRS {
 		return Response.ok(csp).build();
 	}
 
+	/**
+	 * Supprime les données du quartier correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/quartier/{id}
+	 * <br>Methode : DELETE
+	 * @param idString   Clé primaire du quartier à supprimer.
+ 	 * @return objet Quartier au format JSON, noContent si pas de correspondance trouvée.
+ 	 */
 	@DELETE()
 	@Path("/quartier/{id}")
-	public Response supprimerQuartier(@PathParam("id") String idString) {
+	public Response supprimerQuartierRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -222,9 +311,16 @@ public class UsagerJaxRS {
 		return Response.ok(quartier).build();
 	}
 
+	/**
+	 * Supprime les données du niveau de formation correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/nf/{id}
+	 * <br>Methode : DELETE
+	 * @param idString   Clé primaire du niveau de formation à supprimer.
+ 	 * @return objet NiveauFormation au format JSON, noContent si pas de correspondance trouvée.
+ 	 */
 	@DELETE()
 	@Path("/nf/{id}")
-	public Response supprimerNiveauFormation(@PathParam("id") String idString) {
+	public Response supprimerNiveauFormationRest(@PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -245,49 +341,80 @@ public class UsagerJaxRS {
 		return Response.ok(niveauFormation).build();
 	}
 	
+	/**
+	 * Crée un usager.
+	 * <br>Route : /Api/usager
+	 * <br>Methode : POST
+	 * @param usager   objet Usager à persister.
+ 	 * @return objet Usager persisté au format JSON.
+	 */
 	@POST()
-	public Response creerUsager(Usager usager) {
+	public Response creerUsagerRest(Usager usager) {
 		if (usager != null) {
 			usagerService.creerUsager(usager);
 		}
 		return Response.ok(usager).build();
 	}
 
+	/**
+	 * Crée une CSP.
+	 * <br>Route : /Api/usager/csp
+	 * <br>Methode : POST
+	 * @param csp   objet Csp à persister.
+ 	 * @return objet Csp persisté au format JSON.
+	 */
 	@POST()
 	@Path("/csp")
-	public Response creerCsp(Csp csp) {
+	public Response creerCspRest(Csp csp) {
 		if (csp != null) {
 			usagerService.creerCsp(csp);
 		}
 		return Response.ok(csp).build();
 	}
 	
+	/**
+	 * Crée un quartier.
+	 * <br>Route : /Api/usager/quartier
+	 * <br>Methode : POST
+	 * @param quartier   objet Quartier à persister.
+ 	 * @return objet Quartier persisté au format JSON.
+	 */
 	@POST()
 	@Path("/quartier")
-	public Response creerQuartier(Quartier quartier) {
+	public Response creerQuartierRest(Quartier quartier) {
 		if (quartier != null) {
 			usagerService.creerQuartier(quartier);
 		}
 		return Response.ok(quartier).build();
 	}
 
+	/**
+	 * Crée un niveau de formation.
+	 * <br>Route : /Api/usager/nf
+	 * <br>Methode : POST
+	 * @param niveauFormation   objet NiveauFormation à persister.
+ 	 * @return objet NiveauFormation persisté au format JSON.
+	 */
 	@POST()
 	@Path("/nf")
-	public Response creerNiveauFormation(NiveauFormation niveauFormation) {
+	public Response creerNiveauFormationRest(NiveauFormation niveauFormation) {
 		if (niveauFormation != null) {
 			usagerService.creerNiveauFormation(niveauFormation);
 		}
 		return Response.ok(niveauFormation).build();
 	}
 
-	
-	
-	
-	
-	
+	/**
+	 * Met à jour les données de l'usager correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/{id}
+	 * <br>Methode : PUT
+	 * @param usager		objet Usager avec les données à mettre à jour.
+	 * @param idString		Clé primaire de l'usager à mettre à jour.
+ 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@PUT
 	@Path("/{id}")
-	public Response modifierUsager(Usager usager, @PathParam("id") String idString) {
+	public Response modifierUsagerRest(Usager usager, @PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -297,16 +424,24 @@ public class UsagerJaxRS {
 
 		if (id != null && usager != null) {
 			usager.setUsagerId(id);
-			usagerService.modifierUsager(usager);
+			usager = usagerService.modifierUsager(usager);
 			return Response.ok(usager).build();
 		} else {
 			return Response.noContent().build();
 		}
 	}
 
+	/**
+	 * Met à jour les données de la CSP correspondante à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/csp/{id}
+	 * <br>Methode : PUT
+	 * @param csp			objet Csp avec les données à mettre à jour.
+	 * @param idString		Clé primaire de la CSP à mettre à jour.
+ 	 * @return objet Csp au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@PUT
 	@Path("/csp/{id}")
-	public Response modifierCsp(Csp csp, @PathParam("id") String idString) {
+	public Response modifierCspRest(Csp csp, @PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -323,9 +458,17 @@ public class UsagerJaxRS {
 		}
 	}
 	
+	/**
+	 * Met à jour les données du quartier correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/quartier/{id}
+	 * <br>Methode : PUT
+	 * @param quartier		objet Quartier avec les données à mettre à jour.
+	 * @param idString		Clé primaire du quartier à mettre à jour.
+ 	 * @return objet Quartier au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@PUT
 	@Path("/quartier/{id}")
-	public Response modifierQuartier(Quartier quartier, @PathParam("id") String idString) {
+	public Response modifierQuartierRest(Quartier quartier, @PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -342,9 +485,17 @@ public class UsagerJaxRS {
 		}
 	}
 	
+	/**
+	 * Met à jour les données du niveau de formation correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/usager/nf/{id}
+	 * <br>Methode : PUT
+	 * @param niveauFormation	objet NiveauFormation avec les données à mettre à jour.
+	 * @param idString			Clé primaire du niveau de formation à mettre à jour.
+ 	 * @return objet NiveauFormation au format JSON, noContent si pas de correspondance trouvée.
+	 */
 	@PUT
 	@Path("/nf/{id}")
-	public Response modifierNiveauFormation(NiveauFormation niveauFormation, @PathParam("id") String idString) {
+	public Response modifierNiveauFormationRest(NiveauFormation niveauFormation, @PathParam("id") String idString) {
 		Integer id = null;
 		try {
 			id = Integer.valueOf(idString);
@@ -360,7 +511,4 @@ public class UsagerJaxRS {
 			return Response.noContent().build();
 		}
 	}
-
-
-
 }

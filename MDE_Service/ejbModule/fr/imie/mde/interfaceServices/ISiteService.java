@@ -17,7 +17,27 @@ public interface ISiteService {
 
 	List<Poste> listerPostes();
 
-	List<Salle> listerSallesParSite(Site site);
+	Site obtenirSite(Site site);
 
-	List<Poste> listerPostesParSalle(Salle salle);
+	Salle obtenirSalle(Salle salle);
+
+	Poste obtenirPoste(Poste poste);
+
+	Site creerSite(Site site);
+
+	Salle creerSalle(Salle salle);
+	
+	Poste creerPoste(Poste poste);
+
+	Site modifierSite(Site site);
+
+	Salle modifierSalle(Salle salle);
+	
+	Poste modifierPoste(Poste poste);
+
+	void supprimerSite(Site site);
+
+	void supprimerSalle(Salle salle);
+
+	void supprimerPoste(Poste poste);
 }

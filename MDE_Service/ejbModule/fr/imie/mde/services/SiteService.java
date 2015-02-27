@@ -37,6 +37,21 @@ public class SiteService implements ISiteService {
 	}
 
 	@Override
+	public Site obtenirSite(Site site) {
+		// TODO Auto-generated method stub
+		site = entityManager.find(Site.class, site.getSiteId());
+		List<Salle> salles = site.getSalles();
+		
+		for (Salle salle : salles) {
+			entityManager.detach(salle);
+			salle.setPostes(null);
+			salle.setSite(null);
+		}
+		return site;
+	}
+	
+	
+	@Override
 	public List<Salle> listerSalles() {
 		// TODO Auto-generated method stub
 		Query query = entityManager.createNamedQuery("Salle.findAll"); 
@@ -47,6 +62,19 @@ public class SiteService implements ISiteService {
 			
 		}
 		return salles;
+	}
+	
+	@Override
+	public Salle obtenirSalle(Salle salle) {
+		// TODO Auto-generated method stub
+		salle = entityManager.find(Salle.class, salle.getSalleId());
+		List<Poste> postes = salle.getPostes();
+		for (Poste poste : postes) {
+			entityManager.detach(poste);
+			poste.setSalle(null);
+		}
+		salle.getSite().setSalles(null);
+		return salle;
 	}
 	
 	@Override
@@ -61,30 +89,67 @@ public class SiteService implements ISiteService {
 		return postes;
 	}
 
-
-
 	@Override
-	public List<Salle> listerSallesParSite(Site site) {
+	public Poste obtenirPoste(Poste poste) {
 		// TODO Auto-generated method stub
+		poste = entityManager.find(Poste.class, poste.getPosteId());
 		
-		Site siteSelected = entityManager.find(Site.class, site.getSiteId());
-    	List<Salle> salles = siteSelected.getSalles();
-    	for (Salle salle : salles) {
-			salle.setPostes(null);
-			salle.getSite().setSalles(null);
-    	}
-		return salles;
+		Salle salle = poste.getSalle();
+		Site site = salle.getSite();
+    	site.setSalles(null);
+    	salle.setPostes(null);
+   
+		return poste;
 	}
-
 	@Override
-	public List<Poste> listerPostesParSalle(Salle salle) {
+	public Site creerSite(Site site) {
 		// TODO Auto-generated method stub
-		Salle salleSelected = entityManager.find(Salle.class, salle.getSalleId());
-    	List<Poste> postes = salleSelected.getPostes();
-    	for (Poste poste : postes) {
-    		poste.getSalle().getSite().setSalles(null);
-    		poste.getSalle().setPostes(null);
-    	}
-		return postes;
+		entityManager.persist(site);
+		return site;
+	}
+	@Override
+	public Salle creerSalle(Salle salle) {
+		// TODO Auto-generated method stub
+		entityManager.persist(salle);
+		return salle;
+	}
+	@Override
+	public Poste creerPoste(Poste poste) {
+		// TODO Auto-generated method stub
+		entityManager.persist(poste);
+		return poste;
+	}
+	@Override
+	public Site modifierSite(Site site) {
+		// TODO Auto-generated method stub
+		return entityManager.merge(site);
+	}
+	@Override
+	public Salle modifierSalle(Salle salle) {
+		// TODO Auto-generated method stub
+		return entityManager.merge(salle);
+	}
+	@Override
+	public Poste modifierPoste(Poste poste) {
+		// TODO Auto-generated method stub
+		return entityManager.merge(poste);
+	}
+	@Override
+	public void supprimerSite(Site site) {
+		// TODO Auto-generated method stub
+		site = entityManager.merge(site);
+		entityManager.remove(site);
+	}
+	@Override
+	public void supprimerSalle(Salle salle) {
+		// TODO Auto-generated method stub
+		salle = entityManager.merge(salle);
+		entityManager.remove(salle);
+	}
+	@Override
+	public void supprimerPoste(Poste poste) {
+		// TODO Auto-generated method stub
+		poste = entityManager.merge(poste);
+		entityManager.remove(poste);
 	}
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+
+<html data-ng-app="salleModele">
+
+<head>
+
+<!-- Présentation de la Gestion des salles : Afficher liste des salles, créer, modifier et supprimer une salle-->
+
+<title>Gestion des salles - Cyberbase</title>
+<meta charset="UTF-8">
+
+<!-- chargement de Bootstrap -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Chargement d'Angular.js -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+</head>
+
+<body data-ng-controller="salleControleur">
+
+	<div class="container">
+
+		<h3>Gestion des salles</h3>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Site</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="x in salleInfo | orderBy:'site.siteNom'">
+					<td>{{ x.salleId }}</td>
+					<td>{{ x.salleNom }}</td>
+					<td>{{ x.site.siteNom }}</td>
+					<td>
+						<button class="btn" data-ng-click="editSalle(x.salleId)">
+							<span class="glyphicon glyphicon-pencil"></span> Modifier
+						</button>
+					</td>
+					<td>
+						<button class="btn" data-ng-click="deleteSalle(x.salleId)">
+							<span class="glyphicon glyphicon-pencil"></span> Supprimer
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr>
+
+		<button class="btn btn-success" data-ng-click="createSalle('new')">
+			<span class="glyphicon glyphicon-user"></span> Créer
+		</button>
+
+		<hr>
+
+		<h3 data-ng-show="edit">Créer une nouvelle salle:</h3>
+		<h3 data-ng-hide="edit">Modifier la salle:</h3>
+
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<input type="text" data-ng-model="salleNom"
+						data-ng-disabled="!edit" placeholder="Nom">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Site</label>
+				<div class="col-sm-10">
+					<input type="text" data-ng-model="site.siteNom"
+						data-ng-disabled="!edit" placeholder="Site">
+				</div>
+			</div>
+		</form>
+
+		<hr>
+
+		<button class="btn btn-success" data-ng-disabled="error || incomplete">
+			<span class="glyphicon glyphicon-save"></span>Valider
+		</button>
+
+	</div>
+
+	<script type="text/javascript" src="../js/salleModele.js"></script>
+	<script type="text/javascript" src="../js/salleControleur.js"></script>
+
+
+</body>
+</html>
+

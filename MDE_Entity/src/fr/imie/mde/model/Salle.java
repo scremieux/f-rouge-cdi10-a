@@ -1,7 +1,9 @@
 package fr.imie.mde.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -24,7 +26,7 @@ public class Salle implements Serializable {
 	private String salleNom;
 
 	//bi-directional many-to-one association to Poste
-	@OneToMany(mappedBy="salle")
+	@OneToMany(mappedBy="salle", cascade = CascadeType.REMOVE)
 	private List<Poste> postes;
 
 	//bi-directional many-to-one association to Site

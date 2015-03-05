@@ -59,7 +59,7 @@ public class UtilisateurService implements IUtilisateurService {
 		return entityManager.merge(utilisateur);
 	}
 	@Override
-	public void supprimerSite(Utilisateur utilisateur) {
+	public void supprimerUtilisateur(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
 		utilisateur = entityManager.merge(utilisateur);
 		entityManager.remove(utilisateur);

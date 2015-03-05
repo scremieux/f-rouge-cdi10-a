@@ -103,7 +103,7 @@ public class UtilisateurJaxRS {
 			utilisateur = new Utilisateur();
 			utilisateur.setUtilId(id);
 			try {
-				utilisateurService.supprimerSite(utilisateur);
+				utilisateurService.supprimerUtilisateur(utilisateur);
 			} catch (Exception e) {
 				return Response.noContent().build();
 			}

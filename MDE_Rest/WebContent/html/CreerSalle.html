@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+
+<html data-ng-app="salleModele">
+
+<head>
+
+<!-- Présentation de la Gestion des salles : Afficher liste des salles, créer, modifier et supprimer une salle-->
+
+<title>Creation de salle - Cyberbase</title>
+<meta charset="UTF-8">
+
+<!-- chargement de Bootstrap -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Chargement d'Angular.js -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<div id="logoCyberBase">
+			<img src="../img/cyber_base.png" alt="logo cyber base" />
+		</div>
+		<div id="titrePage">Gestion des salles</div>
+		<div id="connexionBloc">
+			<p id=""></p>
+			<p>
+				<a href="">Déconnexion</a>
+			</p>
+			<p>
+				<a href="">Modifier mon mot de passe</a>
+			</p>
+		</div>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="html/acceuil.html">Acceuil</a></li>
+			<li>Gérer les usagers
+				<ul>
+					<li><a href="creerUsager.html">Créer un usager</a></li>
+					<li><a href="detailsUsager.html">Modifier un usager</a></li>
+					<li><a href="detailsUsager.html">Supprimer un usager</a></li>
+					<li><a href="historique.html">Visualiser l'historique</a></li>
+				</ul>
+			</li>
+			<li>Gérer les salles
+				<ul>
+					<li><a href="creerSalle.html">Créer une salle</a></li>
+					<li><a href="gererSalles.html">Visualiser les
+							disponibilités</a></li>
+					<li><a href="affecterPoste.html">Affecter un poste</a></li>
+					<li><a href="configurerPoste.html">Configurer un
+							poste</a></li>
+					<li><a href="gererSalles.html">Libérer un poste</a></li>
+				</ul>
+			</li>
+			<li>Statistiques
+				<ul>
+					<li><a href="statistiques.html">Gérer les requêtes</a></li>
+					<li><a href="statistiques.html">Afficher le nombre de
+							visites</a></li>
+					<li><a href="statistiques.html">Afficher le nombre de
+							nouveaux inscrits</a></li>
+					<li><a href="statistiques.html">Afficher le nombre
+							d'usagers</a></li>
+				</ul>
+			</li>
+			<li>Gérer les utilisateurs
+				<ul>
+					<li><a href="creerUtilisateur.html">Créer un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs.html">Modifier un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs.html">Supprimer un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs.html">Affecter un
+							utilisateur à un site</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<section  data-ng-controller="salleControleur" class="container">
+
+		<h3>Gestion des salles</h3>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Site</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="x in listeSalles | orderBy:'site.siteNom'">
+					<td>{{ x.salleId }}</td>
+					<td>{{ x.salleNom }}</td>
+					<td>{{ x.site.siteNom }}</td>
+					<td>
+						<button class="btn" data-ng-click="editSalle(x.salleId)">
+							<span class="glyphicon glyphicon-pencil"></span> Modifier
+						</button>
+					</td>
+					<td>
+						<button class="btn" data-ng-click="deleteSalle(x.salleId)">
+							<span class="glyphicon glyphicon-pencil"></span> Supprimer
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr>
+
+		<button class="btn btn-success" data-ng-click="createSalle('new')">
+			<span class="glyphicon glyphicon-user"></span> Créer
+		</button>
+
+		<hr>
+
+		<h3 data-ng-show="edit">Créer une nouvelle salle:</h3>
+		<h3 data-ng-hide="edit">Modifier la salle:</h3>
+
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<input type="text" data-ng-model="salleNom"
+						data-ng-disabled="!edit" placeholder="Nom">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Site</label>
+				<div class="col-sm-10">
+					<input type="text" data-ng-model="site.siteNom"
+						data-ng-disabled="!edit" placeholder="Site">
+				</div>
+			</div>
+		</form>
+
+		<hr>
+
+		<button class="btn btn-success" data-ng-disabled="error || incomplete">
+			<span class="glyphicon glyphicon-save"></span>Valider
+		</button>
+
+	</section>
+
+	<script type="text/javascript" src="../js/salleModele.js"></script>
+	<script type="text/javascript" src="../js/salleControleur.js"></script>
+
+
+</body>
+</html>
+

@@ -19,7 +19,7 @@ public interface IUtilisateurService {
 
 	Utilisateur modifierUtilisateur(Utilisateur utilisateur);
 
-	void supprimerSite(Utilisateur utilisateur);
+	void supprimerUtilisateur(Utilisateur utilisateur);
 
 	List<Structure> listerStructures();
 

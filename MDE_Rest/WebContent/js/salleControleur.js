@@ -3,16 +3,9 @@
 *** Fonction pour récupérer tableau des salles sur serveur
 ***___________________________________________________________*/
 	app.controller("salleControleur",function salleControleur($scope,$http) {
-	  $http.get("http://10.0.10.92:8080/MDE_Rest/Api/site/salle").success(function(response) {$scope.salleInfo = response})
+	  $http.get("http://10.0.10.92:8080/MDE_Rest/Api/site/salle").success(function(response) {$scope.listeSalles = response})
 	});
 
-
-
-
-
-//app.controller("salleControleur", function($scope,$http) {
-	//$http.get("http://10.0.10.92:8080/MDE_Rest/Api/site/salle").success(function(response) {$scope.salleInfo = response})
-//})
 
 	
 

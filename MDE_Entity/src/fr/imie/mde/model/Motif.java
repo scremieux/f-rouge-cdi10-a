@@ -22,10 +22,6 @@ public class Motif implements Serializable {
 	@Column(name="mt_libelle")
 	private String mtLibelle;
 
-	//bi-directional many-to-one association to Connexion
-	@OneToMany(mappedBy="motif")
-	private List<Connexion> connexions;
-
 	public Motif() {
 	}
 
@@ -44,27 +40,4 @@ public class Motif implements Serializable {
 	public void setMtLibelle(String mtLibelle) {
 		this.mtLibelle = mtLibelle;
 	}
-
-	public List<Connexion> getConnexions() {
-		return this.connexions;
-	}
-
-	public void setConnexions(List<Connexion> connexions) {
-		this.connexions = connexions;
-	}
-
-	public Connexion addConnexion(Connexion connexion) {
-		getConnexions().add(connexion);
-		connexion.setMotif(this);
-
-		return connexion;
-	}
-
-	public Connexion removeConnexion(Connexion connexion) {
-		getConnexions().remove(connexion);
-		connexion.setMotif(null);
-
-		return connexion;
-	}
-
 }

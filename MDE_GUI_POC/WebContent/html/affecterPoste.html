@@ -1,0 +1,78 @@
+<div data-ng-controller="affecterPosteControleur">
+
+	<div class="container">
+		<label for="salleInput">Salle :</label>
+		<span id="salleInput">{{poste.salle.salleNom}}</span>
+	</div>
+
+	<div class="container">
+		<label for="posteInput">Salle :</label>
+		<span id="posteInput">{{poste.posteNom}}</span>
+	</div>
+
+
+	<div class="container">
+		<label for="usagerInput">Usager :</label>
+		<input id="usagerInput" type="text" placeholder="Recherche d'un usager..." list="usagers" ng-model="usagerSaisi" />
+		<datalist id="usagers">
+       		<option 
+				ng-repeat="usager in listeUsagers"
+				value="{{ usager.usagerPrenom 
+						+ ' ' 
+						+ usager.usagerNom }}"
+				data-id="{{usager.usagerId}}">
+				{{
+					usager.usagerPrenom 
+					+ ' ' 
+					+ usager.usagerNom
+					+ ' '
+					+ ', né(e) le '
+					+ usager.usagerDtNaiss
+				}}
+			</option>
+		</datalist>
+ 	
+		<button ng-click="rechercher()">Rechercher</button>
+		<button ng-click="creerUsager()">Nouvel usager</button>
+
+		<div id="detail" ng-show="detailVisible">
+			<p>
+				{{usager.usagerPrenom}}
+				{{usager.usagerNom}},
+				<br/>
+				né(e) le
+				{{usager.usagerDtNaiss}}
+				<br/>
+				{{usager.quartier.quartierCp}} 
+				{{usager.quartier.quartierVille}}
+			</p>
+			<p>
+				<span ng-show="usager.usagerMissionLocale">
+					Accompagné par la mission de l'emploi
+				</span>
+				<span ng-show="usager.usagerExcluService">
+					Exclu de nos services
+				</span>
+			</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<label for="motifInput">Motif de la visite :</label>
+		<select id="motifInput" ng-model="mtId" required>
+			<option ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
+		</select>
+	</div>
+
+	<div class="container">
+		<label for="dureeInput">Durée de connexion prévue :</label>
+		<select id="dureeInput" ng-model="dureeId">
+			<option ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
+		</select>
+	</div>
+
+	<div class="container">
+		<button ng-click="retour()">Retour</button>
+		<button ng-click="valider()">Valider</button>
+	</div>
+</div>

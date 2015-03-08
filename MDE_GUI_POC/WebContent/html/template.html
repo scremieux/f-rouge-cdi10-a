@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html data-ng-app="templateApp">
+
+<head>
+
+<!-- Présentation de la Gestion des salles : Afficher liste des salles, créer, modifier et supprimer une salle-->
+
+<title>Creation de salle - Cyberbase</title>
+<meta charset="UTF-8">
+
+<!-- chargement de Bootstrap -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Chargement d'Angular.js -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<!-- Chargement d'Angular.js -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.js"></script>
+
+</head>
+
+<body data-ng-controller="templateControleur as main">
+<!--
+	<header>
+		<div id="logoCyberBase">
+			<img src="../img/cyber_base.png" alt="logo cyber base" />
+		</div>
+		<div id="titrePage">Gestion des salles</div>
+		<div id="connexionBloc">
+			<p id=""></p>
+			<p>
+				<a href="">Déconnexion</a>
+			</p>
+			<p>
+				<a href="">Modifier mon mot de passe</a>
+			</p>
+		</div>
+	</header>
+-->
+	<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+			<li><a href="MDE_GUI_POC">Acceuil</a></li>
+			<li>Gérer les usagers
+				<ul>
+					<li><a href="/MDE_GUI_POC/creerUsager">Créer un usager</a></li>
+					<li><a href="/MDE_GUI_POC/detailsUsager">Modifier un usager</a></li>
+					<li><a href="/MDE_GUI_POC/detailsUsager">Supprimer un usager</a></li>
+					<li><a href="/MDE_GUI_POC/historique">Visualiser l'historique</a></li>
+				</ul>
+			</li>
+			<li>Gérer les salles
+				<ul>
+					<li><a href="/MDE_GUI_POC/creerSalle">Créer une salle</a></li>
+					<li><a href="/MDE_GUI_POC/gererSalles">Visualiser les
+							disponibilités</a></li>
+					<li><a href="/MDE_GUI_POC/gererSalles">Affecter un poste</a></li>
+					<li><a href="/MDE_GUI_POC/configurerPoste">Configurer un
+							poste</a></li>
+					<li><a href="/MDE_GUI_POC/gererSalles">Libérer un poste</a></li>
+				</ul>
+			</li>
+			<li>Statistiques
+				<ul>
+					<li><a href="statistiques">Gérer les requêtes</a></li>
+					<li><a href="statistiques">Afficher le nombre de
+							visites</a></li>
+					<li><a href="statistiques">Afficher le nombre de
+							nouveaux inscrits</a></li>
+					<li><a href="statistiques">Afficher le nombre
+							d'usagers</a></li>
+				</ul>
+			</li>
+			<li>Gérer les utilisateurs
+				<ul>
+					<li><a href="creerUtilisateur">Créer un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs">Modifier un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs">Supprimer un
+							utilisateur</a></li>
+					<li><a href="listerUtilisateurs">Affecter un
+							utilisateur à un site</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<section ng-view class="container"></section>
+
+
+
+	<script type="text/javascript" src="js/Classes.js" ></script>
+	<script type="text/javascript" src="js/templateApp.js" ></script>
+ 	<script type="text/javascript" src="js/templateControleur.js"></script>
+ 	<script type="text/javascript" src="js/salleControleur.js"></script>
+ 	<script type="text/javascript" src="js/affecterPosteControleur.js"></script>
+
+
+</body>
+</html>
+

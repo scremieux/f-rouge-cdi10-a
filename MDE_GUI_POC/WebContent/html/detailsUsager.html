@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+
+<html ng-app="detailsUsagerApp">
+
+<head>
+	<!-- Vue Détails Usager : Rechercher et afficher le détail d'un usager -->
+	<meta charset="UTF-8">
+	<title>Détails d'un usager - Cyberbase</title>
+
+	<!-- chargement de Bootstrap -->
+	<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Chargement d'Angular.js -->
+	<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body ng-controller="detailsUsagerControleur">
+
+	<div class="container">
+		<input type="text" placeholder="Recherche d'un usager..." list="usagers" ng-model="usagerSaisi" />
+ 		<datalist id="usagers">
+        	<option ng-repeat="usager in listeUsagers" value="{{ usager.usagerPrenom + ' '+ usager.usagerNom }}" data-id="{{usager.usagerId}}" />
+		</datalist>
+ 	
+		<button ng-click="afficher()">Afficher</button>
+
+		<div id="detail" ng-show="detailVisible">
+			<table  class="table table-striped">
+				<tr><td>Civilité</td>			<td>{{usager.usagerCivilite}}</td></tr>
+				<tr><td>Nom</td>				<td>{{usager.usagerNom}}</td></tr>
+				<tr><td>Prénom</td>				<td>{{usager.usagerPrenom}}</td></tr>
+				<tr><td>e-mail</td>				<td>{{usager.usagerEmail}}</td></tr>
+				<tr><td>Date de naissance</td>	<td>{{usager.usagerDtNaiss}}</td></tr>
+				<tr><td>Date d'exclusion</td>	<td>{{usager.usagerDtExclusion}}</td></tr>
+				<tr><td>Date d'inscription</td>	<td>{{usager.usagerDtInscription}}</td></tr>
+				<tr><td>NiveauFormation</td>	<td>{{usager.niveauFormation.nfLibelle}}</td></tr>
+				<tr><td>CSP</td>				<td>{{usager.csp.cspNom}}</td></tr>
+				<tr><td>Quartier</td>			<td>{{usager.quartier.quartierNom}}</td></tr>
+				<tr><td>Code Postal</td>		<td>{{usager.quartier.quartierCp}}</td></tr>
+				<tr><td>Ville</td>				<td>{{usager.quartier.quartierVille}}</td></tr>
+				<tr><td>Accompagné par la mission de l'emploi</td><td>{{usager.usagerMissionLocale}}</td></tr>
+				<tr><td>Exclu de nos services</td><td>{{usager.usagerExcluService}}</td></tr>
+			</table>
+
+			<button id="Modifier">Modifier</button>
+			<button id="Supprimer" ng-click="supprimer()">Supprimer</button>
+			<button id="Exporter">Exporter</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./js/detailsUsagerApp.js"></script>
+	<script type="text/javascript" src="./js/detailsUsagerControleur.js"></script>
+
+</body>
+</html>

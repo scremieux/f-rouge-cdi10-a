@@ -45,8 +45,10 @@ public class ConnexionService implements IConnexionService {
 	 */
 	@Override
 	public Connexion rechercherConnexionParId(Connexion connexion) {
-		Connexion returnedConnexion; 
-		returnedConnexion = entityManager.find(Connexion.class, connexion.getCnxId());
+		Connexion returnedConnexion = null;
+		if (connexion != null) {
+			returnedConnexion = entityManager.find(Connexion.class, connexion.getCnxId());
+		}
 		return returnedConnexion;
 	}
 

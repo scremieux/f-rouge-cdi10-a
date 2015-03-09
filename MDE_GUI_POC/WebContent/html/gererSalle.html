@@ -1,0 +1,71 @@
+<div data-ng-controller="gererSalleControleur">
+	<div class="container">
+		<label for="salleInput">Site :</label>
+		<span id="salleInput">{{salle.site.siteNom}}</span>
+	</div>
+
+	<div class="container">
+		<label for="salleInput">Salle :</label>
+		<span id="salleInput">{{salle.salleNom}}</span>
+	</div>
+
+	<button class="btn btn-success" 
+		data-ng-click="libererTousLesPostes(salle.salleId)">
+		<span class="glyphicon glyphicon-pencil">
+			Libérer toutes les postes
+		</span>
+	</button>
+
+<!-- 
+{"salleId":1,
+"salleNom":"Salle1",
+"postes":[
+		{"posteId":27,"posteIp":"211.153.205.26 ","posteNom":"Poste18","salle":null,"posteDisponible":true},
+		{"posteId":10,"posteIp":"194.153.205.26 ","posteNom":"Poste1","salle":null,"posteDisponible":false}],
+"site":{"siteId":1,"siteNom":"Bellevue","salles":null}
+}
+
+
+ -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Etat</th>
+				<th colspan="3">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="x in salle.postes | orderBy:'poste.posteNom'">
+				<td>{{ x.posteId }}</td>
+				<td>{{ x.posteNom }}</td>
+				<td>{{ (x.posteDisponible)?'Disponible':'Occupé'; }}</td>
+				<td>
+					<button data-ng-disabled="{{!x.posteDisponible}}" class="btn btn-success" 
+							data-ng-click="attribuerPoste(x.posteId)">
+						<span class="glyphicon glyphicon-pencil">
+							Attribuer
+						</span>
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-success"
+							data-ng-click="configurerPoste(x.posteId)">
+						<span class="glyphicon glyphicon-pencil">
+							Configurer
+						</span> 
+					</button>
+				</td>
+				<td>
+					<button data-ng-disabled="{{x.posteDisponible}}" class="btn btn-success"
+							data-ng-click="libererPoste(x.posteId)">
+						<span class="glyphicon glyphicon-pencil">
+							Liberer
+						</span> 
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

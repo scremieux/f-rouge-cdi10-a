@@ -1,24 +1,20 @@
 /**___________________________________________________________
 *** Contrôleur Javascript pour vue 'Gestion des salles'
 ***___________________________________________________________*/
-app.controller('salleControleur',
+app.controller('gererSalleControleur',
 	[
 		'$scope',
 		'$http',
+	 	'$routeParams',
 		'$location',
-		function salleControleur($scope, $http, $location) {
-			// Requête de la liste des salles
+		function gererSalleControleur($scope, $http, $routeParams, $location) {
+			$scope.salleId = $routeParams.salleId;
+			
+			// Requête : obtenir les informations de la salle
 			$http
-				.get('/MDE_Rest/Api/site/salle')
+				.get('/MDE_Rest/Api/site/salle/' + $scope.salleId)
 				.success(function (response) {
-					$scope.listeSalles = response;
-				});
-
-			// Requête de la liste des postes de la salle 1
-			$http
-				.get('/MDE_Rest/Api/site/salle/1')
-				.success(function (response) {
-					$scope.listePostes = response.postes;
+					$scope.salle = response;
 				});
 
 			/**
@@ -44,6 +40,21 @@ app.controller('salleControleur',
 				$location
 					.path('/MDE_GUI_POC/gererSalles');
 			};
+			
+			/**
+			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
+			 */
+//			$scope.selectionnerSalle = function (idSalle) {
+//				$http
+//				.get('/MDE_Rest/Api/site/salle/' + idSalle)
+//				.success(function (response) {
+//					$scope.listePostes = response.postes;
+//				});
+//				return $scope.listePostes;
+//			}
+			$scope.libererTousLesPostes = function (idSalle) {
+console.log("Pas implémenté");
+			}
 		}
 	]
 );

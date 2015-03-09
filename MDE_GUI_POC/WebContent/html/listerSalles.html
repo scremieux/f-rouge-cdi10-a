@@ -1,0 +1,27 @@
+<div data-ng-controller="listerSallesControleur">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Site</th>
+				<th>Salle</th>
+				<th colspan="1">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="x in listeSalles | orderBy:'salle.salleNom'">
+				<td>{{ x.salleId }}</td>
+				<td>{{ x.site.siteNom }}</td>
+				<td>{{ x.salleNom }}</td>
+				<td>
+					<button class="btn btn-success" 
+							data-ng-click="gererSalle(x.salleId)">
+						<span class="glyphicon glyphicon-pencil">
+							Gérer
+						</span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

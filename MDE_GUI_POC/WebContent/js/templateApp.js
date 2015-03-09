@@ -4,10 +4,14 @@ var app = angular.module("templateApp", ['ngRoute']);
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider.
-      when('/MDE_GUI_POC/gererSalles', {
-        templateUrl: '/MDE_GUI_POC/html/gererSalles.html',
-        controller: 'salleControleur'
+      when('/MDE_GUI_POC/listerSalles', {
+        templateUrl: '/MDE_GUI_POC/html/listerSalles.html',
+        controller: 'listerSallesControleur'
       }).
+      when('/MDE_GUI_POC/gererSalle/:salleId', {
+          templateUrl: '/MDE_GUI_POC/html/gererSalle.html',
+          controller: 'gererSalleControleur'
+        }).
       when('/MDE_GUI_POC/affecterPoste', {
         templateUrl: '/MDE_GUI_POC/html/affecterPoste.html',
         controller: 'affecterPosteControleur'

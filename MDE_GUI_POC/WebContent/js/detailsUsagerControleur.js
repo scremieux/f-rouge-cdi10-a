@@ -25,7 +25,8 @@ app.controller('detailsUsagerControleur',
 				url = 'http://10.0.11.44:8080/MDE_Rest/Api/usager/';
 				url += $scope.usager.usagerId;
 
-				$http.delete(url)
+				$http
+					.delete(url)
 					.success(function(response) {
 						$scope.detailVisible = false;
 						// Mise à jour du model local

@@ -54,50 +54,51 @@
 			<li>Gérer les salles
 				<ul>
 					<li><a href="/MDE_GUI_POC/creerSalle">Créer une salle</a></li>
-					<li><a href="/MDE_GUI_POC/gererSalles">Visualiser les
+					<li><a href="/MDE_GUI_POC/listerSalles">Visualiser les
 							disponibilités</a></li>
-					<li><a href="/MDE_GUI_POC/gererSalles">Affecter un poste</a></li>
+					<li><a href="/MDE_GUI_POC/listerSalles">Affecter un poste</a></li>
 					<li><a href="/MDE_GUI_POC/configurerPoste">Configurer un
 							poste</a></li>
-					<li><a href="/MDE_GUI_POC/gererSalles">Libérer un poste</a></li>
+					<li><a href="/MDE_GUI_POC/listerSalles">Libérer un poste</a></li>
 				</ul>
 			</li>
 			<li>Statistiques
 				<ul>
-					<li><a href="statistiques">Gérer les requêtes</a></li>
-					<li><a href="statistiques">Afficher le nombre de
+					<li><a href="/MDE_GUI_POC/statistiques">Gérer les requêtes</a></li>
+					<li><a href="/MDE_GUI_POC/statistiques">Afficher le nombre de
 							visites</a></li>
-					<li><a href="statistiques">Afficher le nombre de
+					<li><a href="/MDE_GUI_POC/statistiques">Afficher le nombre de
 							nouveaux inscrits</a></li>
-					<li><a href="statistiques">Afficher le nombre
+					<li><a href="/MDE_GUI_POC/statistiques">Afficher le nombre
 							d'usagers</a></li>
 				</ul>
 			</li>
 			<li>Gérer les utilisateurs
 				<ul>
-					<li><a href="creerUtilisateur">Créer un
+					<li><a href="/MDE_GUI_POC/creerUtilisateur">Créer un
 							utilisateur</a></li>
-					<li><a href="listerUtilisateurs">Modifier un
+					<li><a href="/MDE_GUI_POC/listerUtilisateurs">Modifier un
 							utilisateur</a></li>
-					<li><a href="listerUtilisateurs">Supprimer un
+					<li><a href="/MDE_GUI_POC/listerUtilisateurs">Supprimer un
 							utilisateur</a></li>
-					<li><a href="listerUtilisateurs">Affecter un
+					<li><a href="/MDE_GUI_POC/listerUtilisateurs">Affecter un
 							utilisateur à un site</a></li>
 				</ul>
 			</li>
 		</ul>
 	</nav>
 
-	<section ng-view class="container"></section>
+	<section data-ng-view class="container"></section>
 
 
 
 	<script type="text/javascript" src="js/Classes.js" ></script>
 	<script type="text/javascript" src="js/templateApp.js" ></script>
  	<script type="text/javascript" src="js/templateControleur.js"></script>
- 	<script type="text/javascript" src="js/salleControleur.js"></script>
+ 	<script type="text/javascript" src="js/gererSalleControleur.js"></script>
  	<script type="text/javascript" src="js/affecterPosteControleur.js"></script>
  	<script type="text/javascript" src="js/historiqueControleur.js"></script>
+ 	<script type="text/javascript" src="js/listerSallesControleur.js"></script>
 
 
 </body>

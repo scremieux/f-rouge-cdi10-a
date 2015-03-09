@@ -29,6 +29,9 @@ public class Poste implements Serializable {
 	@JoinColumn(name="salle_id")
 	private Salle salle;
 
+	@Column(name="poste_disponible")
+	private Boolean posteDisponible;
+
 	public Poste() {
 	}
 
@@ -62,6 +65,14 @@ public class Poste implements Serializable {
 
 	public void setSalle(Salle salle) {
 		this.salle = salle;
+	}
+
+	public Boolean isPosteDisponible() {
+		return this.posteDisponible;
+	}
+
+	public void setPosteDisponible(Boolean posteDisponible) {
+		this.posteDisponible = posteDisponible;
 	}
 
 }

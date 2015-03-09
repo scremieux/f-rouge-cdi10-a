@@ -1,4 +1,4 @@
-<div data-ng-controller="affecterPosteControleur">
+<form data-ng-controller="affecterPosteControleur" name="myForm" novalidate>
 
 	<div class="container">
 		<label for="salleInput">Salle :</label>
@@ -6,17 +6,17 @@
 	</div>
 
 	<div class="container">
-		<label for="posteInput">Salle :</label>
+		<label for="posteInput">Poste :</label>
 		<span id="posteInput">{{poste.posteNom}}</span>
 	</div>
 
 
 	<div class="container">
 		<label for="usagerInput">Usager :</label>
-		<input id="usagerInput" type="text" placeholder="Recherche d'un usager..." list="usagers" ng-model="usagerSaisi" />
+		<input id="usagerInput" name="usagerInput" type="text" placeholder="Recherche d'un usager..." list="usagers" data-ng-model="usagerSaisi" />
 		<datalist id="usagers">
        		<option 
-				ng-repeat="usager in listeUsagers"
+				data-ng-repeat="usager in listeUsagers"
 				value="{{ usager.usagerPrenom 
 						+ ' ' 
 						+ usager.usagerNom }}"
@@ -32,10 +32,10 @@
 			</option>
 		</datalist>
  	
-		<button ng-click="rechercher()">Rechercher</button>
-		<button ng-click="creerUsager()">Nouvel usager</button>
+		<button data-ng-click="affecterPosteRechercher()">Rechercher</button>
+		<button data-ng-click="affecterPosteCreerUsager()">Nouvel usager</button>
 
-		<div id="detail" ng-show="detailVisible">
+		<div id="detail" data-ng-show="detailVisible">
 			<p>
 				{{usager.usagerPrenom}}
 				{{usager.usagerNom}},
@@ -47,10 +47,10 @@
 				{{usager.quartier.quartierVille}}
 			</p>
 			<p>
-				<span ng-show="usager.usagerMissionLocale">
+				<span data-ng-show="usager.usagerMissionLocale">
 					Accompagné par la mission de l'emploi
 				</span>
-				<span ng-show="usager.usagerExcluService">
+				<span data-ng-show="usager.usagerExcluService">
 					Exclu de nos services
 				</span>
 			</p>
@@ -59,20 +59,42 @@
 
 	<div class="container">
 		<label for="motifInput">Motif de la visite :</label>
-		<select id="motifInput" ng-model="mtId" required>
-			<option ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
+		<select id="motifInput" name="motifInput" data-ng-model="mtId" required>
+			<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
 		</select>
 	</div>
 
 	<div class="container">
 		<label for="dureeInput">Durée de connexion prévue :</label>
-		<select id="dureeInput" ng-model="dureeId">
-			<option ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
+		<select id="dureeInput" name="dureeInput" data-ng-model="dureeId">
+			<option data-ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
 		</select>
 	</div>
 
-	<div class="container">
-		<button ng-click="retour()">Retour</button>
-		<button ng-click="valider()">Valider</button>
+	<div class="container" data-ng-show="erreur.retour.parametresErreur">
+		<p data-ng-hide="erreur.retour.usager" >
+			Pas d'usager sélectionné.
+		</p>
+		<p data-ng-hide="erreur.retour.mtId" >
+			Pas de motif sélectionné.
+		</p>
+		<p data-ng-hide="erreur.retour.dureeId" >
+			Pas de durée sélectionné.
+		</p>
 	</div>
-</div>
+	
+	<div class="container" data-ng-show="erreur.retour.serviceErreur">
+		{{erreur.retour.libelle}} - Appel de service impossible
+		<br/>
+		statut = '{{erreur.retour.statut}}'
+		<br/>
+		headers = '{{erreur.retour.headers}}'
+		<br/>
+		config = '{{erreur.retour.config}}'
+	</div>
+
+	<div class="container">
+		<button data-ng-click="affecterPosteRetour()">Retour</button>
+		<button data-ng-click="affecterPosteValider()">Valider</button>
+	</div>
+</form>

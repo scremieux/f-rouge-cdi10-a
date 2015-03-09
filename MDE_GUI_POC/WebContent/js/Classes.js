@@ -36,6 +36,7 @@ function Poste() {
 	this.posteId = null;
 	this.posteIp = null;
 	this.posteNom = null;
+	this.posteDisponible = null;
 }
 
 function Connexion() {

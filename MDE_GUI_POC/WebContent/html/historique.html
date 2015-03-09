@@ -1,12 +1,16 @@
 <div data-ng-controller="historiqueControleur">
 
-	<select>
+	<select ng-model="siteChoisi" >
+		<option value="" selected>
+		</option>
 		<option data-ng-repeat="site in listeSites">
 			{{site.siteNom}}
 		</option>
 	</select>
 	
-	<select>
+	<select ng-model="motifChoisi" >
+		<option value="" selected>
+		</option>
 		<option data-ng-repeat="motif in listeMotifs">
 			{{motif.mtLibelle}}
 		</option>
@@ -17,7 +21,7 @@
         <option ng-repeat="usager in listeUsagers" value="{{ usager.usagerPrenom + ' '+ usager.usagerNom }}" data-id="{{usager.usagerId}}" />
 	</datalist>
  	
- 	 <input type="date" name="date de connexion">
+ 	 <input type="date" name="date de connexion" ng-model="dateChoisi" />
  	
 	<button ng-click="validerCriteres()">Valider</button>
 	<button ng-click="resetCriteres()">Effacer les critères</button>
@@ -34,8 +38,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="connexion in listeConnexions | orderBy:'connexion.cnxDtHeureDebut'">
-				<td>{{ connexion.cnxDtHeureDebut }}</td>
+			<tr data-ng-repeat="connexion in listeConnexionsCrit | orderBy:'connexion.cnxDate'">
+				<td>{{ connexion.cnxDate }}</td>
 				<td>{{ connexion.poste.salle.site.siteNom}}</td>
 				<td>{{ connexion.poste.posteNom }}</td>
 				<td>{{ connexion.usager.usagerNom}}</td>

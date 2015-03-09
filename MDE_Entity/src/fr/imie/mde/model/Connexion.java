@@ -1,6 +1,7 @@
 package fr.imie.mde.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -36,11 +37,22 @@ public class Connexion implements Serializable {
 	private Timestamp cnxDtHeureDebut;
 
 	@Column(name="cnx_dt_heure_fin")
-	private Timestamp cnxDtHeureFin;
+	private Timestamp cnxDtHeureFin;	
+	
+	@Column(name="cnx_date")
+	private Date cnxDate;
+
+	public Date getCnxDate() {
+		return cnxDate;
+	}
+
+	public void setCnxDate(Date cnxDate) {
+		this.cnxDate = cnxDate;
+	}
 
 	@Column(name="cnx_duree_prevue")
 	private Time cnxDureePrevue;
-
+	
 	//bi-directional many-to-one association to Motif
 	@ManyToOne
 	@JoinColumn(name="mt_id")

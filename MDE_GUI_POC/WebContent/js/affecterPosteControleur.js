@@ -67,18 +67,18 @@ app.controller('affecterPosteControleur',
 	 				connexion.usager.usagerId = $scope.usager.usagerId;
 	 				connexion.poste.posteId = $scope.poste.posteId;
 	 				switch (this.dureeId) {
-	 				case '1':
-						connexion.cnxDureePrevue = '00:15:00';
-					break;
-					case '2':
-						connexion.cnxDureePrevue = '00:30:00';
-					break;
-					case '3':
-						connexion.cnxDureePrevue = '00:45:00';
-					break;
-					case '4':
-						connexion.cnxDureePrevue = '00:60:00';
-					break;
+	 					case '1':
+	 						connexion.cnxDureePrevue = '00:15:00';
+	 					break;
+	 					case '2':
+	 						connexion.cnxDureePrevue = '00:30:00';
+	 					break;
+	 					case '3':
+	 						connexion.cnxDureePrevue = '00:45:00';
+	 					break;
+	 					case '4':
+	 						connexion.cnxDureePrevue = '00:60:00';
+	 						break;
 	 				}
 
 	 				$http.post("/MDE_Rest/Api/connexion", connexion)

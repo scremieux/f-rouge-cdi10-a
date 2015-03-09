@@ -12,10 +12,6 @@ app.config(['$routeProvider', '$locationProvider',
           templateUrl: '/MDE_GUI_POC/html/gererSalle.html',
           controller: 'gererSalleControleur'
         }).
-      when('/MDE_GUI_POC/affecterPoste', {
-        templateUrl: '/MDE_GUI_POC/html/affecterPoste.html',
-        controller: 'affecterPosteControleur'
-      }).
       when('/MDE_GUI_POC/affecterPoste/:posteId', {
         templateUrl: '/MDE_GUI_POC/html/affecterPoste.html',
         controller: 'affecterPosteControleur'
@@ -40,7 +36,7 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: '/MDE_GUI_POC/html/workInProgress.html',
         controller: 'affecterPosteControleur'
       }).
-      when('/MDE_GUI_POC/configurerPoste', {
+      when('/MDE_GUI_POC/configurerPoste/:posteId', {
 //        templateUrl: '/MDE_GUI_POC/html/configurerPoste.html',
         templateUrl: '/MDE_GUI_POC/html/workInProgress.html',
         controller: 'affecterPosteControleur'

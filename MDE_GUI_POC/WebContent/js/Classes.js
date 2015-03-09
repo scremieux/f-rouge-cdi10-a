@@ -41,8 +41,6 @@ function Poste() {
 
 function Connexion() {
 	this.cnxId = null;
-	this.cnxDtHeureDebut = null;
-	this.cnxDtHeureFin = null;
 	this.cnxDureePrevue = null;
 	this.motif = new Motif();
 	this.usager = new Usager();

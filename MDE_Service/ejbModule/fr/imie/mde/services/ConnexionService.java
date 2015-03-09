@@ -1,5 +1,6 @@
 package fr.imie.mde.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -129,6 +130,9 @@ public class ConnexionService implements IConnexionService {
 	 */
 	@Override
 	public Connexion creerConnexion(Connexion connexion) {
+		connexion.setCnxDate(new Date(System.currentTimeMillis()));
+		connexion.getPoste().setPosteDisponible(false);
+		entityManager.merge(connexion.getPoste());
 		entityManager.persist(connexion);
 		return connexion;
 	}

@@ -38,7 +38,7 @@ app.controller('gererSalleControleur',
 			 */
 			$scope.libererPoste = function (idPoste) {
 				$location
-					.path('/MDE_GUI_POC/gererSalles');
+					.path('/MDE_GUI_POC/gererSalle/' + $scope.salleId);
 			};
 			
 			/**

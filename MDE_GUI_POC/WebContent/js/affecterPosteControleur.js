@@ -35,7 +35,7 @@ app.controller('affecterPosteControleur',
 	 		 * Bouton "Retour" : redirection vers la console 'Gestion de salles'
 	 		 */
 	 		$scope.affecterPosteRetour = function() {
-	 			$location.path('/MDE_GUI_POC/gererSalles');
+	 			$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
 	 		};
 
 	 		/**
@@ -60,12 +60,10 @@ app.controller('affecterPosteControleur',
 	 		$scope.affecterPosteValider = function() {
 	 			if ($scope.usager !== undefined && this.mtId !== undefined && this.dureeId != undefined) {
 	 				var connexion = new Connexion();
-	 				connexion.cnxDtHeureDebut=null;
-	 				connexion.cnxDtHeureFin=null;
 	 				connexion.cnxDureePrevue=null;
 	 				connexion.motif.mtId = this.mtId;
 	 				connexion.usager.usagerId = $scope.usager.usagerId;
-	 				connexion.poste.posteId = $scope.poste.posteId;
+	 				connexion.poste = $scope.poste;
 	 				switch (this.dureeId) {
 	 					case '1':
 	 						connexion.cnxDureePrevue = '00:15:00';
@@ -83,7 +81,7 @@ app.controller('affecterPosteControleur',
 
 	 				$http.post("/MDE_Rest/Api/connexion", connexion)
 	 				.success(function(data, status, headers, config) {
-							$location.path('/MDE_GUI_POC/gererSalles');
+							$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
 						})
 					.error(function(data, status, headers, config) {
 							var retour = {};

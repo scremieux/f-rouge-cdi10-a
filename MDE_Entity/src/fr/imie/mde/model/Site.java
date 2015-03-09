@@ -27,7 +27,7 @@ public class Site implements Serializable {
 	private String siteNom;
 
 	//bi-directional many-to-one association to Salle
-	@OneToMany(mappedBy="site", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy="site")
 	private List<Salle> salles;
 
 	public Site() {

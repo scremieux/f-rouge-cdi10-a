@@ -1,2 +1,49 @@
 <div data-ng-controller="historiqueControleur">
+
+	<select>
+		<option data-ng-repeat="site in listeSites">
+			{{site.siteNom}}
+		</option>
+	</select>
+	
+	<select>
+		<option data-ng-repeat="motif in listeMotifs">
+			{{motif.mtLibelle}}
+		</option>
+	</select>
+	
+	<input type="text" placeholder="Recherche d'un usager..." list="usagers" ng-model="usagerSaisi" />
+ 	<datalist id="usagers">
+        <option ng-repeat="usager in listeUsagers" value="{{ usager.usagerPrenom + ' '+ usager.usagerNom }}" data-id="{{usager.usagerId}}" />
+	</datalist>
+ 	
+ 	 <input type="date" name="date de connexion">
+ 	
+	<button ng-click="validerCriteres()">Valider</button>
+	<button ng-click="resetCriteres()">Effacer les critères</button>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Site</th>
+				<th>Poste</th>
+				<th>Nom Usager</th>
+				<th>Prénom Usager</th>
+				<th>Objet de la visite</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="connexion in listeConnexions | orderBy:'connexion.cnxDtHeureDebut'">
+				<td>{{ connexion.cnxDtHeureDebut }}</td>
+				<td>{{ connexion.poste.salle.site.siteNom}}</td>
+				<td>{{ connexion.poste.posteNom }}</td>
+				<td>{{ connexion.usager.usagerNom}}</td>
+				<td>{{ connexion.usager.usagerPrenom }}</td>
+				<td>{{ connexion.motif.mtLibelle }}</td>
+			
+			</tr>
+		</tbody>
+	</table>
+	
 </div>

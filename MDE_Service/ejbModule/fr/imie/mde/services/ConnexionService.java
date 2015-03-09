@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import fr.imie.mde.interfaceServices.IConnexionService;
 import fr.imie.mde.model.Connexion;
 import fr.imie.mde.model.Motif;
+import fr.imie.mde.model.Poste;
 import fr.imie.mde.model.Usager;
 
 /**
@@ -37,6 +38,16 @@ public class ConnexionService implements IConnexionService {
 	public List<Connexion> listerConnexions() {
 		Query query = entityManager.createNamedQuery("Connexion.findAll"); 
     	List<Connexion> connexionList = query.getResultList();
+    	//********Partie Maxime************
+    	for (Connexion connexion : connexionList) {
+    		Poste poste = new Poste();
+    		poste = connexion.getPoste();
+    		entityManager.detach(poste);
+    		//poste.setSalle(null);
+    		poste.getSalle().getSite().setSalles(null);
+    		poste.getSalle().setPostes(null);
+		}
+    	//********Fin Partie Maxime********
 		return connexionList;
 	}
 

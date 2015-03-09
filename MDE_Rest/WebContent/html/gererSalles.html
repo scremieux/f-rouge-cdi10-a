@@ -18,9 +18,10 @@
 ***********************************************************************************************************************************************************
 
 ***********************************************************************************************************************************************************
+	<option data-ng-repeat="salle in listeSalles" >{{salle.salleNom}}</option>
 	-->
-	<select >
-		<option data-ng-repeat="salle in listeSalles" >{{salle.salleNom}}</option>
+	<select  ng-model="salleSelection" ng-options="salle.salleNom for salle in listeSalles">
+		
 	</select>
 
 		<table class="table table-striped">

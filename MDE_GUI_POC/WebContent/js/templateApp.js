@@ -27,9 +27,9 @@ app.config(['$routeProvider', '$locationProvider',
         controller: 'affecterPosteControleur'
       }).
       when('/MDE_GUI_POC/historique', {
-//        templateUrl: '/MDE_GUI_POC/html/historique.html',
-        templateUrl: '/MDE_GUI_POC/html/workInProgress.html',
-        controller: 'affecterPosteControleur'
+        templateUrl: '/MDE_GUI_POC/html/historique.html',
+        //        templateUrl: '/MDE_GUI_POC/html/workInProgress.html',
+        controller: 'historiqueControleur'
       }).
       when('/MDE_GUI_POC/creerSalle', {
 //        templateUrl: '/MDE_GUI_POC/html/creerSalle.html',

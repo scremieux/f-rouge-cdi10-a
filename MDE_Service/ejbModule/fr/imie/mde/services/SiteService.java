@@ -1,5 +1,6 @@
 package fr.imie.mde.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -137,15 +138,35 @@ public class SiteService implements ISiteService {
 	@Override
 	public void supprimerSite(Site site) {
 		// TODO Auto-generated method stub
+		/*List<Salle> salles = new ArrayList<Salle>();
+		List<Poste> postes = new ArrayList<Poste>();
+		salles = site.getSalles();
+		for (Salle salle : salles) {
+			postes = salle.getPostes();
+			for (Poste poste : postes) {
+				poste = entityManager.merge(poste);
+				entityManager.remove(poste);
+			}
+			salle = entityManager.merge(salle);
+			entityManager.remove(salle);
+		}*/
 		site = entityManager.merge(site);
 		entityManager.remove(site);
 	}
+	
 	@Override
 	public void supprimerSalle(Salle salle) {
 		// TODO Auto-generated method stub
+		/*List<Poste> postes = new ArrayList<Poste>();
+		postes = salle.getPostes();
+		for (Poste poste : postes) {
+			poste = entityManager.merge(poste);
+			entityManager.remove(poste);
+		}*/
 		salle = entityManager.merge(salle);
 		entityManager.remove(salle);
 	}
+	
 	@Override
 	public void supprimerPoste(Poste poste) {
 		// TODO Auto-generated method stub

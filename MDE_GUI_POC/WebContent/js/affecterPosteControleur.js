@@ -5,7 +5,7 @@ app.controller('affecterPosteControleur',
 	 	'$routeParams',
 	 	'$location',
 	 	'$window',
-	 	function ($scope, $http, $routeParams, $location, $window) {
+	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window) {
 	 		$scope.detailVisible = false;
 
 	 		// Requete : liste des usagers pour gestion auto completion
@@ -78,8 +78,6 @@ app.controller('affecterPosteControleur',
 	 						connexion.cnxDureePrevue = '00:60:00';
 	 					break;
 	 				}
-console.log('AFFECTER - $scope.poste.salle.salleId');
-console.log($scope.poste.salle.salleId);
 	 				$http.post("/MDE_Rest/Api/connexion", connexion)
 	 				.success(function(data, status, headers, config) {
 							$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);

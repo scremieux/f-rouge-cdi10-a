@@ -44,4 +44,6 @@ public interface ISiteService {
 	Poste libererPoste(Poste poste);
 
 	List<Poste> obtenirPostesParSalle(Salle salle);
+
+	Salle libererSalle(Salle salle);
 }

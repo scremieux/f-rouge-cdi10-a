@@ -29,9 +29,6 @@ public class SiteService implements ISiteService {
 	public List<Site> listerSites() {
 		Query query = entityManager.createNamedQuery("Site.findAll"); 
     	List<Site> sites = query.getResultList();
-//    	for (Site site : sites) {
-//			site.setSalles(null);
-//		}
 
 		return sites;
 	}
@@ -39,25 +36,14 @@ public class SiteService implements ISiteService {
 	@Override
 	public Site obtenirSite(Site site) {
 		site = entityManager.find(Site.class, site.getSiteId());
-//		List<Salle> salles = site.getSalles();
-		
-//		for (Salle salle : salles) {
-//			entityManager.detach(salle);
-//			salle.setSite(null);
-//		}
 		return site;
 	}
 	
 	
 	@Override
 	public List<Salle> listerSalles() {
-		// TODO Auto-generated method stub
 		Query query = entityManager.createNamedQuery("Salle.findAll"); 
     	List<Salle> salles = query.getResultList();
-//    	for (Salle salle : salles) {
-//			salle.getSite().setSalles(null);
-//			
-//		}
 		return salles;
 	}
 	
@@ -65,7 +51,6 @@ public class SiteService implements ISiteService {
 	public Salle obtenirSalle(Salle salle) {
 		salle = entityManager.find(Salle.class, salle.getSalleId());
 
-//		salle.getSite().setSalles(null);
 		return salle;
 	}
 	
@@ -150,6 +135,16 @@ public class SiteService implements ISiteService {
 		Query query = entityManager.createNamedQuery("Poste.rechercherParSalle").setParameter("salle", salle); 
     	List<Poste> posteList = query.getResultList();
 		return posteList;
+	}
+	@Override
+	public Salle libererSalle(Salle salle) {
+		List<Poste> postes = obtenirPostesParSalle(salle);
+		
+		for (Poste poste : postes) {
+			poste = libererPoste(poste);			
+		}
+
+		return salle;
 	}
 
 }

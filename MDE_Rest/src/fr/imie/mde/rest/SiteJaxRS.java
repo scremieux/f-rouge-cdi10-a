@@ -299,15 +299,15 @@ public class SiteJaxRS {
 	}
 	
 	/**
-	 * Met à jour les données de la connexion correspondante à l'ID donné dans l'URL.
-	 * <br>Route : /Api/connexion/liberer/{id}
+	 * Rend disponible le poste correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/site/liberer/poste/{id}
 	 * <br>Methode : PUT
-	 * @param connexion		objet Connexion avec les données à mettre à jour.
-	 * @param idString		Clé primaire de l'usager à mettre à jour.
- 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+	 * @param connexion		objet Poste.
+	 * @param idString		Clé primaire du poste à libérer.
+ 	 * @return objet Poste au format JSON, noContent si pas de correspondance trouvée.
 	 */
 	@PUT
-	@Path("/liberer/{id}")
+	@Path("/liberer/poste/{id}")
 	public Response libererPosteRest(Poste poste, @PathParam("id") String idString) {
 		Integer id = null;
 		try {
@@ -317,13 +317,6 @@ public class SiteJaxRS {
 		}
 
 		if (id != null && poste != null) {
-//			connexion.setCnxId(id);
-//			poste.setPosteDisponible(true);
-//			connexion.setCnxHeureFin(new Time(System.currentTimeMillis()));
-//			connexion.getPoste().setPosteDisponible(true);
-//System.out.println(connexion.getPoste());
-//System.out.println(connexion.getPoste().getPosteId());
-//System.out.println(connexion.getPoste().getPosteNom());
 			poste = siteService.libererPoste(poste);
 			return Response.ok(poste).build();
 		} else {
@@ -331,5 +324,35 @@ public class SiteJaxRS {
 		}
 	}
 
-	
+
+	/**
+	 * Rend disponible la salle correspondant à l'ID donné dans l'URL.
+	 * <br>Route : /Api/site/liberer/poste/{id}
+	 * <br>Methode : PUT
+	 * @param connexion		objet Salle.
+	 * @param idString		Clé primaire du poste à libérer.
+ 	 * @return objet Salle au format JSON, noContent si pas de correspondance trouvée.
+	 */
+	@PUT
+	@Path("/liberer/salle/{id}")
+	public Response libererSalleRest(@PathParam("id") String idString) {
+		Integer id = null;
+		Salle salle = null;
+		try {
+			id = Integer.valueOf(idString);
+			salle = new Salle();
+			salle.setSalleId(id);
+			salle = siteService.obtenirSalle(salle);
+		} catch (Exception e) {
+			return Response.noContent().build();
+		}
+
+		if (id != null && salle != null) {
+			salle = siteService.libererSalle(salle);
+			return Response.ok(salle).build();
+		} else {
+			return Response.noContent().build();
+		}
+	}
+
 }

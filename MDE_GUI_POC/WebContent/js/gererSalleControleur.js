@@ -7,7 +7,8 @@ app.controller('gererSalleControleur',
 		'$http',
 	 	'$routeParams',
 		'$location',
-		function gererSalleControleur($scope, $http, $routeParams, $location) {
+		'$route',
+		function gererSalleControleur ($scope, $http, $routeParams, $location, $route) {
 			$scope.salleId = $routeParams.salleId;
 			
 			// Requête : obtenir les informations de la salle
@@ -16,10 +17,11 @@ app.controller('gererSalleControleur',
 				.success(function (response) {
 					$scope.salle = response;
 					
+					
+					// Requête : obtenir la liste des postes de la salle
 					$http
-					.get('/MDE_Rest/Api/site/salle/' + $scope.salleId + '/postes')
+					.get('/MDE_Rest/Api/site/salle/' + $scope.salle.salleId + '/postes')
 					.success(function (response) {
-console.log(response);
 						$scope.salle.postes = response;
 					});
 
@@ -53,7 +55,7 @@ console.log(response);
 					.success(function (response) {
 						var poste = response;
 						$http
-							.put('/MDE_Rest/Api/site/liberer/' + idPoste, poste)
+							.put('/MDE_Rest/Api/site/liberer/poste/' + idPoste, poste)
 							.success(function (response) {
 								$scope.poste = response;
 							})
@@ -72,17 +74,29 @@ console.log(response);
 						console.log('headers',headers);
 						console.log('config', config);
 					});
-				
 
-				$location
-					.path('/MDE_GUI_POC/gererSalle/' + $scope.salleId);
+				// Rechargement de la page
+				$route.reload();
 			};
 			
 			/**
 			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
 			 */
 			$scope.libererTousLesPostes = function (idSalle) {
-console.log("Pas implémenté");
+				$http
+				.put('/MDE_Rest/Api/site/liberer/salle/' + $scope.salle.salleId)
+				.success(function (response) {
+					$scope.salle = response;
+					// Rechargement de la page
+					$route.reload();
+				})
+				.error(function(data, status, headers, config) {
+					console.log('libererPoste - ', '/MDE_Rest/Api/site/salle/' + $scope.salle.salleId, 'error');
+					console.log('data', data);
+					console.log('status',status);
+					console.log('headers',headers);
+					console.log('config', config);
+				});
 			}
 		}
 	]

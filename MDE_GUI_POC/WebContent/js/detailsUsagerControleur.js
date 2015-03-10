@@ -1,5 +1,5 @@
 app.controller('detailsUsagerControleur',  
-	function detailsUsagerControleur($scope, $http, $window) {
+	function detailsUsagerControleur ($scope, $http, $window) {
 		$scope.detailVisible = false;
 
 		$http.get("http://10.0.11.44:8080/MDE_Rest/Api/usager").success(function(response) {

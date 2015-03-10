@@ -8,7 +8,8 @@ app.controller('gererSalleControleur',
 	 	'$routeParams',
 		'$location',
 		'$route',
-		function gererSalleControleur ($scope, $http, $routeParams, $location, $route) {
+		'$window',
+		function gererSalleControleur ($scope, $http, $routeParams, $location, $route, $window) {
 			$scope.salleId = $routeParams.salleId;
 			
 			// Requête : obtenir les informations de la salle
@@ -83,20 +84,22 @@ app.controller('gererSalleControleur',
 			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
 			 */
 			$scope.libererTousLesPostes = function (idSalle) {
-				$http
-				.put('/MDE_Rest/Api/site/liberer/salle/' + $scope.salle.salleId)
-				.success(function (response) {
-					$scope.salle = response;
-					// Rechargement de la page
-					$route.reload();
-				})
-				.error(function(data, status, headers, config) {
-					console.log('libererPoste - ', '/MDE_Rest/Api/site/salle/' + $scope.salle.salleId, 'error');
-					console.log('data', data);
-					console.log('status',status);
-					console.log('headers',headers);
-					console.log('config', config);
-				});
+				if ($window.confirm('Voulez-vous arrêter toutes les connexions actives?')) {
+					$http
+						.put('/MDE_Rest/Api/site/liberer/salle/' + $scope.salle.salleId)
+						.success(function (response) {
+								$scope.salle = response;
+								// Rechargement de la page
+								$route.reload();
+						})
+						.error(function(data, status, headers, config) {
+							console.log('libererPoste - ', '/MDE_Rest/Api/site/salle/' + $scope.salle.salleId, 'error');
+							console.log('data', data);
+							console.log('status',status);
+							console.log('headers',headers);
+							console.log('config', config);
+						});
+				}
 			}
 		}
 	]

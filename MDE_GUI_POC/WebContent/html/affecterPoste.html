@@ -1,100 +1,100 @@
-<form data-ng-controller="affecterPosteControleur" name="myForm" novalidate>
-
-	<div class="container">
-		<label for="salleInput">Salle :</label>
-		<span id="salleInput">{{poste.salle.salleNom}}</span>
-	</div>
-
-	<div class="container">
-		<label for="posteInput">Poste :</label>
-		<span id="posteInput">{{poste.posteNom}}</span>
-	</div>
+<div data-ng-controller="affecterPosteControleur">
+	<h2>
+		Attribuer un poste
+		<br />
+		<a href="/MDE_GUI_POC/gererSalle/{{poste.salle.salleId}}">
+			Salle : {{poste.salle.salleNom}}
+		</a>
+	</h2>
 
 
-	<div class="container">
-		<label for="usagerInput">Usager :</label>
-		<input id="usagerInput" name="usagerInput" type="text" placeholder="Recherche d'un usager..." list="usagers" data-ng-model="usagerSaisi" />
-		<datalist id="usagers">
-       		<option 
-				data-ng-repeat="usager in listeUsagers"
-				value="{{ usager.usagerPrenom 
+	<form name="myForm" class="col-lg-6" novalidate>
+		<legend>{{poste.posteNom}}</legend>
+
+		<div class="form-group">
+			<label for="usagerInput">Usager :</label> <input id="usagerInput"
+				name="usagerInput" type="text" class="form-control"
+				placeholder="Recherche d'un usager..." list="usagers"
+				data-ng-model="usagerSaisi" />
+			<datalist id="usagers">
+				<option data-ng-repeat="usager in listeUsagers"
+					value="{{ usager.usagerPrenom 
 						+ ' ' 
 						+ usager.usagerNom }}"
-				data-id="{{usager.usagerId}}">
-				{{
-					usager.usagerPrenom 
-					+ ' ' 
-					+ usager.usagerNom
-					+ ' '
-					+ ', né(e) le '
-					+ usager.usagerDtNaiss
-				}}
-			</option>
-		</datalist>
- 	
-		<button data-ng-click="affecterPosteRechercher()">Rechercher</button>
-		<button data-ng-click="affecterPosteCreerUsager()">Nouvel usager</button>
+					data-id="{{usager.usagerId}}">{{ usager.usagerPrenom + ' '
+					+ usager.usagerNom + ' ' + ', né(e) le ' + usager.usagerDtNaiss }}
+				</option>
+			</datalist>
+			<div>
+				<button class="btn btn-primary"
+					data-ng-click="affecterPosteRechercher()">
+					<span class="glyphicon glyphicon glyphicon-search"></span>
+				</button>
+				<button class="btn btn-success"
+					data-ng-click="affecterPosteCreerUsager()">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+				</button>
+			</div>
 
-		<div id="detail" data-ng-show="detailVisible">
-			<p>
-				{{usager.usagerPrenom}}
-				{{usager.usagerNom}},
-				<br/>
-				né(e) le
-				{{usager.usagerDtNaiss}}
-				<br/>
-				{{usager.quartier.quartierCp}} 
-				{{usager.quartier.quartierVille}}
-			</p>
-			<p>
-				<span data-ng-show="usager.usagerMissionLocale">
-					Accompagné par la mission de l'emploi
-				</span>
-				<span data-ng-show="usager.usagerExcluService">
-					Exclu de nos services
-				</span>
-			</p>
+			<div id="detail" data-ng-show="detailVisible">
+				<p>
+					{{usager.usagerPrenom}} {{usager.usagerNom}}
+					<br />
+					né(e) le {{usager.usagerDtNaiss}}
+					<br />
+					{{usager.quartier.quartierCp}} {{usager.quartier.quartierVille}}
+				</p>
+				<p>
+					<span class="label label-primary" data-ng-show="usager.usagerMissionLocale">
+						Accompagné	par la mission de l'emploi
+					</span>
+					<span class="label label-danger" data-ng-show="usager.usagerExcluService">
+						Exclu de nos services
+					</span>
+				</p>
+			</div>
 		</div>
-	</div>
 
-	<div class="container">
-		<label for="motifInput">Motif de la visite :</label>
-		<select id="motifInput" name="motifInput" data-ng-model="mtId" required>
-			<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
-		</select>
-	</div>
+		<div class="form-group">
+			<label for="motifInput">Motif de la visite :</label> <select
+				id="motifInput" name="motifInput" class="form-control"
+				data-ng-model="mtId" required>
+				<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
+			</select>
+		</div>
 
-	<div class="container">
-		<label for="dureeInput">Durée de connexion prévue :</label>
-		<select id="dureeInput" name="dureeInput" data-ng-model="dureeId">
-			<option data-ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
-		</select>
-	</div>
+		<div class="form-group">
+			<label for="dureeInput">Durée de connexion prévue :</label> <select
+				id="dureeInput" name="dureeInput" class="form-control"
+				data-ng-model="dureeId">
+				<option data-ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
+			</select>
+		</div>
 
-	<div class="container" data-ng-show="erreur.retour.parametresErreur">
-		<p data-ng-hide="erreur.retour.usager" >
-			Pas d'usager sélectionné.
-		</p>
-		<p data-ng-hide="erreur.retour.mtId" >
-			Pas de motif sélectionné.
-		</p>
-		<p data-ng-hide="erreur.retour.dureeId" >
-			Pas de durée sélectionné.
-		</p>
-	</div>
-	
-	<div class="container" data-ng-show="erreur.retour.serviceErreur">
-		{{erreur.retour.libelle}} - Appel de service impossible
-		<br/>
-		statut = '{{erreur.retour.statut}}'
-		<br/>
-		headers = '{{erreur.retour.headers}}'
-		<br/>
-		config = '{{erreur.retour.config}}'
-	</div>
+		<div data-ng-show="erreur.retour.parametresErreur">
+			<p data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.
+			</p>
+			<p data-ng-hide="erreur.retour.mtId">Pas de motif sélectionné.</p>
+			<p data-ng-hide="erreur.retour.dureeId">Pas de durée
+				sélectionné.</p>
+		</div>
 
-	<div class="container">
-		<button data-ng-click="affecterPosteRetour()">Retour</button>
-		<button data-ng-click="affecterPosteValider()">Valider</button>
-	</div>
-</form>
+		<div data-ng-show="erreur.retour.serviceErreur">
+			{{erreur.retour.libelle}} - Appel de service impossible <br /> statut
+			= '{{erreur.retour.statut}}' <br /> headers =
+			'{{erreur.retour.headers}}' <br /> config =
+			'{{erreur.retour.config}}'
+		</div>
+
+		<div>
+			<button class="btn btn-success"
+					data-ng-click="affecterPosteRetour()">
+				<span class="glyphicon glyphicon-stop"></span>
+			</button>
+			<button class="btn btn-primary"
+					data-ng-click="affecterPosteValider()">
+				<span class="glyphicon glyphicon-play"></span>
+			</button>
+		</div>
+	</form>
+</div>

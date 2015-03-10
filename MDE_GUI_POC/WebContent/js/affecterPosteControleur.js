@@ -78,21 +78,23 @@ app.controller('affecterPosteControleur',
 	 						connexion.cnxDureePrevue = '00:60:00';
 	 					break;
 	 				}
-	 				$http.post("/MDE_Rest/Api/connexion", connexion)
-	 				.success(function(data, status, headers, config) {
-							$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
-						})
-					.error(function(data, status, headers, config) {
-							var retour = {};
-							retour.statut = 'KO';
-							retour.serviceErreur = true;
-							retour.libelle = '/MDE_Rest/Api/connexion';
-							retour.data = data;
-							retour.status = status;
-							retour.headers = headers;
-							retour.config = config;
-							$scope.erreur = {statut : true, retour : retour};
-						});
+	 				
+	 				$http
+	 					.post("/MDE_Rest/Api/connexion", connexion)
+	 					.success(function(data, status, headers, config) {
+	 							$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
+	 						})
+	 					.error(function(data, status, headers, config) {
+	 							var retour = {};
+	 							retour.statut = 'KO';
+	 							retour.serviceErreur = true;
+	 							retour.libelle = '/MDE_Rest/Api/connexion';
+	 							retour.data = data;
+	 							retour.status = status;
+	 							retour.headers = headers;
+	 							retour.config = config;
+	 							$scope.erreur = {statut : true, retour : retour};
+	 						});
 	 			} else {
 	 				var retour = {};
 	 				retour.statut = 'KO';
@@ -104,6 +106,9 @@ app.controller('affecterPosteControleur',
 	 			}
 	 		};
 
+	 		/**
+	 		 * Bouron "Créer Usager"
+	 		 */
 	 		$scope.affecterPosteCreerUsager = function() {
 	 			$location.path('/MDE_GUI_POC/creerUsager');
 	 		};

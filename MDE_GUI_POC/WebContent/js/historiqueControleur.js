@@ -35,31 +35,43 @@ app.controller('historiqueControleur',
 			$scope.validerCriteres = function () {
 			
 				var listeMaJConnexions =[]; 
+				// récupération des critères 
+				var choixSite = ($scope.siteChoisi ? $scope.siteChoisi.replace(/\t/g,"").replace(/\n/g,"") : "" );
+				var choixMotif = ($scope.motifChoisi ? $scope.motifChoisi.replace(/\t/g,"").replace(/\n/g,"") : "" );
+				var choixUsageNom = ($scope.usagerSaisi ? $scope.usagerSaisi.split(" ")[1] : "" );
+				var choixUsagePrenom = ($scope.usagerSaisi ? $scope.usagerSaisi.split(" ")[0] : "" );
+				var choixDateConn = ($scope.dateChoisi ? $scope.dateChoisi : "" );
+				
+				// 
+				var conn;
+				var site;
+				var motif;
+				var usagePrenom;
+				var usageNom;
+				var dateConn;
+				
+				// variables booléennes 
+				var boolSite;
+				var boolUsagerNom;
+				var boolUsagerPrenom;
+				var boolMotif;
+				var boolDate;
+				
 				for ( var i in $scope.listeConnexions) {
 					// 
-					var conn = $scope.listeConnexions[i];
-					var site = conn.poste.salle.site.siteNom;
-					var motif = conn.motif.mtLibelle;
-					var usagePrenom = conn.usager.usagerPrenom;
-					var usageNom = conn.usager.usagerNom;
-					var dateConn = conn.cnxDate;
+					conn = $scope.listeConnexions[i];
+					site = conn.poste.salle.site.siteNom;
+					motif = conn.motif.mtLibelle;
+					usagePrenom = conn.usager.usagerPrenom;
+					usageNom = conn.usager.usagerNom;
+					dateConn = conn.cnxDate;
 					
-					
-					// récupération des critères 
-					var choixSite = ($scope.siteChoisi ? $scope.siteChoisi.replace(/\t/g,"").replace(/\n/g,"") : "" );
-					var choixMotif = ($scope.motifChoisi ? $scope.motifChoisi.replace(/\t/g,"").replace(/\n/g,"") : "" );
-					var choixUsageNom = ($scope.usagerSaisi ? $scope.usagerSaisi.split(" ")[1] : "" );
-					var choixUsagePrenom = ($scope.usagerSaisi ? $scope.usagerSaisi.split(" ")[0] : "" );
-					var choixDateConn = ($scope.dateChoisi ? $scope.dateChoisi : "" );
-					console.log("dateCritère : " + choixDateConn );
-					console.log("date : " + dateConn );
 					// variables booléennes 
-					var boolSite = ((choixSite == site)||(choixSite == ""));
-					var boolUsagerNom = ((choixUsageNom == usageNom)||(choixUsageNom == ""));
-					var boolUsagerPrenom = ((choixUsagePrenom == usagePrenom)||(choixUsagePrenom == ""));
-					var boolMotif = ((choixMotif == motif)||(choixMotif == ""));
-					var boolDate = ((choixDateConn == dateConn)||(choixDateConn == ""));
-
+					boolSite = ((choixSite == site)||(choixSite == ""));
+					boolUsagerNom = ((choixUsageNom == usageNom)||(choixUsageNom == ""));
+					boolUsagerPrenom = ((choixUsagePrenom == usagePrenom)||(choixUsagePrenom == ""));
+					boolMotif = ((choixMotif == motif)||(choixMotif == ""));
+					boolDate = ((choixDateConn == dateConn)||(choixDateConn == ""));
 					
 					if(boolSite && boolUsagerNom && boolUsagerPrenom && boolMotif && boolDate){
 						listeMaJConnexions.push(conn);
@@ -73,6 +85,10 @@ app.controller('historiqueControleur',
 			 */
 			$scope.resetCriteres = function () {
 				$scope.listeConnexionsCrit = $scope.listeConnexions;
+				$scope.siteChoisi = "";
+				$scope.motifChoisi="";
+				$scope.usagerSaisi="";
+				$scope.dateChoisi = null;
 			};
 		}
 	]

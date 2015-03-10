@@ -33,12 +33,6 @@ public class Connexion implements Serializable {
 	@Column(name="cnx_id")
 	private Integer cnxId;
 
-	@Column(name="cnx_dt_heure_debut")
-	private Timestamp cnxDtHeureDebut;
-
-	@Column(name="cnx_dt_heure_fin")
-	private Timestamp cnxDtHeureFin;	
-	
 	@Column(name="cnx_date")
 	private Date cnxDate;
 
@@ -89,22 +83,6 @@ public class Connexion implements Serializable {
 
 	public void setCnxId(Integer cnxId) {
 		this.cnxId = cnxId;
-	}
-
-	public Timestamp getCnxDtHeureDebut() {
-		return this.cnxDtHeureDebut;
-	}
-
-	public void setCnxDtHeureDebut(Timestamp cnxDtHeureDebut) {
-		this.cnxDtHeureDebut = cnxDtHeureDebut;
-	}
-
-	public Timestamp getCnxDtHeureFin() {
-		return this.cnxDtHeureFin;
-	}
-
-	public void setCnxDtHeureFin(Timestamp cnxDtHeureFin) {
-		this.cnxDtHeureFin = cnxDtHeureFin;
 	}
 
 	public Time getCnxDureePrevue() {

@@ -23,7 +23,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Connexion.findAll", query="SELECT c FROM Connexion c"),
-	@NamedQuery(name="Connexion.rechercherParUsager", query = "SELECT c FROM Connexion c WHERE usager=:usager")
+	@NamedQuery(name="Connexion.rechercherParUsager", query = "SELECT c FROM Connexion c WHERE usager=:usager"),
+	@NamedQuery(name="Connexion.rechercherParPoste", query = "SELECT c FROM Connexion c WHERE poste=:poste")
 }) 
 public class Connexion implements Serializable {
 	private static final long serialVersionUID = 1L;

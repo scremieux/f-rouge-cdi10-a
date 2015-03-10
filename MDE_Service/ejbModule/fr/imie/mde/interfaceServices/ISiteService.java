@@ -40,4 +40,8 @@ public interface ISiteService {
 	void supprimerSalle(Salle salle);
 
 	void supprimerPoste(Poste poste);
+
+	Poste libererPoste(Poste poste);
+
+	List<Poste> obtenirPostesParSalle(Salle salle);
 }

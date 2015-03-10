@@ -25,10 +25,6 @@ public class Salle implements Serializable {
 	@Column(name="salle_nom")
 	private String salleNom;
 
-	//bi-directional many-to-one association to Poste
-	@OneToMany(mappedBy="salle")
-	private List<Poste> postes;
-
 	//bi-directional many-to-one association to Site
 	@ManyToOne
 	@JoinColumn(name="site_id")
@@ -51,28 +47,6 @@ public class Salle implements Serializable {
 
 	public void setSalleNom(String salleNom) {
 		this.salleNom = salleNom;
-	}
-
-	public List<Poste> getPostes() {
-		return this.postes;
-	}
-
-	public void setPostes(List<Poste> postes) {
-		this.postes = postes;
-	}
-
-	public Poste addPoste(Poste poste) {
-		getPostes().add(poste);
-		poste.setSalle(this);
-
-		return poste;
-	}
-
-	public Poste removePoste(Poste poste) {
-		getPostes().remove(poste);
-		poste.setSalle(null);
-
-		return poste;
 	}
 
 	public Site getSite() {

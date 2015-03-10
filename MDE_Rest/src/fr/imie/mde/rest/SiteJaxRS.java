@@ -145,6 +145,31 @@ public class SiteJaxRS {
 		}
 		return Response.ok(salle).build();
 	}
+	
+	@GET()
+	@Path("/salle/{id}/postes")
+	public Response obtenirPostesParSalleRest(@PathParam("id") String idString) {
+		Integer id = null;
+		try {
+			id = Integer.valueOf(idString);
+		} catch (Exception e) {
+			return Response.noContent().build();
+		}
+		Salle salle = null;
+		List<Poste> listePostes = null;
+		if (id != null) {
+			salle  = new Salle();
+			salle.setSalleId(id);
+			try {
+				listePostes= siteService.obtenirPostesParSalle(salle);
+			} catch (Exception e) {
+				return Response.noContent().build();
+			}
+		}
+		return Response.ok(listePostes).build();
+	}
+
+	
 	@PUT
 	@Path("/salle/{id}")
 	public Response modifierSalleRest(Salle salle, @PathParam("id") String idString) {
@@ -273,6 +298,38 @@ public class SiteJaxRS {
 		return Response.ok(id).build();
 	}
 	
-	
+	/**
+	 * Met à jour les données de la connexion correspondante à l'ID donné dans l'URL.
+	 * <br>Route : /Api/connexion/liberer/{id}
+	 * <br>Methode : PUT
+	 * @param connexion		objet Connexion avec les données à mettre à jour.
+	 * @param idString		Clé primaire de l'usager à mettre à jour.
+ 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+	 */
+	@PUT
+	@Path("/liberer/{id}")
+	public Response libererPosteRest(Poste poste, @PathParam("id") String idString) {
+		Integer id = null;
+		try {
+			id = Integer.valueOf(idString);
+		} catch (Exception e) {
+			return Response.noContent().build();
+		}
+
+		if (id != null && poste != null) {
+//			connexion.setCnxId(id);
+//			poste.setPosteDisponible(true);
+//			connexion.setCnxHeureFin(new Time(System.currentTimeMillis()));
+//			connexion.getPoste().setPosteDisponible(true);
+//System.out.println(connexion.getPoste());
+//System.out.println(connexion.getPoste().getPosteId());
+//System.out.println(connexion.getPoste().getPosteNom());
+			poste = siteService.libererPoste(poste);
+			return Response.ok(poste).build();
+		} else {
+			return Response.noContent().build();
+		}
+	}
+
 	
 }

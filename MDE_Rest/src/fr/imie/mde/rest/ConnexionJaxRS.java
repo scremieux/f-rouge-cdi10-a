@@ -1,5 +1,6 @@
 package fr.imie.mde.rest;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -286,8 +287,8 @@ public class ConnexionJaxRS {
 	 * <br>Route : /Api/connexion/{id}
 	 * <br>Methode : PUT
 	 * @param connexion		objet Connexion avec les données à mettre à jour.
-	 * @param idString		Clé primaire de l'usager à mettre à jour.
- 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+	 * @param idString		Clé primaire de la connexion à mettre à jour.
+ 	 * @return objet Connexion au format JSON, noContent si pas de correspondance trouvée.
 	 */
 	@PUT
 	@Path("/{id}")
@@ -312,9 +313,9 @@ public class ConnexionJaxRS {
 	 * Met à jour les données du motif correspondant à l'ID donné dans l'URL.
 	 * <br>Route : /Api/connexion/motif/{id}
 	 * <br>Methode : PUT
-	 * @param motif		objet Usager avec les données à mettre à jour.
+	 * @param motif		objet Motif avec les données à mettre à jour.
 	 * @param idString		Clé primaire de l'usager à mettre à jour.
- 	 * @return objet Usager au format JSON, noContent si pas de correspondance trouvée.
+ 	 * @return objet Motif au format JSON, noContent si pas de correspondance trouvée.
 	 */
 	@PUT
 	@Path("/motif/{id}")
@@ -334,5 +335,4 @@ public class ConnexionJaxRS {
 			return Response.noContent().build();
 		}
 	}
-
 }

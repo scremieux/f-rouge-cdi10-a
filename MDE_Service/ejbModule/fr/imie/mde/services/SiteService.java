@@ -1,6 +1,6 @@
 package fr.imie.mde.services;
 
-import java.util.ArrayList;
+import java.sql.Time;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,10 +10,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.imie.mde.interfaceServices.ISiteService;
+import fr.imie.mde.model.Connexion;
 import fr.imie.mde.model.Poste;
 import fr.imie.mde.model.Salle;
 import fr.imie.mde.model.Site;
-import fr.imie.mde.model.Structure;
 @Stateless
 @LocalBean
 public class SiteService implements ISiteService {
@@ -27,27 +27,24 @@ public class SiteService implements ISiteService {
     }
 	@Override
 	public List<Site> listerSites() {
-		// TODO Auto-generated method stub
 		Query query = entityManager.createNamedQuery("Site.findAll"); 
     	List<Site> sites = query.getResultList();
-    	for (Site site : sites) {
-			site.setSalles(null);
-		}
+//    	for (Site site : sites) {
+//			site.setSalles(null);
+//		}
 
 		return sites;
 	}
 
 	@Override
 	public Site obtenirSite(Site site) {
-		// TODO Auto-generated method stub
 		site = entityManager.find(Site.class, site.getSiteId());
-		List<Salle> salles = site.getSalles();
+//		List<Salle> salles = site.getSalles();
 		
-		for (Salle salle : salles) {
-			entityManager.detach(salle);
-			salle.setPostes(null);
-			salle.setSite(null);
-		}
+//		for (Salle salle : salles) {
+//			entityManager.detach(salle);
+//			salle.setSite(null);
+//		}
 		return site;
 	}
 	
@@ -57,120 +54,102 @@ public class SiteService implements ISiteService {
 		// TODO Auto-generated method stub
 		Query query = entityManager.createNamedQuery("Salle.findAll"); 
     	List<Salle> salles = query.getResultList();
-    	for (Salle salle : salles) {
-			salle.setPostes(null);
-			salle.getSite().setSalles(null);
-			
-		}
+//    	for (Salle salle : salles) {
+//			salle.getSite().setSalles(null);
+//			
+//		}
 		return salles;
 	}
 	
 	@Override
 	public Salle obtenirSalle(Salle salle) {
-		// TODO Auto-generated method stub
 		salle = entityManager.find(Salle.class, salle.getSalleId());
-		List<Poste> postes = salle.getPostes();
-		for (Poste poste : postes) {
-			entityManager.detach(poste);
-			poste.setSalle(null);
-		}
-		salle.getSite().setSalles(null);
+
+//		salle.getSite().setSalles(null);
 		return salle;
 	}
 	
 	@Override
 	public List<Poste> listerPostes() {
-		// TODO Auto-generated method stub
 		Query query = entityManager.createNamedQuery("Poste.findAll"); 
     	List<Poste> postes = query.getResultList();
-    	for (Poste poste : postes) {
-			poste.getSalle().setPostes(null);
-			poste.getSalle().getSite().setSalles(null);
-		}
-		return postes;
+
+    	return postes;
 	}
 
 	@Override
 	public Poste obtenirPoste(Poste poste) {
-		// TODO Auto-generated method stub
 		poste = entityManager.find(Poste.class, poste.getPosteId());
-		
-		Salle salle = poste.getSalle();
-		Site site = salle.getSite();
-    	site.setSalles(null);
-    	salle.setPostes(null);
-   
+  
 		return poste;
 	}
 	@Override
 	public Site creerSite(Site site) {
-		// TODO Auto-generated method stub
 		entityManager.persist(site);
 		return site;
 	}
 	@Override
 	public Salle creerSalle(Salle salle) {
-		// TODO Auto-generated method stub
 		entityManager.persist(salle);
 		return salle;
 	}
 	@Override
 	public Poste creerPoste(Poste poste) {
-		// TODO Auto-generated method stub
 		entityManager.persist(poste);
 		return poste;
 	}
 	@Override
 	public Site modifierSite(Site site) {
-		// TODO Auto-generated method stub
 		return entityManager.merge(site);
 	}
 	@Override
 	public Salle modifierSalle(Salle salle) {
-		// TODO Auto-generated method stub
 		return entityManager.merge(salle);
 	}
 	@Override
 	public Poste modifierPoste(Poste poste) {
-		// TODO Auto-generated method stub
 		return entityManager.merge(poste);
 	}
 	@Override
 	public void supprimerSite(Site site) {
-		// TODO Auto-generated method stub
-		/*List<Salle> salles = new ArrayList<Salle>();
-		List<Poste> postes = new ArrayList<Poste>();
-		salles = site.getSalles();
-		for (Salle salle : salles) {
-			postes = salle.getPostes();
-			for (Poste poste : postes) {
-				poste = entityManager.merge(poste);
-				entityManager.remove(poste);
-			}
-			salle = entityManager.merge(salle);
-			entityManager.remove(salle);
-		}*/
 		site = entityManager.merge(site);
 		entityManager.remove(site);
 	}
 	
 	@Override
 	public void supprimerSalle(Salle salle) {
-		// TODO Auto-generated method stub
-		/*List<Poste> postes = new ArrayList<Poste>();
-		postes = salle.getPostes();
-		for (Poste poste : postes) {
-			poste = entityManager.merge(poste);
-			entityManager.remove(poste);
-		}*/
 		salle = entityManager.merge(salle);
 		entityManager.remove(salle);
 	}
 	
 	@Override
 	public void supprimerPoste(Poste poste) {
-		// TODO Auto-generated method stub
 		poste = entityManager.merge(poste);
 		entityManager.remove(poste);
 	}
+	
+	@Override
+	public Poste libererPoste(Poste poste) {
+		poste.setPosteDisponible(true);
+		Query query = entityManager.createNamedQuery("Connexion.rechercherParPoste").setParameter("poste", poste); 
+    	List<Connexion> connexionList = query.getResultList();
+
+		for (Connexion connexion : connexionList) {
+			if (connexion.getCnxHeureFin() == null) {
+				connexion.setCnxHeureFin(new Time(System.currentTimeMillis()));
+
+				entityManager.merge(connexion);
+			}
+		}
+		poste = entityManager.merge(poste);
+		return poste;
+	}
+	
+	@Override
+	public List<Poste> obtenirPostesParSalle(Salle salle) {
+		Query query = entityManager.createNamedQuery("Poste.rechercherParSalle").setParameter("salle", salle); 
+    	List<Poste> posteList = query.getResultList();
+		return posteList;
+	}
+
 }

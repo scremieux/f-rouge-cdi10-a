@@ -45,8 +45,8 @@ public class ConnexionService implements IConnexionService {
     		Poste poste = new Poste();
     		poste = connexion.getPoste();
     		entityManager.detach(poste);
-    		poste.getSalle().getSite().setSalles(null);
-    		poste.getSalle().setPostes(null);
+//    		poste.getSalle().getSite().setSalles(null);
+//    		poste.getSalle().setPostes(null);
 
 		}
     	//********Fin Partie Maxime********

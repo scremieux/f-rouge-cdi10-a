@@ -15,6 +15,14 @@ app.controller('gererSalleControleur',
 				.get('/MDE_Rest/Api/site/salle/' + $scope.salleId)
 				.success(function (response) {
 					$scope.salle = response;
+					
+					$http
+					.get('/MDE_Rest/Api/site/salle/' + $scope.salleId + '/postes')
+					.success(function (response) {
+console.log(response);
+						$scope.salle.postes = response;
+					});
+
 				});
 
 			/**
@@ -37,6 +45,35 @@ app.controller('gererSalleControleur',
 			 * Boutons "Libérer" : Libérer un poste
 			 */
 			$scope.libererPoste = function (idPoste) {
+				var poste = {};
+				
+				// Récupérer les informations du poste
+				$http
+					.get('/MDE_Rest/Api/site/salle/poste/' + idPoste)
+					.success(function (response) {
+						var poste = response;
+						$http
+							.put('/MDE_Rest/Api/site/liberer/' + idPoste, poste)
+							.success(function (response) {
+								$scope.poste = response;
+							})
+							.error(function(data, status, headers, config) {
+								console.log('libererPoste - ', '/MDE_Rest/Api/site/liberer/' + idPoste, 'error');
+								console.log('data', data);
+								console.log('status',status);
+								console.log('headers',headers);
+								console.log('config', config);
+							});
+						})
+					.error(function(data, status, headers, config) {
+						console.log('libererPoste - ', '/MDE_Rest/Api/site/salle/poste/' + idPoste, 'error');
+						console.log('data', data);
+						console.log('status',status);
+						console.log('headers',headers);
+						console.log('config', config);
+					});
+				
+
 				$location
 					.path('/MDE_GUI_POC/gererSalle/' + $scope.salleId);
 			};
@@ -44,14 +81,6 @@ app.controller('gererSalleControleur',
 			/**
 			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
 			 */
-//			$scope.selectionnerSalle = function (idSalle) {
-//				$http
-//				.get('/MDE_Rest/Api/site/salle/' + idSalle)
-//				.success(function (response) {
-//					$scope.listePostes = response.postes;
-//				});
-//				return $scope.listePostes;
-//			}
 			$scope.libererTousLesPostes = function (idSalle) {
 console.log("Pas implémenté");
 			}

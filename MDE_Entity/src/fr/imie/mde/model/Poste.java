@@ -1,6 +1,7 @@
 package fr.imie.mde.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,7 +10,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Poste.findAll", query="SELECT p FROM Poste p")
+
+@NamedQueries({
+	@NamedQuery(name="Poste.findAll", query="SELECT p FROM Poste p"),
+	@NamedQuery(name="Poste.rechercherParSalle", query = "SELECT p FROM Poste p WHERE salle=:salle")
+}) 
+
 public class Poste implements Serializable {
 	private static final long serialVersionUID = 1L;
 

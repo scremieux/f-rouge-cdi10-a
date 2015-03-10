@@ -76,7 +76,7 @@ app.controller('affecterPosteControleur',
 	 					break;
 	 					case '4':
 	 						connexion.cnxDureePrevue = '00:60:00';
-	 						break;
+	 					break;
 	 				}
 
 	 				$http.post("/MDE_Rest/Api/connexion", connexion)

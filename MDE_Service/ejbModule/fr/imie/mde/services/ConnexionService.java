@@ -1,6 +1,7 @@
 package fr.imie.mde.services;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -131,6 +132,7 @@ public class ConnexionService implements IConnexionService {
 	@Override
 	public Connexion creerConnexion(Connexion connexion) {
 		connexion.setCnxDate(new Date(System.currentTimeMillis()));
+		connexion.setCnxHeureDebut(new Time(System.currentTimeMillis()));
 		connexion.getPoste().setPosteDisponible(false);
 		entityManager.merge(connexion.getPoste());
 		entityManager.persist(connexion);
@@ -161,4 +163,14 @@ public class ConnexionService implements IConnexionService {
 	public Motif modifierMotif(Motif motif) {
 		return entityManager.merge(motif);
 	}
+	
+	/**
+	 * @see IConnexionService#terminerConnexion(Connexion connexion)
+	 */
+	@Override
+	public Connexion terminerConnexion(Connexion connexion) {
+		connexion.setCnxHeureFin(new Time(System.currentTimeMillis()));
+		return entityManager.merge(connexion);
+	}
+
 }

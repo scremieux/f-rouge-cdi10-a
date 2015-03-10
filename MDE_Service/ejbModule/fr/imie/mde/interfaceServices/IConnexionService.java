@@ -93,4 +93,11 @@ public interface IConnexionService {
  	 * @return objet Motig modifié.
 	 */
 	Motif modifierMotif(Motif motif);
+
+	/**
+	 * Met à jour les données d'une connexion.
+	 * @param motif		objet Connexion avec les données à mettre à jour.
+ 	 * @return objet Connexion modifié.
+	 */
+	Connexion terminerConnexion(Connexion connexion);
 }

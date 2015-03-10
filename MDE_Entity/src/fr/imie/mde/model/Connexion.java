@@ -72,6 +72,13 @@ public class Connexion implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="util_id")
 	private Utilisateur utilisateur;
+	
+	@Column(name="cnx_heure_debut")
+	private Time cnxHeureDebut;
+
+	@Column(name="cnx_heure_fin")
+	private Time cnxHeureFin;
+
 
 	public Connexion() {
 	}
@@ -138,6 +145,21 @@ public class Connexion implements Serializable {
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public Time getCnxHeureDebut() {
+		return this.cnxHeureDebut;
+	}
+
+	public void setCnxHeureDebut(Time cnxHeureDebut) {
+		this.cnxHeureDebut = cnxHeureDebut;
+	}
+	public Time getCnxHeureFin() {
+		return this.cnxHeureFin;
+	}
+
+	public void setCnxHeureFin(Time cnxHeureFin) {
+		this.cnxHeureFin = cnxHeureFin;
 	}
 
 }

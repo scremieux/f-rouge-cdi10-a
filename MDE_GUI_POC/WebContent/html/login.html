@@ -1,0 +1,26 @@
+<div data-ng-controller="loginControleur">
+<h1>Connectez vous</h1>
+<form  name="myForm" novalidate action="">
+
+	<div class="container">
+		<label for="salleInput">Login :</label>
+		<input type="text" id="salleInput" data-ng-model="loginSaisi"/>
+	</div>
+
+	<div class="container">
+		<label for="posteInput">Mot de passe :</label>
+		<input type="password" id="posteInput" data-ng-model="mdpSaisi"/>
+	</div>
+	<div>
+	<p data-ng-bind="messageErreur"></p>
+	</div>
+	<div class="container">
+		<button data-ng-click="loginSeConnecter()">Se connecter</button>
+	</div>
+</form>
+</div>
+
+
+
+
+

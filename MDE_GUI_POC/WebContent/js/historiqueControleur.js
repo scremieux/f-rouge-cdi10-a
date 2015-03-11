@@ -1,8 +1,23 @@
 app.controller('historiqueControleur', 
 	[
-		'$scope',
-		'$http',
-		function historiqueControleur($scope, $http) {
+	 	'$scope',
+	 	'$http',
+	 	'$routeParams',
+	 	'$location',
+	 	'$window',
+		function historiqueControleur($scope, $http, $routeParams, $location, $window) {
+			
+			if ($scope.utilConn ===undefined){
+				console.log("histoCtrl : utilisateur non connecté");
+				
+				$location.path('/MDE_GUI_POC/login');
+				
+				
+			}else{
+				console.log("utilisateur connecté");
+			
+			
+		
 			// Requête de la liste des connexions
 			$http
 				.get('/MDE_Rest/Api/connexion')
@@ -90,6 +105,10 @@ app.controller('historiqueControleur',
 				$scope.usagerSaisi="";
 				$scope.dateChoisi = null;
 			};
+			
+			
+			
+			}
 		}
 	]
 );

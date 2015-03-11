@@ -12,8 +12,10 @@
 		<legend>{{poste.posteNom}}</legend>
 
 		<div class="form-group">
-			<label for="usagerInput">Usager :</label> <input id="usagerInput"
+			<label for="usagerInput">Usager :</label>
+			<input id="usagerInput"
 				name="usagerInput" type="text" class="form-control"
+				autocomplete="off"
 				placeholder="Recherche d'un usager..." list="usagers"
 				data-ng-model="usagerSaisi" />
 			<datalist id="usagers">
@@ -56,8 +58,8 @@
 		</div>
 
 		<div class="form-group">
-			<label for="motifInput">Motif de la visite :</label> <select
-				id="motifInput" name="motifInput" class="form-control"
+			<label for="motifInput">Motif de la visite :</label>
+			<select id="motifInput" name="motifInput" class="form-control"
 				data-ng-model="mtId" required>
 				<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
 			</select>
@@ -71,19 +73,22 @@
 			</select>
 		</div>
 
-		<p class="bg-warning" data-ng-show="erreur.retour.parametresErreur">
+		<div class="alert alert-warning alert-dismissible fade in" role="alert" data-ng-show="erreur.retour.parametresErreur">
+			<strong>Données incorrectes</strong>
+			<br/>
 			<span data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.<br/> </span>
 			<span data-ng-hide="erreur.retour.mtId">Pas de motif sélectionné.<br/></span>
 			<span data-ng-hide="erreur.retour.dureeId">Pas de durée	sélectionné.<br/></span>
-		</p>
+		</div>
 
-		<p class="bg-danger" data-ng-show="erreur.retour.serviceErreur">
+
+		<div class="alert alert-danger alert-dismissible fade in" role="alert" data-ng-show="erreur.retour.serviceErreur">
 			{{erreur.retour.libelle}} - Appel de service impossible
 			<br />
 			statut = '{{erreur.retour.statut}}'
 			<br />
 			headers = '{{erreur.retour.headers}}' <br /> config = '{{erreur.retour.config}}'
-		</p>
+		</div>
 
 		<div>
 			<button class="btn btn-success"

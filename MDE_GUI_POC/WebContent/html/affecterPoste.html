@@ -71,20 +71,19 @@
 			</select>
 		</div>
 
-		<div data-ng-show="erreur.retour.parametresErreur">
-			<p data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.
-			</p>
-			<p data-ng-hide="erreur.retour.mtId">Pas de motif sélectionné.</p>
-			<p data-ng-hide="erreur.retour.dureeId">Pas de durée
-				sélectionné.</p>
-		</div>
+		<p class="bg-warning" data-ng-show="erreur.retour.parametresErreur">
+			<span data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.<br/> </span>
+			<span data-ng-hide="erreur.retour.mtId">Pas de motif sélectionné.<br/></span>
+			<span data-ng-hide="erreur.retour.dureeId">Pas de durée	sélectionné.<br/></span>
+		</p>
 
-		<div data-ng-show="erreur.retour.serviceErreur">
-			{{erreur.retour.libelle}} - Appel de service impossible <br /> statut
-			= '{{erreur.retour.statut}}' <br /> headers =
-			'{{erreur.retour.headers}}' <br /> config =
-			'{{erreur.retour.config}}'
-		</div>
+		<p class="bg-danger" data-ng-show="erreur.retour.serviceErreur">
+			{{erreur.retour.libelle}} - Appel de service impossible
+			<br />
+			statut = '{{erreur.retour.statut}}'
+			<br />
+			headers = '{{erreur.retour.headers}}' <br /> config = '{{erreur.retour.config}}'
+		</p>
 
 		<div>
 			<button class="btn btn-success"

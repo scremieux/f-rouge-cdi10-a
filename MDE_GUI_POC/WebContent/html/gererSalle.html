@@ -22,7 +22,15 @@
 			<tr data-ng-repeat="x in salle.postes | orderBy:'poste.posteNom'">
 				<td>{{ x.posteId }}</td>
 				<td>{{ x.posteNom }}</td>
-				<td>{{ (x.posteDisponible)?'Disponible':'Occupé'; }}</td>
+				<td>
+					<span class="label label-success" data-ng-show="x.posteDisponible">
+						Libre 
+					</span>
+					<span class="label label-danger" data-ng-hide="x.posteDisponible">
+						Occupé
+					</span>
+				</td>
+				
 				<td>
 					<button class="btn btn-primary"
 							data-ng-disabled="{{!x.posteDisponible}}" 

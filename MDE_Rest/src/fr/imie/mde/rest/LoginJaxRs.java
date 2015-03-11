@@ -30,14 +30,12 @@ public class LoginJaxRs {
 	@POST()
 	public Response verifLoginRest(Utilisateur utilisateur) {
 		Boolean utilAuth = false;
-		System.out.println(req.getSession().getAttribute("utilConn"));
 		if (utilisateur != null) {
 			utilAuth = loginService.verifLogin(utilisateur);
 			if (utilAuth){
 				req.getSession().setAttribute("utilConn", utilisateur.getUtilLogin());
 			}
 		}
-		System.out.println(req.getSession().getAttribute("utilConn"));
 		return Response.ok(utilAuth).build();
 	}
 }

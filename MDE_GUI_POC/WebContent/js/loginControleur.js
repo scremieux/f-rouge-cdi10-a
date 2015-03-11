@@ -5,7 +5,7 @@ app.controller('loginControleur',
 		'$location',
 		'$rootScope',
 	 	function loginControleur($scope, $http, $location,$rootScope) {
-			
+			$rootScope.cacheNav= true;
 			console.log("controleur login");
 	 		/**
 	 		 * Bouton "Valider" : Connexion à l'application
@@ -22,9 +22,15 @@ app.controller('loginControleur',
 	 		 			if (data=="true"){
 	 		 				$rootScope.utilConn = $scope.loginSaisi;
 	 		 				console.log("utilConn : " + $rootScope.utilConn);
-	 		 				$location.path('/MDE_GUI_POC/');
+	 		 				$rootScope.cacheNav= false;
+	 		 				if($rootScope.cheminVoulu!==undefined){
+	 		 					$location.path($rootScope.cheminVoulu);
+	 		 				}else{
+	 		 					$location.path('/MDE_GUI_POC/');
+	 		 				}
+	 		 				
 	 		 			}else{
-	 		 				$scope.messageErreur = "Erreur de saisie, veuillez recommencer";
+	 		 				$scope.messageErreur = "Saisie incorrecte";
 	 		 				$scope.loginSaisi="";
 	 			 			$scope.mdpSaisi="";
 	 		 			}

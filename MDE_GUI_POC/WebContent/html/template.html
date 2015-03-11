@@ -23,29 +23,22 @@
 </head>
 
 <body data-ng-controller="templateControleur as main">
-<!--
-	<header>
-		<div id="logoCyberBase">
+
+	<header ng-hide="cacheNav">
+		<!-- <div id="logoCyberBase">
 			<img src="../img/cyber_base.png" alt="logo cyber base" />
-		</div>
-		<div id="titrePage">Gestion des salles</div>
+		</div>  
+		<div id="titrePage">Gestion des salles</div> -->
 		<div id="connexionBloc">
-			<p id=""></p>
-			<p>
-				<a href="">Déconnexion</a>
-			</p>
-			<p>
-				<a href="">Modifier mon mot de passe</a>
-			</p>
+			<p data-ng-bind="utilConn"></p>
+			<button data-ng-click="deconnexion()">Déconnexion</button>
+			<button data-ng-click="modifierMdP()">Modifier mon mot de passe</button>
 		</div>
 	</header>
--->
 
-<header>
-	<p data-ng-bind="utilConn"></p>
-</header>
 
-	<nav class="navbar navbar-default">
+
+	<nav ng-hide="cacheNav" class="navbar navbar-default">
 		<ul class="nav navbar-nav">
 			<li><a href="MDE_GUI_POC">Acceuil</a></li>
 			<li><a href="/MDE_GUI_POC/login">Login</a></li>

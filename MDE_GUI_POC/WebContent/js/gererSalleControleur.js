@@ -9,7 +9,14 @@ app.controller('gererSalleControleur',
 		'$location',
 		'$route',
 		'$window',
-		function gererSalleControleur ($scope, $http, $routeParams, $location, $route, $window) {
+		'$rootScope',
+		function gererSalleControleur ($scope, $http, $routeParams, $location, $route, $window, $rootScope) {
+			
+			if ($scope.utilConn ===undefined){
+				$rootScope.cheminVoulu ='/MDE_GUI_POC/listerSalles';
+				$location.path('/MDE_GUI_POC/login');	
+			}
+			
 			$scope.salleId = $routeParams.salleId;
 			
 			// Requête : obtenir les informations de la salle

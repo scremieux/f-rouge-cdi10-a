@@ -5,17 +5,13 @@ app.controller('historiqueControleur',
 	 	'$routeParams',
 	 	'$location',
 	 	'$window',
-		function historiqueControleur($scope, $http, $routeParams, $location, $window) {
+	 	'$rootScope',
+		function historiqueControleur($scope, $http, $routeParams, $location, $window, $rootScope) {
 			
 			if ($scope.utilConn ===undefined){
-				console.log("histoCtrl : utilisateur non connecté");
-				
-				$location.path('/MDE_GUI_POC/login');
-				
-				
-			}else{
-				console.log("utilisateur connecté");
-			
+				$rootScope.cheminVoulu ='/MDE_GUI_POC/historique';
+				$location.path('/MDE_GUI_POC/login');	
+			}
 			
 		
 			// Requête de la liste des connexions
@@ -109,6 +105,6 @@ app.controller('historiqueControleur',
 			
 			
 			}
-		}
+		
 	]
 );

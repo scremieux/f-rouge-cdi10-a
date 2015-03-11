@@ -6,9 +6,16 @@
 // );
 
 app.controller('templateControleur',  
-	function templateControleur($route, $routeParams, $location) {
+	function templateControleur($route, $routeParams, $location, $rootScope, $scope) {
 		this.$route = $route;
 		this.$routeParams = $routeParams;
 		this.$location = $location;
+		
+		$scope.deconnexion = function() {
+			console.log("deconnexion");
+			$rootScope.utilConn = undefined;
+			$location.path('/MDE_GUI_POC/');
+			
+		}
 	}
 );

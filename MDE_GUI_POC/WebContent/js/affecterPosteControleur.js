@@ -6,6 +6,11 @@ app.controller('affecterPosteControleur',
 	 	'$location',
 	 	'$window',
 	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window) {
+	 		
+			if ($scope.utilConn ===undefined){
+				$location.path('/MDE_GUI_POC/login');	
+			}
+			
 	 		$scope.detailVisible = false;
 
 	 		// Requete : liste des usagers pour gestion auto completion

@@ -91,7 +91,7 @@ app.controller('gererSalleControleur',
 			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
 			 */
 			$scope.libererTousLesPostes = function (idSalle) {
-				if ($window.confirm('Voulez-vous arrêter toutes les connexions actives?')) {
+//				if ($window.confirm('Voulez-vous arrêter toutes les connexions actives?')) {
 					$http
 						.put('/MDE_Rest/Api/site/liberer/salle/' + $scope.salle.salleId)
 						.success(function (response) {
@@ -106,7 +106,7 @@ app.controller('gererSalleControleur',
 							console.log('headers',headers);
 							console.log('config', config);
 						});
-				}
+//				}
 			}
 		}
 	]

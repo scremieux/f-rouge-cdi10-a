@@ -1,0 +1,68 @@
+<div data-ng-controller="creerUsagerControleur">
+	<form name="usagerForm" class="col-lg-12" novalidate>
+		<legend>Creer un usager</legend>
+		
+		
+		<div class="form-group">
+			<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">Monsieur
+			</label>
+			<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">Madame
+			</label>
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="inputNom">Nom</label>
+			<input type="text" class="form-control" id="inputNom" placeholder="Entrez nom" />
+  		</div>
+		<div class="form-group">
+			<label for="inputNom">Prénom</label>
+			<input type="text" class="form-control" id="inputPrenom" placeholder="Entrez prénom" />
+  		</div>
+		<div class="form-group">
+			<label for="inputDtNaiss">Date de naissance</label>
+			<input type="date" class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
+  		</div>
+		<div class="form-group">
+			<label for="inputDtInscription">Date d'inscription</label>
+			<input type="date" class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
+  		</div>
+		<div class="form-group">
+    		<label for="inputEmail">Email</label>
+    		<input type="email" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
+		</div>
+		
+
+  		<div class="checkbox">
+    		<label>
+      			<input type="checkbox">
+      			Suivi par la mission locale
+    		</label>
+  		</div>
+
+  		<div class="checkbox">
+    		<label>
+      			<input type="checkbox">
+      			Exclu de nos services
+    		</label>
+  		</div>
+		<div class="form-group">
+    		<label for="inputDtExclusion">Date de fin d'exclusion</label>
+    		<input type="date" class="form-control" id="inputDtExclusion" placeholder="jj/mm/aaaa" />
+		</div>
+		<ul>
+			<li>quartierId</li>
+  			<li>cspId</li>
+  			<li>nfId</li>
+		</ul>
+
+      	<div>
+   			<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+   			<button type="button" class="btn btn-primary" data-ng-click="">Oui</button>
+		</div>
+		
+			
+	</form>
+</div>

@@ -33,7 +33,8 @@
 					<span class="glyphicon glyphicon glyphicon-search"></span>
 				</button>
 				<button class="btn btn-success"
-					data-ng-click="affecterPosteCreerUsager()">
+					data-toggle="modal" data-target="#myModal">
+					<!-- data-ng-click="affecterPosteCreerUsager()" -->
 					<span class="glyphicon glyphicon-plus-sign"></span>
 				</button>
 			</div>
@@ -101,4 +102,24 @@
 			</button>
 		</div>
 	</form>
+	
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        			<h4 class="modal-title" id="myModalLabel">Attribuer un poste : {{poste.posteNom}}</h4>
+      			</div>
+      			<div class="modal-body" style='height: 600px'>
+       				<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'"></div>
+      			</div>
+      			<div class="modal-footer">
+      			 FOOTER
+      			</div>
+      
+    		</div>
+  		</div>
+	</div>
+	
 </div>

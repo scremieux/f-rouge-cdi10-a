@@ -5,7 +5,6 @@ app.config([ '$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
 			$routeProvider.when('/MDE_GUI_POC/login', {
 				templateUrl : '/MDE_GUI_POC/html/login.html',
-				//templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
 				controller : 'loginControleur'
 			}).when('/MDE_GUI_POC/listerSalles', {
 				templateUrl : '/MDE_GUI_POC/html/listerSalles.html',
@@ -17,8 +16,7 @@ app.config([ '$routeProvider', '$locationProvider',
 				templateUrl : '/MDE_GUI_POC/html/affecterPoste.html',
 				controller : 'affecterPosteControleur'
 			}).when('/MDE_GUI_POC/creerUsager', {
-				// templateUrl: '/MDE_GUI_POC/html/creerUsager.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
+				templateUrl: '/MDE_GUI_POC/html/creerUsager.html',
 				controller : 'affecterPosteControleur'
 			}).when('/MDE_GUI_POC/detailsUsager', {
 				// templateUrl: '/MDE_GUI_POC/html/detailsUsager.html',

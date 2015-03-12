@@ -1,4 +1,4 @@
-<div data-ng-controller="creerUsagerControleur">
+<div><!--  data-ng-controller="creerUsagerControleur"> -->
 	<form name="usagerForm" class="col-lg-12" novalidate>
 		<legend>Creer un usager</legend>
 		
@@ -26,10 +26,6 @@
 			<input type="date" class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
   		</div>
 		<div class="form-group">
-			<label for="inputDtInscription">Date d'inscription</label>
-			<input type="date" class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
-  		</div>
-		<div class="form-group">
     		<label for="inputEmail">Email</label>
     		<input type="email" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
 		</div>
@@ -44,24 +40,43 @@
 
   		<div class="checkbox">
     		<label>
-      			<input type="checkbox">
+      			<input type="checkbox" data-ng-model="bExcluDeNosServices">
       			Exclu de nos services
     		</label>
   		</div>
-		<div class="form-group">
+		<div class="form-group" data-ng-show="bExcluDeNosServices">
     		<label for="inputDtExclusion">Date de fin d'exclusion</label>
     		<input type="date" class="form-control" id="inputDtExclusion" placeholder="jj/mm/aaaa" />
 		</div>
-		<ul>
-			<li>quartierId</li>
-  			<li>cspId</li>
-  			<li>nfId</li>
-		</ul>
+		
+		<div class="form-group">
+    		<label for="inputQuartier">Quartier</label>
+			<select id="inputQuartier" class="form-control" data-ng-model="quartierChoisi" >
+				<option data-ng-repeat="quartier in listeQuartiers">
+					{{quartier.quartierNom}}
+				</option>
+			</select>
+	
+  		</div>
+		<div class="form-group">
+    		<label for="inputCsp">Catégorie socio-professionnelle</label>
+			<select id="inputCsp" class="form-control" data-ng-model="cspChoisi" >
+				<option data-ng-repeat="csp in listeCsp">
+					{{nom.cspNom}}
+				</option>
+			</select>
+  		</div>
+		<div class="form-group">
+    		<label for="inputNiveauFormation">Niveau de formation</label>
+			<select id="inputNiveauFormation" class="form-control" data-ng-model="niveauFormationChoisi" >
+				<option data-ng-repeat="niveauFormation in listeNiveauxFormation">
+					{{niveauFormation.nfLibelle}}
+				</option>
+			</select>
+  		</div>
 
-      	<div>
-   			<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-   			<button type="button" class="btn btn-primary" data-ng-click="">Oui</button>
-		</div>
+		<button type="button" class="btn btn-primary btn-block" data-ng-click="">Créer</button>
+		<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Retour</button>
 		
 			
 	</form>

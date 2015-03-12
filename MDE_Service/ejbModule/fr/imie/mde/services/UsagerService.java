@@ -1,5 +1,6 @@
 package fr.imie.mde.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -147,6 +148,7 @@ public class UsagerService implements IUsagerService {
 	 */
 	@Override
 	public Usager creerUsager(Usager usager) {
+		usager.setUsagerDtInscription(new Date(System.currentTimeMillis()));
 		entityManager.persist(usager);
 		return usager;
 	}

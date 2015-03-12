@@ -1,4 +1,4 @@
-<div data-ng-controller="gererSalleControleur">
+<div>
 	<h2>
 		Site : <a href="/MDE_GUI_POC/listerSalles">{{salle.site.siteNom}}</a>
 		<br/>
@@ -13,17 +13,15 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Nom</th>
-				<th>Etat</th>
+				<th>Disponibilité</th>
 				<th>Attribuer</th>
-				<th>Configurer</th>
 				<th>Libérer</th>
+				<th>Configurer</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="x in salle.postes | orderBy:'poste.posteNom'">
-				<td>{{ x.posteId }}</td>
 				<td>{{ x.posteNom }}</td>
 				<td>
 					<span class="label label-success" data-ng-show="x.posteDisponible">
@@ -42,15 +40,15 @@
 					</button>
 				</td>
 				<td>
-					<button class="btn btn-info"
-							data-ng-click="configurerPoste(x.posteId)">
-						<span class="glyphicon glyphicon-pencil"></span> 
-					</button>
-				</td>
-				<td>
 					<button data-ng-disabled="{{x.posteDisponible}}" class="btn btn-warning"
 							data-ng-click="libererPoste(x.posteId)">
 						<span class="glyphicon glyphicon-stop"></span> 
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-info"
+							data-ng-click="configurerPoste(x.posteId)">
+						<span class="glyphicon glyphicon-pencil"></span> 
 					</button>
 				</td>
 			</tr>
@@ -74,4 +72,5 @@
     		</div>
   		</div>
 	</div>
+
 </div>

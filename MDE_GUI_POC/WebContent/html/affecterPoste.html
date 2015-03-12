@@ -1,45 +1,44 @@
 <div data-ng-controller="affecterPosteControleur">
 	<h2>
-		Attribuer un poste
-		<br />
-		<a href="/MDE_GUI_POC/gererSalle/{{poste.salle.salleId}}">
-			Salle : {{poste.salle.salleNom}}
-		</a>
+		Attribuer un poste <br /> <a
+			href="/MDE_GUI_POC/gererSalle/{{poste.salle.salleId}}"> Salle :
+			{{poste.salle.salleNom}} </a>
 	</h2>
 
 
-	<form name="myForm" class="col-lg-6" novalidate>
+	<form name="myForm" class="col-lg-12" novalidate>
 		<legend>{{poste.posteNom}}</legend>
 
 		<div class="form-group">
 			<label for="usagerInput">Usager :</label>
-			<input id="usagerInput"
-				name="usagerInput" type="text" class="form-control"
-				autocomplete="off"
-				placeholder="Recherche d'un usager..." list="usagers"
-				data-ng-model="usagerSaisi" />
-			<datalist id="usagers">
-				<option data-ng-repeat="usager in listeUsagers"
-					value="{{ usager.usagerPrenom 
+			<div class="input-group">
+				<input id="usagerInput" class="form-control" name="usagerInput"
+					type="text" class="form-control" autocomplete="off"
+					placeholder="Recherche d'un usager..." list="usagers"
+					data-ng-model="usagerSaisi" />
+				<datalist id="usagers">
+					<option data-ng-repeat="usager in listeUsagers"
+						value="{{ usager.usagerPrenom 
 						+ ' ' 
 						+ usager.usagerNom }}"
-					data-id="{{usager.usagerId}}">{{ usager.usagerPrenom + ' '
-					+ usager.usagerNom + ' ' + ', né(e) le ' + usager.usagerDtNaiss }}
-				</option>
-			</datalist>
-			<div>
-				<button class="btn btn-primary"
-					data-ng-click="affecterPosteRechercher()">
-					<span class="glyphicon glyphicon glyphicon-search"></span>
-				</button>
-				<button class="btn btn-success"
-					data-toggle="modal" data-target="#myModal">
-					<!-- data-ng-click="affecterPosteCreerUsager()" -->
-					<span class="glyphicon glyphicon-plus-sign"></span>
-				</button>
+						data-id="{{usager.usagerId}}">{{ usager.usagerPrenom + '
+						' + usager.usagerNom + ' ' + ', né(e) le ' + usager.usagerDtNaiss
+						}}</option>
+				</datalist>
+				<span class="input-group-btn">
+					<button class="btn btn-primary"
+						data-ng-click="affecterPosteRechercher()">
+						<span class="glyphicon glyphicon glyphicon-search"></span>
+					</button>
+					<button class="btn btn-default" data-toggle="modal"
+						data-target="#myModal">
+						<!-- data-ng-click="affecterPosteCreerUsager()" -->
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</button>
+				</span>
 			</div>
 
-			<div id="detail" data-ng-show="detailVisible">
+			<blockquote id="detail" data-ng-show="detailVisible">
 				<p>
 					{{usager.usagerPrenom}} {{usager.usagerNom}}
 					<br />
@@ -48,19 +47,18 @@
 					{{usager.quartier.quartierCp}} {{usager.quartier.quartierVille}}
 				</p>
 				<p>
-					<span class="label label-primary" data-ng-show="usager.usagerMissionLocale">
-						Accompagné	par la mission de l'emploi
-					</span>
-					<span class="label label-danger" data-ng-show="usager.usagerExcluService">
-						Exclu de nos services
-					</span>
+					<span class="label label-primary"
+						data-ng-show="usager.usagerMissionLocale"> Accompagné par
+						la mission de l'emploi </span> <span class="label label-danger"
+						data-ng-show="usager.usagerExcluService"> Exclu de nos
+						services </span>
 				</p>
-			</div>
+			</blockquote>
 		</div>
 
 		<div class="form-group">
-			<label for="motifInput">Motif de la visite :</label>
-			<select id="motifInput" name="motifInput" class="form-control"
+			<label for="motifInput">Motif de la visite :</label> <select
+				id="motifInput" name="motifInput" class="form-control"
 				data-ng-model="mtId" required>
 				<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
 			</select>
@@ -74,52 +72,56 @@
 			</select>
 		</div>
 
-		<div class="alert alert-warning alert-dismissible fade in" role="alert" data-ng-show="erreur.retour.parametresErreur">
-			<strong>Données incorrectes</strong>
-			<br/>
-			<span data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.<br/> </span>
-			<span data-ng-hide="erreur.retour.mtId">Pas de motif sélectionné.<br/></span>
-			<span data-ng-hide="erreur.retour.dureeId">Pas de durée	sélectionné.<br/></span>
+		<div class="alert alert-warning alert-dismissible fade in"
+			role="alert" data-ng-show="erreur.retour.parametresErreur">
+			<strong>Données incorrectes</strong> <br /> <span
+				data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.<br />
+			</span> <span data-ng-hide="erreur.retour.mtId">Pas de motif
+				sélectionné.<br />
+			</span> <span data-ng-hide="erreur.retour.dureeId">Pas de durée
+				sélectionné.<br />
+			</span>
 		</div>
 
 
-		<div class="alert alert-danger alert-dismissible fade in" role="alert" data-ng-show="erreur.retour.serviceErreur">
-			{{erreur.retour.libelle}} - Appel de service impossible
-			<br />
-			statut = '{{erreur.retour.statut}}'
-			<br />
-			headers = '{{erreur.retour.headers}}' <br /> config = '{{erreur.retour.config}}'
+		<div class="alert alert-danger alert-dismissible fade in" role="alert"
+			data-ng-show="erreur.retour.serviceErreur">
+			{{erreur.retour.libelle}} - Appel de service impossible <br />
+			statut = '{{erreur.retour.statut}}' <br /> headers =
+			'{{erreur.retour.headers}}' <br /> config =
+			'{{erreur.retour.config}}'
 		</div>
 
-		<div>
-			<button class="btn btn-success"
-					data-ng-click="affecterPosteRetour()">
-				<span class="glyphicon glyphicon-stop"></span>
-			</button>
-			<button class="btn btn-primary"
-					data-ng-click="affecterPosteValider()">
-				<span class="glyphicon glyphicon-play"></span>
-			</button>
-		</div>
+		<button class="btn btn-primary btn-block"
+			data-ng-click="affecterPosteValider()">
+			Attribuer poste
+		</button>
+			
+		<button class="btn btn-default btn-block" data-ng-click="affecterPosteRetour()">
+			Retour
+		</button>
 	</form>
-	
-	
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
-    		<div class="modal-content">
-      			<div class="modal-header">
-        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        			<h4 class="modal-title" id="myModalLabel">Attribuer un poste : {{poste.posteNom}}</h4>
-      			</div>
-      			<div class="modal-body" style='height: 600px'>
-       				<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'"></div>
-      			</div>
-      			<div class="modal-footer">
-      			 FOOTER
-      			</div>
-      
-    		</div>
-  		</div>
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Attribuer un poste :
+						{{poste.posteNom}}</h4>
+				</div>
+				<div class="modal-body" style='height: 750px'>
+					<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'"></div>
+				</div>
+				<div class="modal-footer"></div>
+
+			</div>
+		</div>
 	</div>
-	
+
 </div>

@@ -4,7 +4,7 @@
 		<br/>
 		Salle : {{salle.salleNom}}
 
-		<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
   			<span class="glyphicon glyphicon-off"></span>
 		</button>
 	</h2>
@@ -60,10 +60,10 @@
     		<div class="modal-content">
       			<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        			<h4 class="modal-title" id="myModalLabel">Libérer tous les postes</h4>
+        			<h4 class="modal-title" id="myModalLabel">{{salle.salleNom}}</h4>
       			</div>
       			<div class="modal-body">
-					Voulez-vous vraiment arrêter touts les connexions?
+					Voulez-vous vraiment arrêter toutes les connexions?
       			</div>
       			<div class="modal-footer">
         			<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>

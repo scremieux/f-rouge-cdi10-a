@@ -8,6 +8,12 @@
 
 <title>Creation de salle - Cyberbase</title>
 <meta charset="UTF-8">
+<style>
+            body
+            {
+                background-image: url("img/shattered.png");
+            }
+</style>
 
 <!-- chargement de Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -31,9 +37,8 @@
 			</div>
 			<div class="col-sm-3" id="connexionBloc">
 				<p data-ng-bind="utilConn"></p>
-				<button data-ng-click="deconnexion()">Déconnexion</button>
-				<button data-ng-click="modifierMdP()">Modifier mon mot de
-					passe</button>
+				<button class="btn btn-primary" data-ng-click="deconnexion()"><span class="glyphicon glyphicon glyphicon-log-out"></span>  Déconnexion</button>
+				<button class="btn btn-primary" data-ng-click="modifierMdP()">Modifier mot de passe</button>
 			</div>
 		</header>
 

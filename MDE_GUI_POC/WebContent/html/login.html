@@ -1,23 +1,45 @@
 <div data-ng-controller="loginControleur">
-<h1>Connectez vous</h1>
-<form  name="myForm" novalidate action="">
 
-	<div class="container">
-		<label for="loginInput">Login :</label>
-		<input type="text" id="loginInput" data-ng-model="loginSaisi"/>
-	</div>
+	<form name="myForm" novalidate action="">
 
-	<div class="container">
-		<label for="passInput">Mot de passe :</label>
-		<input type="password" id="passInput" data-ng-model="mdpSaisi"/>
-	</div>
-	<div>
-	<p data-ng-bind="messageErreur"></p>
-	</div>
-	<div class="container">
-		<button data-ng-click="loginSeConnecter()">Se connecter</button>
-	</div>
-</form>
+		<div class="container">
+			<div class="row col-sm-5" id="connexionBloc">
+				<div class="form-group">
+					<legend><h1>Connectez vous</h1></legend>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon" id="sizing-addon1">Login</span> <input
+							type="text" class="form-control" id="loginInput"
+							data-ng-model="loginSaisi" aria-describedby="sizing-addon1">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon" id="sizing-addon2">Mot de
+							passe</span> <input type="password" class="form-control" id="passInput"
+							data-ng-model="mdpSaisi" aria-describedby="sizing-addon2">
+					</div>
+				</div>
+				<div class="form-group">
+					<div style="color: red" class="input-group">
+						<span data-ng-bind="messageErreur"> </span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<button class="btn btn-primary" data-ng-click="loginSeConnecter()">
+							<span class="glyphicon glyphicon glyphicon-ok"></span> Se
+							connecter
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</form>
 </div>
 
 

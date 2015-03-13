@@ -21,12 +21,14 @@ function Quartier() {
 }
 
 function Usager() {
-	this.usagerDtNaiss = null;
-	this.usagerEmail = null;		
-	this.usagerExcluService = null;
-	this.usagerMissionLocale = null;
+	this.usagerCivilite = null;
 	this.usagerNom = null;
 	this.usagerPrenom = null;
+	this.usagerDtNaiss = null;
+	this.usagerEmail = null;		
+	this.usagerMissionLocale = null;
+	this.usagerExcluService = null;
+	this.usagerDtExclusion = null;
 	this.csp = new Csp();
 	this.niveauFormation = new NiveauFormation();
 	this.quartier = new Quartier();

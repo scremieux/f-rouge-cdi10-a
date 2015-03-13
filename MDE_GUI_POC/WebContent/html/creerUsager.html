@@ -5,35 +5,38 @@
 		
 		<div class="form-group">
 			<label class="radio-inline">
-  				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">Monsieur
+  				<input type="radio" data-ng-model="civiliteChoisie" name="inlineRadioOptions" id="inlineRadio1" value="1">Monsieur
 			</label>
 			<label class="radio-inline">
-  				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">Madame
+  				<input type="radio" data-ng-model="civiliteChoisie" name="inlineRadioOptions" id="inlineRadio2" value="2">Madame
 			</label>
 		</div>
 		
 		
 		<div class="form-group">
 			<label for="inputNom">Nom</label>
-			<input type="text" class="form-control" id="inputNom" placeholder="Entrez nom" />
+			<input type="text" data-ng-model="nomSaisi" class="form-control" id="inputNom" placeholder="Entrez nom" />
   		</div>
+  		
 		<div class="form-group">
 			<label for="inputNom">Prénom</label>
-			<input type="text" class="form-control" id="inputPrenom" placeholder="Entrez prénom" />
+			<input type="text" data-ng-model="prenomSaisi" class="form-control" id="inputPrenom" placeholder="Entrez prénom" />
   		</div>
+  		
 		<div class="form-group">
 			<label for="inputDtNaiss">Date de naissance</label>
-			<input type="date" class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
+			<input type="date" data-ng-model="dtNaissSaisie"  class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
   		</div>
+  		
 		<div class="form-group">
     		<label for="inputEmail">Email</label>
-    		<input type="email" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
+    		<input type="email" data-ng-model="emailSaisi" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
 		</div>
 		
 
   		<div class="checkbox">
     		<label>
-      			<input type="checkbox">
+      			<input type="checkbox" data-ng-model="bSuiviMissionLocale">
       			Suivi par la mission locale
     		</label>
   		</div>
@@ -46,36 +49,40 @@
   		</div>
 		<div class="form-group" data-ng-show="bExcluDeNosServices">
     		<label for="inputDtExclusion">Date de fin d'exclusion</label>
-    		<input type="date" class="form-control" id="inputDtExclusion" placeholder="jj/mm/aaaa" />
+    		<input type="date" class="form-control"
+    				id="inputDtExclusion" placeholder="31/12/2999"
+    				data-ng-model="dtExclusionSaisie" />
 		</div>
 		
 		<div class="form-group">
     		<label for="inputQuartier">Quartier</label>
 			<select id="inputQuartier" class="form-control" data-ng-model="quartierChoisi" >
-				<option data-ng-repeat="quartier in listeQuartiers">
+				<option data-ng-repeat="quartier in listeQuartiers" value="{{quartier.quartierId}}">
 					{{quartier.quartierNom}}
 				</option>
 			</select>
-	
-  		</div>
+		</div>
+		
+		
 		<div class="form-group">
     		<label for="inputCsp">Catégorie socio-professionnelle</label>
 			<select id="inputCsp" class="form-control" data-ng-model="cspChoisi" >
-				<option data-ng-repeat="csp in listeCsp">
+				<option data-ng-repeat="csp in listeCsp" value="{{csp.cspId}}">
 					{{csp.cspNom}}
 				</option>
 			</select>
   		</div>
+  		
 		<div class="form-group">
     		<label for="inputNiveauFormation">Niveau de formation</label>
 			<select id="inputNiveauFormation" class="form-control" data-ng-model="niveauFormationChoisi" >
-				<option data-ng-repeat="niveauFormation in listeNiveauxFormation">
+				<option data-ng-repeat="niveauFormation in listeNiveauxFormation"  value="{{niveauFormation.nfId}}">
 					{{niveauFormation.nfLibelle}}
 				</option>
 			</select>
   		</div>
 
-		<button type="button" class="btn btn-primary btn-block" data-ng-click="">Créer</button>
+		<button type="button" class="btn btn-primary btn-block" data-ng-click="creerUsager()">Créer</button>
 		<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Retour</button>
 		
 			

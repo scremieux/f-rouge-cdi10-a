@@ -66,7 +66,8 @@
 		</div>
 
 		<div class="form-group">
-			<label for="motifInput">Motif de la visite :</label> <select
+			<label for="motifInput">Motif de la visite :</label>
+			<select
 				id="motifInput" name="motifInput" class="form-control"
 				data-ng-model="mtId" required>
 				<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
@@ -119,7 +120,7 @@
 	</form>
 
 
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

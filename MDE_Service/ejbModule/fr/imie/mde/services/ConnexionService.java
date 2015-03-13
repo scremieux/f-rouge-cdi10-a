@@ -133,6 +133,8 @@ public class ConnexionService implements IConnexionService {
 	public Connexion creerConnexion(Connexion connexion) {
 		connexion.setCnxDate(new Date(System.currentTimeMillis()));
 		connexion.setCnxHeureDebut(new Time(System.currentTimeMillis()));
+		connexion.getUsager().setUsagerConnecte(true);
+		entityManager.merge(connexion.getUsager());
 		connexion.getPoste().setPosteDisponible(false);
 		entityManager.merge(connexion.getPoste());
 		entityManager.persist(connexion);

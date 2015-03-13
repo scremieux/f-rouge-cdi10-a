@@ -121,6 +121,10 @@ public class SiteService implements ISiteService {
 
 		for (Connexion connexion : connexionList) {
 			if (connexion.getCnxHeureFin() == null) {
+				if (connexion.getUsager().isUsagerConnecte()) {
+					connexion.getUsager().setUsagerConnecte(false);
+					entityManager.merge(connexion.getUsager());
+				}
 				connexion.setCnxHeureFin(new Time(System.currentTimeMillis()));
 
 				entityManager.merge(connexion);

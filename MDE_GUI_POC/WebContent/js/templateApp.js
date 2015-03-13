@@ -17,7 +17,7 @@ app.config([ '$routeProvider', '$locationProvider',
 				controller : 'affecterPosteControleur'
 			}).when('/MDE_GUI_POC/creerUsager', {
 				templateUrl: '/MDE_GUI_POC/html/creerUsager.html',
-				controller : 'affecterPosteControleur'
+				controller : 'creerUsagerControleur'
 			}).when('/MDE_GUI_POC/detailsUsager', {
 				// templateUrl: '/MDE_GUI_POC/html/detailsUsager.html',
 				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',

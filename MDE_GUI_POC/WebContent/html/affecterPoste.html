@@ -47,11 +47,20 @@
 					{{usager.quartier.quartierCp}} {{usager.quartier.quartierVille}}
 				</p>
 				<p>
+					<span class="label label-warning"
+						data-ng-show="usager.usagerConnecte">
+						Usager déjà connecté
+					</span>
+					<br />
 					<span class="label label-primary"
-						data-ng-show="usager.usagerMissionLocale"> Accompagné par
-						la mission de l'emploi </span> <span class="label label-danger"
-						data-ng-show="usager.usagerExcluService"> Exclu de nos
-						services </span>
+						data-ng-show="usager.usagerMissionLocale">
+						Accompagné par la mission de l'emploi
+					</span>  
+					<br />
+					<span class="label label-danger"
+						data-ng-show="usager.usagerExcluService">
+						Exclu de nos services
+					</span>
 				</p>
 			</blockquote>
 		</div>
@@ -74,12 +83,18 @@
 
 		<div class="alert alert-warning alert-dismissible fade in"
 			role="alert" data-ng-show="erreur.retour.parametresErreur">
-			<strong>Données incorrectes</strong> <br /> <span
-				data-ng-hide="erreur.retour.usager">Pas d'usager sélectionné.<br />
-			</span> <span data-ng-hide="erreur.retour.mtId">Pas de motif
-				sélectionné.<br />
-			</span> <span data-ng-hide="erreur.retour.dureeId">Pas de durée
-				sélectionné.<br />
+			<strong>Données incorrectes</strong><br />
+			<span data-ng-hide="erreur.retour.usager">
+				Pas d'usager sélectionné.<br />
+			</span>
+			<span data-ng-show="usager.usagerConnecte">
+				Usager déjà connecté.<br />
+			</span>
+			<span data-ng-hide="erreur.retour.mtId">
+				Pas de motif sélectionné.<br />
+			</span>
+			<span data-ng-hide="erreur.retour.dureeId">
+				Pas de durée sélectionné.<br />
 			</span>
 		</div>
 
@@ -93,7 +108,8 @@
 		</div>
 
 		<button class="btn btn-primary btn-block"
-			data-ng-click="affecterPosteValider()">
+			data-ng-click="affecterPosteValider()"
+			data-ng-disabled="usager.usagerConnecte">
 			Attribuer poste
 		</button>
 			
@@ -116,7 +132,7 @@
 						{{poste.posteNom}}</h4>
 				</div>
 				<div class="modal-body" style='height: 750px'>
-					<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'"></div>
+					<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'" data-ng-controller="creerUsagerControleur"></div>
 				</div>
 				<div class="modal-footer"></div>
 

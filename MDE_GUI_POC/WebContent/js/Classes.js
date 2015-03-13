@@ -30,6 +30,7 @@ function Usager() {
 	this.csp = new Csp();
 	this.niveauFormation = new NiveauFormation();
 	this.quartier = new Quartier();
+	this.usagerConnecte = null;
 }
 
 function Poste() {

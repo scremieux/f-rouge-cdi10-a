@@ -73,6 +73,9 @@ public class Usager implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="quartier_id")
 	private Quartier quartier;
+	
+	@Column(name="usager_connecte")
+	private Boolean usagerConnecte;
 
 	public Usager() {
 	}
@@ -201,6 +204,14 @@ public class Usager implements Serializable {
 
 	public void setQuartier(Quartier quartier) {
 		this.quartier = quartier;
+	}
+
+	public Boolean isUsagerConnecte() {
+		return usagerConnecte;
+	}
+
+	public void setUsagerConnecte(Boolean usagerConnecte) {
+		this.usagerConnecte = usagerConnecte;
 	}
 
 }

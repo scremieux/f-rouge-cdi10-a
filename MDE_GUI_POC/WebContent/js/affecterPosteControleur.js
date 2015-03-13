@@ -67,7 +67,7 @@ app.controller('affecterPosteControleur',
 	 				var connexion = new Connexion();
 	 				connexion.cnxDureePrevue=null;
 	 				connexion.motif.mtId = this.mtId;
-	 				connexion.usager.usagerId = $scope.usager.usagerId;
+	 				connexion.usager = $scope.usager;
 	 				connexion.poste = $scope.poste;
 	 				switch (this.dureeId) {
 	 					case '1':
@@ -105,6 +105,7 @@ app.controller('affecterPosteControleur',
 	 				retour.statut = 'KO';
 	 				retour.parametresErreur = true;
 	 				retour.usager  = ($scope.usager!==undefined);
+	 				retour.usagerConnecte  = ($scope.usager!==undefined)?$scope.usager.usagerConnecte:false;
 	 				retour.mtId  = (this.mtId!==undefined);
 	 				retour.dureeId  = (this.dureeId!==undefined);
 	 				$scope.erreur = {statut : true, retour : retour};

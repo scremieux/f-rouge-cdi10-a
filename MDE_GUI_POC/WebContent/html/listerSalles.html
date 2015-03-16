@@ -2,7 +2,6 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Site</th>
 				<th>Salle</th>
 				<th colspan="1">Gérer</th>
@@ -10,7 +9,6 @@
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="x in listeSalles | orderBy:'salle.salleNom'">
-				<td>{{ x.salleId }}</td>
 				<td>{{ x.site.siteNom }}</td>
 				<td>{{ x.salleNom }}</td>
 				<td>

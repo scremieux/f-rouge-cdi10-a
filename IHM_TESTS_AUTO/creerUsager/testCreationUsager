@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>testCreationUsager</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">testCreationUsager</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/MDE_GUI_POC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Créer un usager</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//label[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inlineRadio2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//label[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputNom</td>
+	<td>TINTAMARRE</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputPrenom</td>
+	<td>Jeanine</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDtNaiss</td>
+	<td>14/04/1975</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputEmail</td>
+	<td>jeanine.t1tamarre@free.fr</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@type='checkbox'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDtExclusion</td>
+	<td>15/04/2016</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=inputQuartier</td>
+	<td>label=Nantes-Nord</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=inputCsp</td>
+	<td>label=Demandeur d emploi</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=inputNiveauFormation</td>
+	<td>label=Post BAC</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,10 +1,26 @@
+/**
+ * @module creerUsagerControleur
+ * Contrôleur pour vue 'Créer un usager'.
+ * @author P42
+ * @name creerUsagerControleur.js
+ * @link ng.$scope
+ * @link ng.$http
+ * @link ngRoute.$location
+ * @link ng.$rootScope
+ * @link ng.$window
+ * @link creerUsagerService
+ */
 app.controller('creerUsagerControleur', 
 	[
 		'$scope',
 		'$http',
 		'$location',
 		'$rootScope',
-	 	function creerUsagerControleur($scope, $http, $location,$rootScope) {
+		'$window',
+	 	'creerUsagerService',
+	 	function creerUsagerControleur($scope, $http, $location, $rootScope, $window, creerUsagerService) {
+			$scope.controleSaisie = true;
+
 			// Requête de la liste des catégories socio professionnelles
 			$http
 				.get('/MDE_Rest/Api/usager/csp')
@@ -26,42 +42,22 @@ app.controller('creerUsagerControleur',
 				$scope.listeNiveauxFormation = response;
 			});
 
-			$scope.creerUsager = function () {
-				var usager = {} ;
-				usager.usagerCivilite = this.civiliteChoisie;
-				usager.usagerNom = this.nomSaisi;
-				usager.usagerPrenom = this.prenomSaisi;
-				usager.usagerDtNaiss = this.dtNaissSaisie;
-				usager.usagerEmail = this.emailSaisi;		
-				usager.usagerMissionLocale = this.bSuiviMissionLocale;
-				usager.usagerExcluService = this.bExcluDeNosServices;
-				usager.usagerDtExclusion = this.dtExclusionSaisie;
-				usager.csp = {};
-				usager.csp.cspId = this.cspChoisi; 
-				usager.niveauFormation = {};
-				usager.niveauFormation.nfId = this.niveauFormationChoisi;
-				usager.quartier = {};
-				usager.quartier.quartierId = this.quartierChoisi;
-				usager.usagerConnecte = null;
-				
-				console.log(usager);
- 				$http
-					.post("/MDE_Rest/Api/usager", usager)
-					.success(function(data, status, headers, config) {
-//							$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
-						})
-					.error(function(data, status, headers, config) {
-							var retour = {};
-							retour.statut = 'KO';
-							retour.serviceErreur = true;
-							retour.libelle = '/MDE_Rest/Api/usager';
-							retour.data = data;
-							retour.status = status;
-							retour.headers = headers;
-							retour.config = config;
-							$scope.erreur = {statut : true, retour : retour};
-						});
+			/**
+			 * @function Création d'un usager
+			 */
+			$scope.creerUsagerValider = function () {
+	 			var controleSaisie = creerUsagerService.controleSaisie(this.usagerSaisi);
+	 			if (controleSaisie.statut === true) {
+	 				creerUsagerService.creerUsager(this.usagerSaisi, function (nouvelUsager) {
+	 					$window.history.back();
+	 				});
+	 			} else {
+	 				$scope.controleSaisie = controleSaisie;
+	 			}
+			};
 
+			$scope.creerUsagerRetour = function () {
+				$window.history.back();
 			};
 
 		}

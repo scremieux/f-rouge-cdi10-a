@@ -1,11 +1,25 @@
-// modèle javascript pour vue 'gestion des salles'
+/***
+ * Application Cyberbase
+ * 
+ * @author P42
+ * @name templateApp.js
+ * @link ngRoute.$routeProvider
+ * @link ngRoute.$locationProvider
+ * @link creerUSagerService
+ */
+var app = angular.module("templateApp", [ 'ngRoute', 'services' ]);
 
-var app = angular.module("templateApp", [ 'ngRoute' ]);
+/**
+ * Configuration des services $routeProvider et $locationProvider
+ */
 app.config([ '$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
-			$routeProvider.when('/MDE_GUI_POC/login', {
+			$routeProvider
+				// Login
+			  .when('/MDE_GUI_POC/login', {
 				templateUrl : '/MDE_GUI_POC/html/login.html',
 				controller : 'loginControleur'
+				// Gérer salles
 			}).when('/MDE_GUI_POC/listerSalles', {
 				templateUrl : '/MDE_GUI_POC/html/listerSalles.html',
 				controller : 'listerSallesControleur'
@@ -15,37 +29,39 @@ app.config([ '$routeProvider', '$locationProvider',
 			}).when('/MDE_GUI_POC/affecterPoste/:posteId', {
 				templateUrl : '/MDE_GUI_POC/html/affecterPoste.html',
 				controller : 'affecterPosteControleur'
+			}).when('/MDE_GUI_POC/creerSalle', {
+				// templateUrl: '/MDE_GUI_POC/html/creerSalle.html',
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'affecterPosteControleur'
+			}).when('/MDE_GUI_POC/configurerPoste/:posteId', {
+				// templateUrl: '/MDE_GUI_POC/html/configurerPoste.html',
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'affecterPosteControleur'
+				// Gérer usagers
 			}).when('/MDE_GUI_POC/creerUsager', {
 				templateUrl: '/MDE_GUI_POC/html/creerUsager.html',
 				controller : 'creerUsagerControleur'
 			}).when('/MDE_GUI_POC/detailsUsager', {
 				// templateUrl: '/MDE_GUI_POC/html/detailsUsager.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'detailsUsagerControleur'
 			}).when('/MDE_GUI_POC/historique', {
 				templateUrl : '/MDE_GUI_POC/html/historique.html',
-				// templateUrl: '/MDE_GUI_POC/html/workInProgress.html',
 				controller : 'historiqueControleur'
-			}).when('/MDE_GUI_POC/creerSalle', {
-				// templateUrl: '/MDE_GUI_POC/html/creerSalle.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
-			}).when('/MDE_GUI_POC/configurerPoste/:posteId', {
-				// templateUrl: '/MDE_GUI_POC/html/configurerPoste.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
+				// Visualiser les statistiques
 			}).when('/MDE_GUI_POC/statistiques', {
 				// templateUrl: '/MDE_GUI_POC/html/statistiques.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'affecterPosteControleur'
+				// Gérer les utilisateurs
 			}).when('/MDE_GUI_POC/creerUtilisateur', {
 				// templateUrl: '/MDE_GUI_POC/html/creerUtilisateur.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'creerUtilisateurControleur'
 			}).when('/MDE_GUI_POC/listerUtilisateurs', {
 				// templateUrl: '/MDE_GUI_POC/html/listerUtilisateurs.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html',
-				controller : 'affecterPosteControleur'
+				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
+				// controller : 'listerUtilisateursControleur'
 			}).otherwise({
 				redirectTo : '/MDE_GUI_POC'
 			});

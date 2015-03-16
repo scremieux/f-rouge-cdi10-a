@@ -1,28 +1,29 @@
-<div data-ng-controller="affecterPosteControleur">
+<div>
 	<h2>
-		Attribuer un poste <br /> <a
-			href="/MDE_GUI_POC/gererSalle/{{poste.salle.salleId}}"> Salle :
-			{{poste.salle.salleNom}} </a>
+		Attribuer un poste
+		<br />
+		<a href="/MDE_GUI_POC/gererSalle/{{poste.salle.salleId}}">
+			Salle :{{poste.salle.salleNom}}
+		</a>
+		<br />
+		{{poste.posteNom}}
 	</h2>
 
-
-	<form name="myForm" class="col-lg-12" novalidate>
-		<legend>{{poste.posteNom}}</legend>
-
+	<form name="myForm" class="form-horizontal" novalidate>
+		<h3>Rechercher un usager</h3>
 		<div class="form-group">
-			<label for="usagerInput">Usager :</label>
 			<div class="input-group">
 				<input id="usagerInput" class="form-control" name="usagerInput"
 					type="text" class="form-control" autocomplete="off"
 					placeholder="Recherche d'un usager..." list="usagers"
-					data-ng-model="usagerSaisi" />
+					data-ng-model="usagerRecherche" />
 				<datalist id="usagers">
-					<option data-ng-repeat="usager in listeUsagers"
+					<option data-ng-repeat="usager in listeUsagers | orderBy : 'usagerNom'"
 						value="{{ usager.usagerPrenom 
 						+ ' ' 
 						+ usager.usagerNom }}"
 						data-id="{{usager.usagerId}}">{{ usager.usagerPrenom + '
-						' + usager.usagerNom + ' ' + ', né(e) le ' + usager.usagerDtNaiss
+						' + usager.usagerNom + ' ' + ', né(e) le ' + (usager.usagerDtNaiss | date:'dd/MM/yyyy')
 						}}</option>
 				</datalist>
 				<span class="input-group-btn">
@@ -30,56 +31,57 @@
 						data-ng-click="affecterPosteRechercher()">
 						<span class="glyphicon glyphicon glyphicon-search"></span>
 					</button>
-					<button class="btn btn-default" data-toggle="modal"
-						data-target="#myModal">
-						<!-- data-ng-click="affecterPosteCreerUsager()" -->
+					<button class="btn btn-default" data-toggle="modal" data-target="#modalCreerUsager">
 						<span class="glyphicon glyphicon-plus-sign"></span>
 					</button>
 				</span>
 			</div>
 
-			<blockquote id="detail" data-ng-show="detailVisible">
-				<p>
-					{{usager.usagerPrenom}} {{usager.usagerNom}}
-					<br />
-					né(e) le {{usager.usagerDtNaiss}}
-					<br />
-					{{usager.quartier.quartierCp}} {{usager.quartier.quartierVille}}
-				</p>
-				<p>
-					<span class="label label-warning"
-						data-ng-show="usager.usagerConnecte">
-						Usager déjà connecté
-					</span>
-					<br />
-					<span class="label label-primary"
-						data-ng-show="usager.usagerMissionLocale">
-						Accompagné par la mission de l'emploi
-					</span>  
-					<br />
-					<span class="label label-danger"
-						data-ng-show="usager.usagerExcluService">
-						Exclu de nos services
-					</span>
-				</p>
+			<blockquote class="bg-info" id="detail" data-ng-show="detailVisible">
+				{{usager.usagerPrenom}} {{usager.usagerNom}}
+				<br />
+				né(e) le {{usager.usagerDtNaiss | date:'dd/MM/yyyy'}}
+				<br />
+				{{usager.quartier.quartierCp}} {{usager.quartier.quartierVille}}
+				<br />
+				<span class="label label-warning"
+					data-ng-show="usager.usagerConnecte">
+					Usager déjà connecté
+				</span>
+				<br />
+				<span class="label label-primary"
+					data-ng-show="usager.usagerMissionLocale">
+					Accompagné par la mission de l'emploi
+				</span>  
+				<br />
+				<span class="label label-danger"
+					data-ng-show="usager.usagerExcluService">
+					Exclu de nos services
+				</span>
 			</blockquote>
 		</div>
 
+		<h3>Informations sur la visite</h3>
 		<div class="form-group">
-			<label for="motifInput">Motif de la visite :</label>
-			<select
-				id="motifInput" name="motifInput" class="form-control"
-				data-ng-model="mtId" required>
-				<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
-			</select>
+			<label class="col-sm-3" for="motifInput">Objet de la visite :</label>
+			<div class="col-sm-9">
+				<select class="form-control"
+						id="motifInput" name="motifInput"
+						data-ng-model="mtId" required>
+					<option data-ng-repeat="motif in listeMotifs" value="{{motif.mtId}}">{{motif.mtLibelle}}</option>
+				</select>
+			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="dureeInput">Durée de connexion prévue :</label> <select
-				id="dureeInput" name="dureeInput" class="form-control"
-				data-ng-model="dureeId">
-				<option data-ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
-			</select>
+			<label class="col-sm-3" for="dureeInput">Durée de la visite :</label>
+			<div class="col-sm-9">
+				<select class="form-control"
+						id="dureeInput" name="dureeInput" 
+						data-ng-model="dureeId">
+					<option data-ng-repeat="duree in listeDurees" value="{{duree.id}}">{{duree.duree}}</option>
+				</select>
+			</div>
 		</div>
 
 		<div class="alert alert-warning alert-dismissible fade in"
@@ -95,7 +97,7 @@
 				Pas de motif sélectionné.<br />
 			</span>
 			<span data-ng-hide="erreur.retour.dureeId">
-				Pas de durée sélectionné.<br />
+				Pas de durée sélectionnée.<br />
 			</span>
 		</div>
 
@@ -108,20 +110,24 @@
 			'{{erreur.retour.config}}'
 		</div>
 
-		<button class="btn btn-primary btn-block"
-			data-ng-click="affecterPosteValider()"
-			data-ng-disabled="usager.usagerConnecte">
-			Attribuer poste
-		</button>
-			
-		<button class="btn btn-default btn-block" data-ng-click="affecterPosteRetour()">
-			Retour
-		</button>
+		<div class="form-group">
+			<button class="btn btn-default col-sm-3" data-ng-click="affecterPosteRetour()">
+				Retour
+			</button>
+			<div class="col-sm-6">
+			</div>
+
+			<button class="btn btn-primary col-sm-3"
+				data-ng-click="affecterPosteValider()"
+				data-ng-disabled="usager.usagerConnecte">
+				Attribuer poste
+			</button>
+		</div>
 	</form>
 
 
-	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade bs-example-modal-lg" id="modalCreerUsager" tabindex="-1" role="dialog"
+		aria-labelledby="modalCreerUsagerLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -129,14 +135,14 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Attribuer un poste :
-						{{poste.posteNom}}</h4>
+					<h4 class="modal-title" id="modalCreerUsagerLabel">
+						Attribuer un poste : {{poste.posteNom}}
+					</h4>
 				</div>
 				<div class="modal-body" style='height: 750px'>
-					<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'" data-ng-controller="creerUsagerControleur"></div>
+					<div data-ng-include="'/MDE_GUI_POC/html/creerUsager.html'"></div>
 				</div>
 				<div class="modal-footer"></div>
-
 			</div>
 		</div>
 	</div>

@@ -21,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="x in salle.postes | orderBy:'poste.posteNom'">
+			<tr data-ng-repeat="x in salle.postes | orderBy:'posteNom'">
 				<td>{{ x.posteNom }}</td>
 				<td>
 					<span class="label label-success" data-ng-show="x.posteDisponible">
@@ -48,7 +48,7 @@
 				<td>
 					<button class="btn btn-info"
 							data-ng-click="configurerPoste(x.posteId)">
-						<span class="glyphicon glyphicon-pencil"></span> 
+						<span class="glyphicon glyphicon-cog"></span> 
 					</button>
 				</td>
 			</tr>

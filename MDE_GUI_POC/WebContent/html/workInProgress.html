@@ -1,6 +1,10 @@
-<div>
-	<img src="/MDE_GUI_POC/img/workInProgress.png" />
-</div>
-<div>
-	<a href="/MDE_GUI_POC">Accueil</a>
+<div class="container" data-ng-controller="workInProgressControleur">
+	<div class="row">
+		<img src="/MDE_GUI_POC/img/workInProgress.png" />
+	</div>
+	<div class="row">
+		<button class="btn btn-default col-lg-2" data-ng-click="workInProgressRetour()">Retour</button>
+		<span class="col-lg-2"></span>
+		<button class="btn btn-primary col-lg-2" data-ng-click="workInProgressAccueil()">Accueil</button>
+	</div>
 </div>

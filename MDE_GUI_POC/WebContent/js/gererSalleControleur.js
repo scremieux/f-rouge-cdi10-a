@@ -1,6 +1,15 @@
-/**___________________________________________________________
-*** Contrôleur Javascript pour vue 'Gestion des salles'
-***___________________________________________________________*/
+/**
+ * @module gererSalleControleur
+ * Contrôleur pour vue 'Gestion des salles'.
+ * @author P42
+ * @name gererSalleControleur.js
+ * @link ng.$scope
+ * @link ng.$http
+ * @link ng.$window
+ * @link ng.$rootScope
+ * @link ngRoute.$routeParams
+ * @link ngRoute.$routeLocation
+ */
 app.controller('gererSalleControleur',
 	[
 		'$scope',
@@ -36,7 +45,8 @@ app.controller('gererSalleControleur',
 				});
 
 			/**
-			 * Boutons "Attribuer" : Attribuer un poste
+			 * @function Boutons "Attribuer" : Attribuer un poste
+			 * @param {int} idPoste  identifiant du poste à attribuer 
 			 */
 			$scope.attribuerPoste = function (idPoste) {
 				$location
@@ -44,7 +54,8 @@ app.controller('gererSalleControleur',
 			};
 
 			/**
-			 * Boutons "Configurer" : Configurer un poste
+			 * @function Boutons "Configurer" : Configurer un poste
+			 * @param {int} idPoste  identifiant du poste à configurer 
 			 */
 			$scope.configurerPoste = function (idPoste) {
 				$location
@@ -52,7 +63,8 @@ app.controller('gererSalleControleur',
 			};
 
 			/**
-			 * Boutons "Libérer" : Libérer un poste
+			 * @function Boutons "Libérer" : Libérer un poste
+			 * @param {int} idPoste  identifiant du poste à libérer 
 			 */
 			$scope.libererPoste = function (idPoste) {
 				var poste = {};
@@ -65,7 +77,8 @@ app.controller('gererSalleControleur',
 						$http
 							.put('/MDE_Rest/Api/site/liberer/poste/' + idPoste, poste)
 							.success(function (response) {
-								$scope.poste = response;
+								// Rechargement de la page
+								$route.reload();
 							})
 							.error(function(data, status, headers, config) {
 								console.log('libererPoste - ', '/MDE_Rest/Api/site/liberer/' + idPoste, 'error');
@@ -82,20 +95,18 @@ app.controller('gererSalleControleur',
 						console.log('headers',headers);
 						console.log('config', config);
 					});
-
-				// Rechargement de la page
-				$route.reload();
 			};
 			
 			/**
-			 * Bouton "Libérer tous les postes" : Libère tous les postes d'une salle
+			 * @function Boutons "Libérer tous les postes" : Libère tous les postes d'une salle
+			 * @param {int} idSalle  identifiant de la salle à libérer 
 			 */
 			$scope.libererTousLesPostes = function (idSalle) {
-//				if ($window.confirm('Voulez-vous arrêter toutes les connexions actives?')) {
 					$http
 						.put('/MDE_Rest/Api/site/liberer/salle/' + $scope.salle.salleId)
 						.success(function (response) {
 								$scope.salle = response;
+
 								// Rechargement de la page
 								$route.reload();
 						})
@@ -106,7 +117,6 @@ app.controller('gererSalleControleur',
 							console.log('headers',headers);
 							console.log('config', config);
 						});
-//				}
 			}
 		}
 	]

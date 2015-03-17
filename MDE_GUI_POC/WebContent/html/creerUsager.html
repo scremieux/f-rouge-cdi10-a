@@ -1,62 +1,62 @@
-<div><!--  data-ng-controller="creerUsagerControleur"> -->
+<div>
 	<form name="usagerForm" class="col-lg-12" novalidate>
 		<legend>Creer un usager</legend>
 		
 		
 		<div class="form-group">
 			<label class="radio-inline">
-  				<input type="radio" data-ng-model="civiliteChoisie" name="inlineRadioOptions" id="inlineRadio1" value="1">Monsieur
+  				<input type="radio" data-ng-model="usagerSaisi.usagerCivilite" name="inlineRadioOptions" id="inlineRadio1" value="1">Monsieur
 			</label>
 			<label class="radio-inline">
-  				<input type="radio" data-ng-model="civiliteChoisie" name="inlineRadioOptions" id="inlineRadio2" value="2">Madame
+  				<input type="radio" data-ng-model="usagerSaisi.usagerCivilite" name="inlineRadioOptions" id="inlineRadio2" value="2">Madame
 			</label>
 		</div>
 		
 		
 		<div class="form-group">
 			<label for="inputNom">Nom</label>
-			<input type="text" data-ng-model="nomSaisi" class="form-control" id="inputNom" placeholder="Entrez nom" />
+			<input type="text" data-ng-model="usagerSaisi.usagerNom" class="form-control" id="inputNom" placeholder="Entrez nom" />
   		</div>
   		
 		<div class="form-group">
 			<label for="inputNom">Prénom</label>
-			<input type="text" data-ng-model="prenomSaisi" class="form-control" id="inputPrenom" placeholder="Entrez prénom" />
+			<input type="text" data-ng-model="usagerSaisi.usagerPrenom" class="form-control" id="inputPrenom" placeholder="Entrez prénom" />
   		</div>
   		
 		<div class="form-group">
 			<label for="inputDtNaiss">Date de naissance</label>
-			<input type="date" data-ng-model="dtNaissSaisie"  class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
+			<input type="date" data-ng-model="usagerSaisi.usagerDtNaiss"  class="form-control" id="inputDtNaiss" placeholder="jj/mm/aaaa" />
   		</div>
   		
 		<div class="form-group">
     		<label for="inputEmail">Email</label>
-    		<input type="email" data-ng-model="emailSaisi" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
+    		<input type="email" data-ng-model="usagerSaisi.usagerEmail" class="form-control" id="inputEmail" placeholder="john.doe@gmail.com" />
 		</div>
 		
 
   		<div class="checkbox">
     		<label>
-      			<input type="checkbox" data-ng-model="bSuiviMissionLocale">
+      			<input type="checkbox" data-ng-model="usagerSaisi.usagerMissionLocale">
       			Suivi par la mission locale
     		</label>
   		</div>
 
   		<div class="checkbox">
     		<label>
-      			<input type="checkbox" data-ng-model="bExcluDeNosServices">
+      			<input type="checkbox" data-ng-model="usagerSaisi.usagerExcluService">
       			Exclu de nos services
     		</label>
   		</div>
-		<div class="form-group" data-ng-show="bExcluDeNosServices">
+		<div class="form-group" data-ng-show="usagerSaisi.usagerExcluService">
     		<label for="inputDtExclusion">Date de fin d'exclusion</label>
     		<input type="date" class="form-control"
     				id="inputDtExclusion" placeholder="31/12/2999"
-    				data-ng-model="dtExclusionSaisie" />
+    				data-ng-model="usagerSaisi.usagerDtExclusion" />
 		</div>
 		
 		<div class="form-group">
     		<label for="inputQuartier">Quartier</label>
-			<select id="inputQuartier" class="form-control" data-ng-model="quartierChoisi" >
+			<select id="inputQuartier" class="form-control" data-ng-model="usagerSaisi.quartier.quartierId" >
 				<option data-ng-repeat="quartier in listeQuartiers" value="{{quartier.quartierId}}">
 					{{quartier.quartierNom}}
 				</option>
@@ -66,7 +66,7 @@
 		
 		<div class="form-group">
     		<label for="inputCsp">Catégorie socio-professionnelle</label>
-			<select id="inputCsp" class="form-control" data-ng-model="cspChoisi" >
+			<select id="inputCsp" class="form-control" data-ng-model="usagerSaisi.csp.cspId" >
 				<option data-ng-repeat="csp in listeCsp" value="{{csp.cspId}}">
 					{{csp.cspNom}}
 				</option>
@@ -75,16 +75,34 @@
   		
 		<div class="form-group">
     		<label for="inputNiveauFormation">Niveau de formation</label>
-			<select id="inputNiveauFormation" class="form-control" data-ng-model="niveauFormationChoisi" >
-				<option data-ng-repeat="niveauFormation in listeNiveauxFormation"  value="{{niveauFormation.nfId}}">
+			<select id="inputNiveauFormation" class="form-control" data-ng-model="usagerSaisi.niveauFormation.nfId" >
+				<option data-ng-repeat="niveauFormation in listeNiveauxFormation" value="{{niveauFormation.nfId}}">
 					{{niveauFormation.nfLibelle}}
 				</option>
 			</select>
   		</div>
 
-		<button type="button" class="btn btn-primary btn-block" data-ng-click="creerUsager()">Créer</button>
-		<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Retour</button>
+		<div class="alert alert-warning alert-dismissible fade in"
+			role="alert" data-ng-hide="controleSaisie.statut">
+			<span data-ng-show="controleSaisie.bUsagerCiviliteErreur">
+				Pas de civilité sélectionnée.<br />
+			</span>
+			<span data-ng-show="controleSaisie.bUsagerNomErreur">
+				Nom manquant.<br />
+			</span>
+			<span data-ng-show="controleSaisie.bUsagerPrenomErreur">
+				Prénom manquant.<br />
+			</span>
+			<span data-ng-show="controleSaisie.bUsagerDtNaissErreur">
+				Date de naissance manquante.<br />
+			</span>
+		</div>
+
+		<div class="form-group">
+			<button type="button" class="btn btn-default col-sm-3" data-ng-click="creerUsagerRetour()">Retour</button>
+			<div class="col-sm-6"></div>
+			<button type="button" class="btn btn-primary col-sm-3" data-ng-click="creerUsagerValider()">Créer</button>
+		</div>
 		
-			
 	</form>
 </div>

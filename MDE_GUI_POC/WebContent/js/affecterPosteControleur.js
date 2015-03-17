@@ -1,3 +1,15 @@
+/**
+ * @module affecterPosteControleur
+ * Contrôleur pour vue 'Attribuer un poste'.
+ * @author P42
+ * @name affecterPosteControleur.js
+ * @link ng.$scope
+ * @link ng.$http
+ * @link ng.$window
+ * @link ngRoute.$routeParams
+ * @link ngRoute.$routeLocation
+ * @link creerUsagerService
+ */
 app.controller('affecterPosteControleur', 
 	[
 	 	'$scope',
@@ -5,7 +17,9 @@ app.controller('affecterPosteControleur',
 	 	'$routeParams',
 	 	'$location',
 	 	'$window',
-	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window) {
+	 	'creerUsagerService',
+	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window, creerUsagerService) {
+	 		$scope.controleSaisie = {statut : true};
 	 		
 			if ($scope.utilConn ===undefined){
 				$location.path('/MDE_GUI_POC/login');	
@@ -22,6 +36,28 @@ app.controller('affecterPosteControleur',
 	 		$http.get("/MDE_Rest/Api/connexion/motif").success(function(response) {
 	 			$scope.listeMotifs = response;
 	 		});
+	 		
+			// Requête de la liste des catégories socio professionnelles
+			$http
+				.get('/MDE_Rest/Api/usager/csp')
+				.success(function (response) {
+					$scope.listeCsp = response;
+				});
+
+			// Requête de la liste des quartiers
+			$http
+			.get('/MDE_Rest/Api/usager/quartier')
+			.success(function (response) {
+				$scope.listeQuartiers = response;
+			});
+
+			// Requête de la liste des niveaux de formation
+			$http
+			.get('/MDE_Rest/Api/usager/nf')
+			.success(function (response) {
+				$scope.listeNiveauxFormation = response;
+			});
+
 
 	 		// Initialisation de la liste des durées
 	 		$scope.listeDurees = [
@@ -37,22 +73,22 @@ app.controller('affecterPosteControleur',
 	 		});
 
 	 		/**
-	 		 * Bouton "Retour" : redirection vers la console 'Gestion de salles'
-	 		 */
+			 * @function Bouton "Retour" : redirection vers la console 'Gestion de salles'
+			 */
 	 		$scope.affecterPosteRetour = function() {
 	 			$location.path('/MDE_GUI_POC/gererSalle/' + $scope.poste.salle.salleId);
 	 		};
 
 	 		/**
-	 		 * Bouton "Rechercher" : valide la saisie de l'usager
-	 		 */
+			 * @function Bouton "Rechercher" : valide la saisie de l'usager
+			 */
 	 		$scope.affecterPosteRechercher = function() {
 	 			$scope.usager = null;
-	 			$scope.usagerSaisi = this.usagerSaisi;
+	 			$scope.usagerRecherche = this.usagerRecherche;
 	 			var usagerTemp = null;
 	 			$scope.listeUsagers.forEach(function (usager) {
 	 				usagerTemp =  usager.usagerPrenom + ' '+ usager.usagerNom;
-	 				if (usagerTemp === $scope.usagerSaisi) {
+	 				if (usagerTemp === $scope.usagerRecherche) {
 	 					$scope.usager = usager;
 	 					$scope.detailVisible = true;
 	 				}
@@ -60,13 +96,13 @@ app.controller('affecterPosteControleur',
 	 		};
 
 	 		/**
-	 		 * Bouton "Valider" : enregistre l'attribution du poste
-	 		 */
+			 * @function Bouton "Valider" : enregistre l'attribution du poste
+			 */
 	 		$scope.affecterPosteValider = function() {
 	 			if ($scope.usager !== undefined && this.mtId !== undefined && this.dureeId != undefined) {
-	 				var connexion = new Connexion();
+	 				var connexion = {};
 	 				connexion.cnxDureePrevue=null;
-	 				connexion.motif.mtId = this.mtId;
+	 				connexion.motif = {mtId : this.mtId};
 	 				connexion.usager = $scope.usager;
 	 				connexion.poste = $scope.poste;
 	 				switch (this.dureeId) {
@@ -113,11 +149,34 @@ app.controller('affecterPosteControleur',
 	 		};
 
 	 		/**
-	 		 * Bouron "Créer Usager"
-	 		 */
-	 		$scope.affecterPosteCreerUsager = function() {
-	 			$location.path('/MDE_GUI_POC/creerUsager');
+			 * @function Bouton "Créer Usager"
+			 */
+	 		$scope.creerUsagerValider = function() {
+	 			var controleSaisie = creerUsagerService.controleSaisie(this.usagerSaisi);
+	 			if (controleSaisie.statut === true) {
+	 				
+	 				creerUsagerService.creerUsager(this.usagerSaisi, function (nouvelUsager) {
+	 					$scope.usager = nouvelUsager;
+	 					$scope.detailVisible = true;
+	 					$scope.listeUsagers.push(nouvelUsager);
+	 					$scope.usagerRecherche = nouvelUsager.usagerPrenom + ' ' + nouvelUsager.usagerNom;
+	 				});
+	 			
+	 				// fermeture de la fenêtre modale
+	 				$('#modalCreerUsager').modal('hide');
+	 			} else {
+	 				$scope.controleSaisie = controleSaisie;
+	 			}
 	 		};
+	 		
+	 		/**
+			 * @function Bouton "Retour"
+			 */
+	 		$scope.creerUsagerRetour = function() {
+	 			// fermeture de la fenêtre modale
+	 			$('#modalCreerUsager').modal('hide');
+	 		};
+
 	 	}
 	]
 );

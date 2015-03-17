@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>TA_AFFECTER_POSTE_NOUVEL_USAGER</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TA_AFFECTER_POSTE_NOUVEL_USAGER</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/MDE_GUI_POC</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(text(),'Visualiser les<br />								disponibilités')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=loginInput</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginInput</td>
+	<td>ROMAIN</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=passInput</td>
+	<td>ROMAIN</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=div.input-group &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//td[3]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//td[3]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//td[3]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//td[3]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=inlineRadio1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inlineRadio1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=label.radio-inline</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputNom</td>
+	<td>AVRIL</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputPrenom</td>
+	<td>Etienne</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=inputDtNaiss</td>
+	<td>13/01/1984</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=inputQuartier</td>
+	<td>label=Dervallières Zola</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=inputNiveauFormation</td>
+	<td>label=CAP-BEP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

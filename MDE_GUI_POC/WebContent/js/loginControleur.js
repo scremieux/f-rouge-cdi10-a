@@ -6,7 +6,7 @@ app.controller('loginControleur',
 		'$rootScope',
 	 	function loginControleur($scope, $http, $location,$rootScope) {
 			$rootScope.cacheNav= true;
-			console.log("controleur login");
+
 	 		/**
 	 		 * Bouton "Valider" : Connexion à l'application
 	 		 */
@@ -14,13 +14,16 @@ app.controller('loginControleur',
 	 			var utilisateur ={};
 	 			var mdpOk = false;
 	 			utilisateur.utilLogin = $scope.loginSaisi;
+	 			//md5($scope.mdpSaisi);
+	 			
 	 			utilisateur.utilMdp = $scope.mdpSaisi;
-	 			console.log(utilisateur);
+	 			
 	 			$http.post("/MDE_Rest/Api/login", utilisateur)
 	 			.success(function(data, status, headers, config) {
 	 					console.log("data : " + data);
 	 		 			if (data=="true"){
-	 		 				$rootScope.utilConn = $scope.loginSaisi;
+	 		 				//$rootScope.utilConn = $scope.loginSaisi;
+	 		 				sessionStorage.setItem("utilConn",$scope.loginSaisi);
 	 		 				console.log("utilConn : " + $rootScope.utilConn);
 	 		 				$rootScope.cacheNav= false;
 	 		 				if($rootScope.cheminVoulu!==undefined){

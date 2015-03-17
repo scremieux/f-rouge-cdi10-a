@@ -8,7 +8,9 @@ app.controller('historiqueControleur',
 	 	'$rootScope',
 		function historiqueControleur($scope, $http, $routeParams, $location, $window, $rootScope) {
 			
-			if ($scope.utilConn ===undefined){
+	 		console.log("session storage: "+ sessionStorage.getItem("utilConn"));
+			if (sessionStorage.getItem("utilConn") ===null){
+				$rootScope.utilConn= sessionStorage.getItem("utilConn");
 				$rootScope.cheminVoulu ='/MDE_GUI_POC/historique';
 				$location.path('/MDE_GUI_POC/login');	
 			}

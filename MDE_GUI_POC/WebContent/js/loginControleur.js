@@ -6,6 +6,7 @@ app.controller('loginControleur',
 		'$rootScope',
 	 	function loginControleur($scope, $http, $location,$rootScope) {
 			$rootScope.cacheNav= true;
+			$rootScope.cacheHead= true;
 
 	 		/**
 	 		 * Bouton "Valider" : Connexion à l'application
@@ -22,10 +23,10 @@ app.controller('loginControleur',
 	 			.success(function(data, status, headers, config) {
 	 					console.log("data : " + data);
 	 		 			if (data=="true"){
-	 		 				//$rootScope.utilConn = $scope.loginSaisi;
 	 		 				sessionStorage.setItem("utilConn",$scope.loginSaisi);
 	 		 				console.log("utilConn : " + $rootScope.utilConn);
 	 		 				$rootScope.cacheNav= false;
+	 		 				$rootScope.cacheHead= false;
 	 		 				if($rootScope.cheminVoulu!==undefined){
 	 		 					$location.path($rootScope.cheminVoulu);
 	 		 				}else{

@@ -12,9 +12,10 @@ app.controller('templateControleur',
 		this.$location = $location;
 		
 		$scope.deconnexion = function() {
-			console.log("deconnexion");
+			sessionStorage.clear();
 			$rootScope.utilConn = undefined;
 			$location.path('/MDE_GUI_POC/');
+			
 			
 		}
 	}

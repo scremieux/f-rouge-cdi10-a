@@ -21,10 +21,21 @@ app.controller('affecterPosteControleur',
 	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window, creerUsagerService) {
 	 		$scope.controleSaisie = {statut : true};
 	 		
-			if ($scope.utilConn ===undefined){
-				$location.path('/MDE_GUI_POC/login');	
-			}
+			$rootScope.cacheNav= false;
+			$rootScope.cacheHead= false;
+			$rootScope.cacheTuile= true;
 			
+			if (sessionStorage.getItem("utilConn") === null) {
+				$rootScope.utilConn = sessionStorage
+						.getItem("utilConn");
+				$rootScope.cheminVoulu = '/MDE_GUI_POC/affecterPoste';
+				$location.path('/MDE_GUI_POC/login');
+			}else{
+				// manipulation DOM pour navigation accordion
+				$("#salles").addClass("in");
+				$("#utilisateurs").removeClass("in");
+				$("#statistiques").removeClass("in");
+				$("#usagers").removeClass("in");
 	 		$scope.detailVisible = false;
 
 	 		// Requete : liste des usagers pour gestion auto completion
@@ -176,7 +187,7 @@ app.controller('affecterPosteControleur',
 	 			// fermeture de la fenêtre modale
 	 			$('#modalCreerUsager').modal('hide');
 	 		};
-
+			}
 	 	}
 	]
 );

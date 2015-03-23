@@ -20,11 +20,21 @@ app.controller('gererSalleControleur',
 		'$window',
 		'$rootScope',
 		function gererSalleControleur ($scope, $http, $routeParams, $location, $route, $window, $rootScope) {
+			$rootScope.cacheNav= false;
+			$rootScope.cacheHead= false;
+			$rootScope.cacheTuile= true;
 			
-			if ($scope.utilConn ===undefined){
-				$rootScope.cheminVoulu ='/MDE_GUI_POC/listerSalles';
-				$location.path('/MDE_GUI_POC/login');	
-			}
+			if (sessionStorage.getItem("utilConn") === null) {
+				$rootScope.utilConn = sessionStorage
+						.getItem("utilConn");
+				$rootScope.cheminVoulu = '/MDE_GUI_POC/listerSalles';
+				$location.path('/MDE_GUI_POC/login');
+			}else{
+				// manipulation DOM pour navigation accordion
+				$("#salles").addClass("in");
+				$("#utilisateurs").removeClass("in");
+				$("#statistiques").removeClass("in");
+				$("#usagers").removeClass("in");
 			
 			$scope.salleId = $routeParams.salleId;
 			
@@ -117,6 +127,7 @@ app.controller('gererSalleControleur',
 							console.log('headers',headers);
 							console.log('config', config);
 						});
+			}
 			}
 		}
 	]

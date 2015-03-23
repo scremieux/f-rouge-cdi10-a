@@ -8,52 +8,159 @@
 
 <title>Creation de salle - Cyberbase</title>
 <meta charset="UTF-8">
-<style>
-            body
-            {
-                background-image: url("img/shattered.png");
-            }
-</style>
 
 <!-- chargement de Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
-
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/accueilStyleSheet.css">
+<!-- Chargement de jQuery.js -->
+<script type="text/javascript" src="js/api/jquery-2.1.3.min.js"></script>
 <!-- Chargement d'Angular.js -->
 <script type="text/javascript" src="js/api/angular.min.js"></script>
 <!-- Chargement d'Angular.js -->
 <script type="text/javascript" src="js/api/angular-route.min.js"></script>
 <!-- Chargement de md5.js -->
 <script type="text/javascript" src="js/api/md5.js"></script>
+<!-- Chargement de Bootstrap.js -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 
 <body data-ng-controller="templateControleur">
 	<div class="container">
-		<header class="row col-sm-12" ng-hide="cacheHead">
-			<div class="col-sm-3" id="logoCyberBase">
-				<img src="/MDE_GUI_POC/img/cyber_base.png" class="img-responsive" alt="logo cyber base" />
-			</div>  
-			<div class="col-sm-6 page-header">
+		<header class="row col-md-12" ng-hide="cacheHead">
+			<div class="col-md-3" id="logoCyberBase">
+				<img src="/MDE_GUI_POC/img/cyber_base.png" class="img-responsive"
+					alt="logo cyber base" />
+			</div>
+			<div class="col-md-5 page-header">
 				<h1>Cyberbase</h1>
 			</div>
-			<div class="col-sm-3" id="connexionBloc">
-				<p data-ng-bind="utilConn"></p>
-				<button class="btn btn-primary" data-ng-click="deconnexion()"><span class="glyphicon glyphicon glyphicon-log-out"></span>  Déconnexion</button>
-				<button class="btn btn-primary" data-ng-click="modifierMdP()">Modifier mot de passe</button>
+			<div class="col-md-4" id="connexionBloc">
+				<p class="row col-md-12" data-ng-bind="utilConn"></p>
+				<div class="row">
+					<button class="btn btn-primary col-md-5"
+						data-ng-click="deconnexion()">
+						<span class="glyphicon glyphicon glyphicon-log-out"></span>
+						Déconnexion
+					</button>
+					<p class="col-md-1"> </p>
+					<button class="btn btn-primary col-md-6"
+						data-ng-click="modifierMdP()">Modifier mot de passe</button>
+				</div>
 			</div>
 		</header>
 
 
-	<div class="row col-sm-12">
-		<nav class="col-sm-3" ng-hide="cacheNav">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="active">
-					<a href="/MDE_GUI_POC">
-					<span class="glyphicon glyphicon-home"> Acceuil</span>
-					</a>
-				</li>
-				<li><a href="/MDE_GUI_POC/login">Login</a></li>
-				<li>Gérer les usagers
-					<ul class="nav nav-pills nav-stacked">
+		<div class="row col-md-12">
+			<nav class="col-md-3" ng-hide="cacheNav">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title" id="btnAccueil" data-ng-click="btnAccueil()">
+								<span class="glyphicon glyphicon-home"></span>  Accueil
+							</h4>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#usagers">Gérer les usagers</a>
+							</h4>
+						</div>
+						<div id="usagers" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="/MDE_GUI_POC/creerUsager">Créer un usager</a></li>
+									<li><a href="/MDE_GUI_POC/detailsUsager">Modifier un
+											usager</a></li>
+									<li><a href="/MDE_GUI_POC/detailsUsager">Supprimer un
+											usager</a></li>
+									<li><a href="/MDE_GUI_POC/historique">Visualiser
+											l'historique</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#salles">Gérer les salles</a>
+							</h4>
+						</div>
+						<div id="salles" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="/MDE_GUI_POC/creerSalle">Créer une salle</a></li>
+									<li><a href="/MDE_GUI_POC/listerSalles">Visualiser les
+											disponibilités</a></li>
+									<li><a href="/MDE_GUI_POC/listerSalles">Affecter un
+											poste</a></li>
+									<li><a href="/MDE_GUI_POC/listerSalles">Configurer un
+											poste</a></li>
+									<li><a href="/MDE_GUI_POC/listerSalles">Libérer un
+											poste</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#statistiques">Statistiques</a>
+							</h4>
+						</div>
+						<div id="statistiques" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="/MDE_GUI_POC/statistiques">Gérer les
+											requêtes</a></li>
+									<li><a href="/MDE_GUI_POC/statistiques">Afficher le
+											nombre de visites</a></li>
+									<li><a href="/MDE_GUI_POC/statistiques">Afficher le
+											nombre de nouveaux inscrits</a></li>
+									<li><a href="/MDE_GUI_POC/statistiques">Afficher le
+											nombre d'usagers</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#utilisateurs">Gérer les utilisateurs</a>
+							</h4>
+						</div>
+						<div id="utilisateurs" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="/MDE_GUI_POC/creerUtilisateur">Créer un
+											utilisateur</a></li>
+									<li><a href="/MDE_GUI_POC/listerUtilisateurs">Modifier
+											un utilisateur</a></li>
+									<li><a href="/MDE_GUI_POC/listerUtilisateurs">Supprimer
+											un utilisateur</a></li>
+									<li><a href="/MDE_GUI_POC/listerUtilisateurs">Affecter
+											un utilisateur à un site</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+			<section class="col-md-9" data-ng-view class="container"></section>
+		</div>
+		<section class="row col-md-12" id="sectionTuile" ng-hide="cacheTuile">
+				<div class="tuile" id="tuile1">
+					<h2>Gérer</h2>
+					<h4>les usagers</h4>
+					<img src="/MDE_GUI_POC/img/man.png" alt="icone usager"/>
+					<p class="contenu">
+						<ul  class="nav nav-pills nav-stacked">
 						<li><a href="/MDE_GUI_POC/creerUsager">Créer un usager</a></li>
 						<li><a href="/MDE_GUI_POC/detailsUsager">Modifier un
 								usager</a></li>
@@ -61,10 +168,15 @@
 								usager</a></li>
 						<li><a href="/MDE_GUI_POC/historique">Visualiser
 								l'historique</a></li>
-					</ul>
-				</li>
-				<li>Gérer les salles
-					<ul class="nav nav-pills nav-stacked">
+						</ul>
+					</p>
+				</div>
+				<div class="tuile" id="tuile2">
+					<h2>Gérer</h2>
+					<h4>les salles</h4>
+					<img src="/MDE_GUI_POC/img/computer.png" alt="icone ordinateur"/>
+					<p class="contenu">
+						<ul  class="nav nav-pills nav-stacked">
 						<li><a href="/MDE_GUI_POC/creerSalle">Créer une salle</a></li>
 						<li><a href="/MDE_GUI_POC/listerSalles">Visualiser les
 								disponibilités</a></li>
@@ -72,10 +184,15 @@
 						<li><a href="/MDE_GUI_POC/listerSalles">Configurer un
 								poste</a></li>
 						<li><a href="/MDE_GUI_POC/listerSalles">Libérer un poste</a></li>
-					</ul>
-				</li>
-				<li>Statistiques
-					<ul class="nav nav-pills nav-stacked">
+						</ul>
+					</p>
+				</div>
+				<div class="tuile" id="tuile3">	
+					<h2>Statistiques</h2>
+					<h4>a</h4>
+					<img src="/MDE_GUI_POC/img/stat.png" alt="icone graphique"/>
+					<p class="contenu">
+						<ul  class="nav nav-pills nav-stacked">
 						<li><a href="/MDE_GUI_POC/statistiques">Gérer les
 								requêtes</a></li>
 						<li><a href="/MDE_GUI_POC/statistiques">Afficher le
@@ -84,11 +201,16 @@
 								nombre de nouveaux inscrits</a></li>
 						<li><a href="/MDE_GUI_POC/statistiques">Afficher le
 								nombre d'usagers</a></li>
-					</ul>
-				</li>
-				<li>Gérer les utilisateurs
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="/MDE_GUI_POC/creerUtilisateur">Créer un
+						</ul>
+					</p>
+				</div>
+				<div class="tuile" id="tuile4">
+					<h2>Gérer</h2>
+					<h4>les utilisateurs</h4>
+					<img src="/MDE_GUI_POC/img/star.png" alt="icone étoile"/>
+					<p class="contenu">
+						<ul  class="nav nav-pills nav-stacked">
+							<li><a href="/MDE_GUI_POC/creerUtilisateur">Créer un
 								utilisateur</a></li>
 						<li><a href="/MDE_GUI_POC/listerUtilisateurs">Modifier un
 								utilisateur</a></li>
@@ -96,13 +218,10 @@
 								un utilisateur</a></li>
 						<li><a href="/MDE_GUI_POC/listerUtilisateurs">Affecter un
 								utilisateur à un site</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-
-		<section class="col-sm-9" data-ng-view class="container"></section>
-	</div>
+						</ul>
+					</p>
+				</div>
+			</section>
 	</div>
 
 

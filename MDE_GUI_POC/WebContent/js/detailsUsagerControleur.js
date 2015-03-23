@@ -1,10 +1,22 @@
 app.controller('detailsUsagerControleur',  
 	function detailsUsagerControleur ($scope, $http, $window,$rootScope) {
 	
-		if ($scope.utilConn ===undefined){
-			$rootScope.cheminVoulu ='/MDE_GUI_POC/detailsUsager';
-			$location.path('/MDE_GUI_POC/login');	
-		}
+		$rootScope.cacheNav= false;
+		$rootScope.cacheHead= false;
+		$rootScope.cacheTuile= true;
+		
+		if (sessionStorage.getItem("utilConn") === null) {
+			$rootScope.utilConn = sessionStorage
+					.getItem("utilConn");
+			$rootScope.cheminVoulu = '/MDE_GUI_POC/detailsUsager';
+			$location.path('/MDE_GUI_POC/login');
+		}else{
+			// manipulation DOM pour navigation accordion
+			$("#usagers").addClass("in");
+			$("#salles").removeClass("in");
+			$("#utilisateurs").removeClass("in");
+			$("#statistiques").removeClass("in");
+			
 		$scope.detailVisible = false;
 
 		$http.get("http://10.0.11.44:8080/MDE_Rest/Api/usager").success(function(response) {
@@ -49,6 +61,7 @@ app.controller('detailsUsagerControleur',
 			}
 		};
 	}
+}
 );
 
 

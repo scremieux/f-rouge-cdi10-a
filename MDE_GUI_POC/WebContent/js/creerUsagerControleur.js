@@ -19,6 +19,22 @@ app.controller('creerUsagerControleur',
 		'$window',
 	 	'creerUsagerService',
 	 	function creerUsagerControleur($scope, $http, $location, $rootScope, $window, creerUsagerService) {
+			$rootScope.cacheNav= false;
+			$rootScope.cacheHead= false;
+			$rootScope.cacheTuile= true;
+			
+			if (sessionStorage.getItem("utilConn") === null) {
+				$rootScope.utilConn = sessionStorage
+						.getItem("utilConn");
+				$rootScope.cheminVoulu = '/MDE_GUI_POC/creerUsager';
+				$location.path('/MDE_GUI_POC/login');
+			}else{
+				// manipulation DOM pour navigation accordion
+				$("#usagers").addClass("in");
+				$("#salles").removeClass("in");
+				$("#utilisateurs").removeClass("in");
+				$("#statistiques").removeClass("in");
+				
 			$scope.controleSaisie = true;
 
 			// Requête de la liste des catégories socio professionnelles
@@ -59,7 +75,7 @@ app.controller('creerUsagerControleur',
 			$scope.creerUsagerRetour = function () {
 				$window.history.back();
 			};
-
+			}
 		}
 		
 	]

@@ -10,16 +10,22 @@ app
 						'$rootScope',
 						function historiqueControleur($scope, $http,
 								$routeParams, $location, $window, $rootScope) {
-
-							console.log("session storage: "
-									+ sessionStorage.getItem("utilConn"));
+							$rootScope.cacheNav= false;
+							$rootScope.cacheHead= false;
+							$rootScope.cacheTuile= true;
+							
 							if (sessionStorage.getItem("utilConn") === null) {
 								$rootScope.utilConn = sessionStorage
 										.getItem("utilConn");
 								$rootScope.cheminVoulu = '/MDE_GUI_POC/historique';
 								$location.path('/MDE_GUI_POC/login');
-							}
-
+							}else{
+								// manipulation DOM pour navigation accordion
+								$("#usagers").addClass("in");
+								$("#salles").removeClass("in");
+								$("#utilisateurs").removeClass("in");
+								$("#statistiques").removeClass("in");
+								
 								// Requête de la liste des connexions
 								$http
 										.get('/MDE_Rest/Api/connexion')
@@ -119,7 +125,7 @@ app
 									$scope.usagerSaisi = "";
 									$scope.dateChoisi = null;
 								};
-
+							}
 							
 						}
 

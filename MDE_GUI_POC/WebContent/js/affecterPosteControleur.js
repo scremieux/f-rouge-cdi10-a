@@ -18,7 +18,8 @@ app.controller('affecterPosteControleur',
 	 	'$location',
 	 	'$window',
 	 	'creerUsagerService',
-	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window, creerUsagerService) {
+	 	'$rootScope',
+	 	function affecterPosteControleur ($scope, $http, $routeParams, $location, $window, creerUsagerService, $rootScope) {
 	 		$scope.controleSaisie = {statut : true};
 	 		
 			$rootScope.cacheNav= false;
@@ -41,11 +42,13 @@ app.controller('affecterPosteControleur',
 	 		// Requete : liste des usagers pour gestion auto completion
 	 		$http.get("/MDE_Rest/Api/usager").success(function(response) {
 	 			$scope.listeUsagers = response;
+	 			console.log($scope.listeUsagers);
 	 		});
 
 	 		// Requete : liste des motifs
 	 		$http.get("/MDE_Rest/Api/connexion/motif").success(function(response) {
 	 			$scope.listeMotifs = response;
+	 			
 	 		});
 	 		
 			// Requête de la liste des catégories socio professionnelles

@@ -55,9 +55,8 @@ app.config([ '$routeProvider', '$locationProvider',
 				// controller : 'affecterPosteControleur'
 				// Gérer les utilisateurs
 			}).when('/MDE_GUI_POC/creerUtilisateur', {
-				// templateUrl: '/MDE_GUI_POC/html/creerUtilisateur.html',
-				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'
-				// controller : 'creerUtilisateurControleur'
+				templateUrl: '/MDE_GUI_POC/html/creerUtilisateur.html',
+				controller : 'creerUtilisateurControleur'
 			}).when('/MDE_GUI_POC/listerUtilisateurs', {
 				// templateUrl: '/MDE_GUI_POC/html/listerUtilisateurs.html',
 				templateUrl : '/MDE_GUI_POC/html/workInProgress.html'

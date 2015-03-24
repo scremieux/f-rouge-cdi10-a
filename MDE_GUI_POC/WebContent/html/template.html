@@ -32,20 +32,23 @@
 				<img src="/MDE_GUI_POC/img/cyber_base.png" class="img-responsive"
 					alt="logo cyber base" />
 			</div>
-			<div class="col-md-5 page-header">
-				<h1>Cyberbase</h1>
+			<div class="col-md-6 page-header" id="titreAccueil">
+				<h1>
+				Cyberbase
+				</h1>
 			</div>
-			<div class="col-md-4" id="connexionBloc">
-				<p class="row col-md-12" data-ng-bind="utilConn"></p>
-				<div class="row">
-					<button class="btn btn-primary col-md-5"
-						data-ng-click="deconnexion()">
+
+			<div class="col-md-1"></div>
+			<div class="col-md-2">
+			<div class="row col-md-12" id="loginUtil">
+				<h4  data-ng-bind="utilConn"></h4>
+				</div>
+				<div class="row col-md-12" id="mdpBloc">
+					<p data-ng-click="deconnexion()" >
 						<span class="glyphicon glyphicon glyphicon-log-out"></span>
 						Déconnexion
-					</button>
-					<p class="col-md-1"> </p>
-					<button class="btn btn-primary col-md-6"
-						data-ng-click="modifierMdP()">Modifier mot de passe</button>
+					</p>
+					<p data-ng-click="modifierMdP()">Modifier mot de passe</p>
 				</div>
 			</div>
 		</header>
@@ -232,6 +235,7 @@
 	<script type="text/javascript" src="js/templateControleur.js"></script>
 	<script type="text/javascript" src="js/gererSalleControleur.js"></script>
 	<script type="text/javascript" src="js/creerUsagerControleur.js"></script>
+	<script type="text/javascript" src="js/creerUtilisateurControleur.js"></script>
 	<script type="text/javascript" src="js/affecterPosteControleur.js"></script>
 	<script type="text/javascript" src="js/historiqueControleur.js"></script>
 	<script type="text/javascript" src="js/listerSallesControleur.js"></script>
@@ -241,4 +245,3 @@
 
 </body>
 </html>
-

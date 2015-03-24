@@ -15,9 +15,9 @@
 			<div class="input-group">
 				<input id="usagerInput" class="form-control" name="usagerInput"
 					type="text" class="form-control" autocomplete="off"
-					placeholder="Recherche d'un usager..." list="usagers"
+					placeholder="Recherche d'un usager..." list="usagersListing"
 					data-ng-model="usagerRecherche" />
-				<datalist id="usagers">
+				<datalist id="usagersListing">
 					<option data-ng-repeat="usager in listeUsagers | orderBy : 'usagerNom'"
 						value="{{ usager.usagerPrenom 
 						+ ' ' 

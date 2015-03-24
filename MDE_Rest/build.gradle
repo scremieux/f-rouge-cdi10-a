@@ -1,0 +1,30 @@
+//apply plugin:'java'
+apply plugin:'war'
+sourceCompatibility=1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+
+		resources {
+			srcDir 'src'
+		}
+	}
+}
+
+war {
+	from 'WebContent'
+}
+
+dependencies {
+	providedCompile group: 'javax', name: 'javaee-api', version :'7.0'
+	compile project(':MDE_Entity')
+	compile project(':MDE_Service')
+}

@@ -1,0 +1,1 @@
+include 'MDE_Entity', 'MDE_Service', 'MDE_Rest', 'MDE_GUI_POC', 'MDE_EAR'

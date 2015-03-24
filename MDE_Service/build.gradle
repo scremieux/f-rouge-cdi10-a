@@ -1,0 +1,23 @@
+apply plugin:'java'
+version='1.0-SNAPSHOT'
+sourceCompatibility=1.8
+
+repositories{
+	mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'ejbModule'
+		}
+		resources {
+			srcDir 'ejbModule'
+		}
+	}
+}
+
+dependencies{
+	compile group: 'javax', name:'javaee-api', version: '7.0'
+	compile project(':MDE_Entity')
+}

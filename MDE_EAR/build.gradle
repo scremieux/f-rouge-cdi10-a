@@ -1,0 +1,45 @@
+apply plugin: 'ear'
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'cargo'
+
+sourceCompatibility = 1.8
+version = '1.0.0-SNAPSHOT'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5.1'
+	}
+}
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	deploy project(path: ':MDE_GUI_POC', configuration: 'archives')
+	deploy project(path: ':MDE_Rest', configuration: 'archives')
+//	def cargoVersion = '1.4.+'
+//	cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+//		"org.codehaus.cargo:simple-ear:$cargoVersion",
+//		"org.codehaus.cargo:cargo-ant:$cargoVersion",
+//			"org.wildfly:wildfly-controller-client:8.1.0.Final"
+}
+
+ear {
+	libDirName ''
+}
+
+cargo {
+	containerId = 'wildfly8x'
+	remote {
+		hostname = 'localhost'
+		port = 9900
+		username = 'imie'
+		password = '1m1e'
+	}
+}

@@ -5,6 +5,14 @@ app.controller('loginControleur',
 		'$location',
 		'$rootScope',
 	 	function loginControleur($scope, $http, $location,$rootScope) {
+			
+			if ($rootScope.utilConnecte!=undefined){
+				$rootScope.cacheNav= true;
+				$rootScope.cacheHead= false;
+				$rootScope.cacheTuile= false;
+				$location.path('/MDE_GUI_POC/');
+
+			}
 			$rootScope.cacheNav= true;
 			$rootScope.cacheHead= true;
 			$rootScope.cacheTuile= true;
@@ -15,10 +23,14 @@ app.controller('loginControleur',
 	 		$scope.loginSeConnecter = function() {
 	 			var utilisateur ={};
 	 			var mdpOk = false;
-	 			utilisateur.utilLogin = $scope.loginSaisi;
+	 			console.log($scope.loginSaisi + ' ' + $scope.mdpSaisi);
+	 			if($scope.loginSaisi!=undefined && $scope.mdpSaisi!=undefined){
+	 				utilisateur.utilLogin = $scope.loginSaisi;
+	 				utilisateur.utilMdp = md5($scope.mdpSaisi);
+	 			
+	 			
 
 	 			
-	 			utilisateur.utilMdp = md5($scope.mdpSaisi);
 	 			
 	 			$http.post("/MDE_Rest/Api/login", utilisateur)
 	 			.success(function(data, status, headers, config) {
@@ -55,8 +67,10 @@ app.controller('loginControleur',
 	 		 				
 	 		 			}else{
 	 		 				$scope.messageErreur = "Saisie incorrecte";
-	 		 				$scope.loginSaisi="";
-	 			 			$scope.mdpSaisi="";
+	 		 				//$scope.loginSaisi="";
+	 			 			//$scope.mdpSaisi="";
+	 			 			$scope.loginSaisi=undefined;
+	 			 			$scope.mdpSaisi=undefined;
 	 		 			}
 					})
 				.error(function(data, status, headers, config) {
@@ -74,10 +88,12 @@ app.controller('loginControleur',
 	 			
 	 			
 	 			
-	 		};
 	 		
-	 	
-
+	 		
+	 		}else{
+ 				$scope.messageErreur = "Champ vide";
+ 			}
+	 		}
 	 	
 	 	}
 		]

@@ -63,6 +63,7 @@ app.controller('creerUsagerControleur',
 			 */
 			$scope.creerUsagerValider = function () {
 	 			var controleSaisie = creerUsagerService.controleSaisie(this.usagerSaisi);
+	 			console.log("controleur : "+this.usagerSaisi.usagerDtNaiss);
 	 			if (controleSaisie.statut === true) {
 	 				creerUsagerService.creerUsager(this.usagerSaisi, function (nouvelUsager) {
 	 					$window.history.back();

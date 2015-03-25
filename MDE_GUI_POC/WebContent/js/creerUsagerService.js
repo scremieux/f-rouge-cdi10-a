@@ -31,11 +31,12 @@ services.factory('creerUsagerService', ['$http', '$filter', function ($http, $fi
 	creerUsagerService.creerUsager = function (usager, callback) {
 		
 		if (usager.usagerDtNaiss !== undefined) {
-			usager.usagerDtNaiss = convertirDate(usager.usagerDtNaiss);
+			//usager.usagerDtNaiss = convertirDate(usager.usagerDtNaiss);
+			console.log("service : "+usager.usagerDtNaiss);
 		}
 
 		if (usager.usagerDtExclusion !== undefined) {
-			usager.usagerDtExclusion = convertirDate(usager.usagerDtExclusion);
+			//usager.usagerDtExclusion = convertirDate(usager.usagerDtExclusion);
 		}
 
 		$http

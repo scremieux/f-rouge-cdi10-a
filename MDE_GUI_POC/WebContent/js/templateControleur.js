@@ -10,7 +10,7 @@ app.controller('templateControleur',
 		this.$route = $route;
 		this.$routeParams = $routeParams;
 		this.$location = $location;
-
+		
 		$rootScope.cacheNav= true;
 		$rootScope.cacheHead= false;
 		$rootScope.cacheTuile= false;

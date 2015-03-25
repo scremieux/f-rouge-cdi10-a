@@ -95,8 +95,9 @@ app
 														utilisateur)
 												.success(
 														function(data, status) {
+															utilisateur.utilAdmin =false;
 															utilisateur.utilNom ='';
-															utilisateur.utilPreom ='';
+															utilisateur.utilPrenom ='';
 															utilisateur.utilLogin ='';
 															utilisateur.utilMdp ='';
 															utilisateur.site.siteId =null;

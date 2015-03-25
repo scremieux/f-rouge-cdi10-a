@@ -116,10 +116,11 @@
 			</button>
 			<div class="col-sm-6">
 			</div>
-
+			<!-- Correction bug TF027.2-->
 			<button class="btn btn-primary col-sm-3"
 				data-ng-click="affecterPosteValider()"
-				data-ng-disabled="usager.usagerConnecte">
+				data-ng-disabled="usager.usagerConnecte || usager.usagerNom==undefined || usager.usagerExcluService"
+				>
 				Attribuer poste
 			</button>
 		</div>

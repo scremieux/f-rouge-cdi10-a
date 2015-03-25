@@ -15,7 +15,8 @@ public interface ILoginService {
 	 * Retourne un booléen à true lorsque l'utilisateur saisie son MdP.
 	 * @return un booléen .
 	 */
-	Boolean verifLogin(Utilisateur utilisateur);
+	//Boolean verifLogin(Utilisateur utilisateur);
+	Utilisateur verifLogin(Utilisateur utilisateur);
 	
 }
 	

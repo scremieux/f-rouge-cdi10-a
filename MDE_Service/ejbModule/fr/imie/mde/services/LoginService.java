@@ -34,7 +34,7 @@ public class LoginService implements ILoginService {
     public LoginService() {
         super();
     }
-	@Override
+	/*@Override
 	public Boolean verifLogin(Utilisateur util) {
 		// TODO Auto-generated method stub
 		Boolean utilAuth = false;
@@ -51,6 +51,28 @@ public class LoginService implements ILoginService {
 
     		if ((loginUtilAVerif.equals(loginUtilisateur)) && (mdpUtilAVerif.equals(mdpUtilisateur))){
     			utilAuth = true;
+    		}
+		}
+		return utilAuth;
+	}*/
+	
+	@Override
+	public Utilisateur verifLogin(Utilisateur util) {
+		// TODO Auto-generated method stub
+		Utilisateur utilAuth = new Utilisateur();
+		String loginUtilAVerif = util.getUtilLogin();
+		String mdpUtilAVerif = util.getUtilMdp();
+		String loginUtilisateur = null;
+		String mdpUtilisateur = null;
+		
+		Query query = entityManager.createNamedQuery("Utilisateur.findAll"); 
+		List<Utilisateur> utilisateurs = query.getResultList();
+    	for (Utilisateur utilisateur : utilisateurs) {
+    		loginUtilisateur = utilisateur.getUtilLogin();
+    		mdpUtilisateur = utilisateur.getUtilMdp();
+
+    		if ((loginUtilAVerif.equals(loginUtilisateur)) && (mdpUtilAVerif.equals(mdpUtilisateur))){
+    			utilAuth = utilisateur;
     		}
 		}
 		return utilAuth;

@@ -41,12 +41,16 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-2">
 			<div class="row col-md-12" id="loginUtil">
-				<h4  data-ng-bind="utilConn"></h4>
+				<h5  data-ng-bind="utilConnecte"></h5>
 				</div>
 				<div class="row col-md-12" id="mdpBloc">
-					<p data-ng-click="deconnexion()" >
+					<p data-ng-click="deconnexion()" ng-hide="cacheDeconn" >
 						<span class="glyphicon glyphicon glyphicon-log-out"></span>
 						Déconnexion
+					</p>
+					<p data-ng-click="connexion()" ng-hide="cacheConn">
+						<span class="glyphicon glyphicon glyphicon-log-out"></span>
+						Connexion
 					</p>
 					<p data-ng-click="modifierMdP()">Modifier mot de passe</p>
 				</div>
@@ -130,7 +134,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-default">
+					<div class="panel panel-default" ng-hide="cacheAdmin">
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#accordion"
@@ -207,7 +211,7 @@
 						</ul>
 					</p>
 				</div>
-				<div class="tuile" id="tuile4">
+				<div class="tuile" id="tuile4" ng-hide="cacheAdmin">
 					<h2>Gérer</h2>
 					<h4>les utilisateurs</h4>
 					<img src="/MDE_GUI_POC/img/star.png" alt="icone étoile"/>

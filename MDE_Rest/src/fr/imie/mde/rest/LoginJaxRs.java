@@ -27,12 +27,23 @@ public class LoginJaxRs {
 	@Context HttpServletRequest req;
 	@Context HttpServletResponse res;
 	
-	@POST()
+	/*@POST()
 	public Response verifLoginRest(Utilisateur utilisateur) {
 		Boolean utilAuth = false;
 		if (utilisateur != null) {
 			utilAuth = loginService.verifLogin(utilisateur);
 			if (utilAuth){
+				req.getSession().setAttribute("utilConn", utilisateur.getUtilLogin());
+			}
+		}
+		return Response.ok(utilAuth).build();
+	}*/
+	@POST()
+	public Response verifLoginRest(Utilisateur utilisateur) {
+		Utilisateur utilAuth = null;
+		if (utilisateur != null) {
+			utilAuth = loginService.verifLogin(utilisateur);
+			if (utilAuth!=null){
 				req.getSession().setAttribute("utilConn", utilisateur.getUtilLogin());
 			}
 		}

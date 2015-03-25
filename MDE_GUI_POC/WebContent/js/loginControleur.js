@@ -23,7 +23,7 @@ app.controller('loginControleur',
 	 			$http.post("/MDE_Rest/Api/login", utilisateur)
 	 			.success(function(data, status, headers, config) {
 	 		
-	 		 			if (data=="true"){
+	 		 			/*if (data=="true"){
 	 		 				sessionStorage.setItem("utilConn",$scope.loginSaisi);
 	 		 				$rootScope.utilConn = utilisateur.utilLogin;
 	 		 				$rootScope.cacheNav= false;
@@ -32,7 +32,26 @@ app.controller('loginControleur',
 	 		 					$location.path($rootScope.cheminVoulu);
 	 		 				}else{
 	 		 					$location.path('/MDE_GUI_POC/');
-	 		 				}
+	 		 				}*/
+	 					if (data!=null){
+ 		 				sessionStorage.setItem("utilConn",data);
+ 		 				$rootScope.utilConnecte = data.utilPrenom +' '+data.utilNom;
+ 		 				
+ 		 				$rootScope.cacheDeconn= false;
+ 		 				$rootScope.cacheConn= true;
+ 		 				
+ 		 					if(data.utilAdmin){
+ 		 						$rootScope.cacheAdmin= false;
+ 		 					}
+ 		 					if($rootScope.cheminVoulu!==undefined){
+ 		 						$rootScope.cacheNav= false;
+ 		 		 				$rootScope.cacheHead= false;
+ 		 						$location.path($rootScope.cheminVoulu);
+ 		 					}else{
+ 		 						$rootScope.cacheTuile= false;
+ 		 		 				$rootScope.cacheHead= false;
+ 		 						$location.path('/MDE_GUI_POC/');
+ 		 					}
 	 		 				
 	 		 			}else{
 	 		 				$scope.messageErreur = "Saisie incorrecte";

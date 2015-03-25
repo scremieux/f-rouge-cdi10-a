@@ -33,7 +33,7 @@ app.controller('loginControleur',
 	 		 				}else{
 	 		 					$location.path('/MDE_GUI_POC/');
 	 		 				}*/
-	 					if (data!=null){
+	 					if (data.utilNom!=null){
  		 				sessionStorage.setItem("utilConn",data);
  		 				$rootScope.utilConnecte = data.utilPrenom +' '+data.utilNom;
  		 				

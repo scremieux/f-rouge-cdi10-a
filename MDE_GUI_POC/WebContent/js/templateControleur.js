@@ -20,7 +20,7 @@ app.controller('templateControleur',
 		
 		$scope.deconnexion = function() {
 			sessionStorage.clear();
-			$rootScope.utilConn = undefined;
+			$rootScope.utilConnecte = undefined;
 			$rootScope.cacheNav= true;
 			$rootScope.cacheHead= false;
 			$rootScope.cacheTuile= false;
@@ -33,7 +33,7 @@ app.controller('templateControleur',
 			$location.path('/MDE_GUI_POC/login');
 		}
 		$scope.btnAccueil = function() {
-			$rootScope.utilConn = undefined;
+			//$rootScope.utilConn = undefined;
 			$rootScope.cacheNav= true;
 			$rootScope.cacheHead= false;
 			$rootScope.cacheTuile= false;

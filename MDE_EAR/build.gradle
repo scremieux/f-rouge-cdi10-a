@@ -40,6 +40,6 @@ cargo {
 		hostname = 'localhost'
 		port = 9900
 		username = 'imie'
-		password = '1m1e'
+		password = 'imie'
 	}
 }
